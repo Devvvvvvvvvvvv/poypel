@@ -1,9 +1,148 @@
 <html>
 <head>
-    <link rel="stylesheet" href="spectre.min.css">
-    <link rel="stylesheet" href="spectre-icons.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/spectre.css/dist/spectre.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/spectre.css/dist/spectre-exp.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/spectre.css/dist/spectre-icons.min.css">
 </head>
 <body>
+
+<div class="container grid-lg">
+    <div class="columns">
+        <div class="column col-12">
+            <div class="divider text-center" data-content="Session"></div>
+            <div class="form-horizontal">
+                <form>
+                    <div class="form-group">
+                        <div class="col-3 col-sm-12">
+                            <label class="form-label" for="input-session-id">Current session ID</label>
+                        </div>
+                        <div class="col-9 col-sm-12">
+                            <div class="input-group">
+                                <input class="form-input" type="text" id="input-session-id" placeholder="Current session ID" value="{{ .Account.ID }}">
+                                <button class="ml-1 btn btn-success input-group-btn"><i class="icon icon-download"></i> Save session</button>
+                                <button class="ml-1 btn input-group-btn"><i class="icon icon-plus"></i> Create session</button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+                <form>
+                    <div class="form-group">
+                        <div class="col-3 col-sm-12">
+                            <label class="form-label" for="load-session-id">Load session ID</label>
+                        </div>
+                        <div class="col-9 col-sm-12">
+                            <div class="input-group">
+                                <select name="session_load" class="form-select">
+
+                                </select>
+                                <button class="ml-1 btn btn-primary"><i class="icon icon-upload"></i> Load session</button>
+                                <button class="ml-1 btn btn-error"><i class="icon icon-cross"></i> Delete session</button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="divider text-center" data-content="Settings"></div>
+            <div class="form-horizontal">
+                <form>
+                    <div class="form-group">
+                        <div class="col-3 col-sm-12">
+                            <label class="form-label" for="input-account-name">Account Name</label>
+                        </div>
+                        <div class="col-9 col-sm-12">
+                            <div class="input-group">
+                                <input class="form-input" type="text" name="account_name" id="input-account-name" placeholder="First name Last name" value="{{ .Account.Name }}">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-3 col-sm-12">
+                            <label class="form-label" for="input-bank-name">Bank</label>
+                        </div>
+                        <div class="col-9 col-sm-12">
+                            <div class="input-group">
+                                <select name="account_bank" id="input-bank-name" class="form-select">
+                                    {{ $bank := .Account.Bank }}
+                                    {{ range .Banks }}
+                                        <option value="{{ .Name }}" {{ if eq .Name $bank }}selected{{ end }}>{{ .Name }}</option>
+                                    {{ end }}
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-3 col-sm-12">
+                            <label class="form-label" for="input-hours-min">Hours between transactions</label>
+                        </div>
+                        <div class="col-9 col-sm-12">
+                            <div class="input-group">
+                                <input class="form-input" type="number" name="account_hours_min" id="input-hours-min" placeholder="From" value="{{ .Account.HoursMin }}">
+                                <input class="form-input" type="number" name="account_hours_max" id="input-hours-max" placeholder="To" value="{{ .Account.HoursMax }}">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-3 col-sm-12">
+                            <label class="form-label" for="input-date-start">Date start</label>
+                        </div>
+                        <div class="col-9 col-sm-12">
+                            <div class="input-group">
+                                <input class="form-input" type="datetime-local" name="account_date_start" id="input-date-start" placeholder="Date starting from" value="{{ .Account.DateStart.Format "2006-01-02T15:04" }}">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-3 col-sm-12"></div>
+                        <div class="col-9 col-sm-12">
+                            <button type="submit" class="btn btn-success"><i class="icon icon-download"></i> Update session</button>
+                            <a href="/build" class="btn"><i class="icon icon-stop"></i> Reset session</a>
+                            <a href="/myaccount/transactions/" class="btn btn-primary pull-right"><i class="icon icon-share"></i> Go to Activity page</a>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="divider text-center" data-content="Transactions"></div>
+            <table class="table table-striped table-hover">
+                <thead>
+                <tr>
+                    <th>Date</th>
+                    <th>Type</th>
+                    <th>Name</th>
+                    <th>Amount</th>
+                    <th>Product</th>
+                </tr>
+                </thead>
+                <tbody>
+
+                    {{ $products := .Products }}
+                    {{ range .Transactions }}
+                        <tr>
+                            <td><input name="transactions[][date]" class="form-input input-sm" type="datetime-local" placeholder="Date" value="{{ .Date.Format "2006-01-02T15:04" }}"></td>
+                            <td>
+                                <select name="transactions[][type]" class="form-select select-sm">
+                                    <option value="0" {{ if eq .Type 0 }}selected{{ end }}>COMPLETED</option>
+                                    <option value="1" {{ if eq .Type 1 }}selected{{ end }}>BANK</option>
+                                    <option value="2" {{ if eq .Type 2 }}selected{{ end }}>HOLD_SHIP</option>
+                                    <option value="3" {{ if eq .Type 3 }}selected{{ end }}>HOLD_NOT_SHIP</option>
+                                </select>
+                            </td>
+                            <td><input name="transaction[][name]" class="form-input input-sm" type="text" placeholder="Name" value="{{ .Name }}"></td>
+                            <td><input name="transaction[][amount]" class="form-input input-sm" type="text" placeholder="Amount" value="{{ .Amount }}"></td>
+                            <td>
+                                <select name="transactions[][product_id]" class="form-select select-sm">
+                                    {{ $productId := .ProductId }}
+                                    {{ range $products }}
+                                        <option value="{{ .ID }}" {{ if eq .ID $productId }}selected{{ end }}>${{ .Price }} {{ .Name }}</option>
+                                    {{ end }}
+                                </select>
+                            </td>
+                        </tr>
+                    {{ end }}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
 
 </body>
 </html>

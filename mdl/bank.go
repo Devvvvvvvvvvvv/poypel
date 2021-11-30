@@ -1,13 +1,15 @@
 package mdl
 
+import "math/rand"
+
 type Bank struct {
-	Name string
+	Name     string
 	Products []BankProduct
 }
 
 type BankProduct struct {
-	Name string
-	Type string
+	Name  string
+	Type  string
 	Photo string
 }
 
@@ -38,4 +40,10 @@ func GenerateBanks() []Bank {
 			{"Visa", "Prepaid", "https://pics.paypal.com//00/s/OTY5WDE1MzZYUE5H/p/ODI3NzMyNTYtODZmOS00NjhhLWJmNTctMDk1ZWUzM2Q5Mzll/image__7.png"},
 		}},
 	}
+}
+
+func RandomBank() Bank {
+	banks := GenerateBanks()
+	bankInd := rand.Intn(len(banks))
+	return banks[bankInd]
 }
