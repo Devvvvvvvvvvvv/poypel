@@ -6,9 +6,13 @@ import (
 )
 
 func GetDB() *gorm.DB {
-	db, err := gorm.Open(sqlite.Open("file::memory:?cache=shared"), &gorm.Config{})
+	db, err := gorm.Open(sqlite.Open("data.db"), &gorm.Config{})
 	if err != nil {
 		panic("failed to connect database")
 	}
-	return db
+	err = db.AutoMigrate()
+	if err != nil {
+		panic(err)
+	}
+	return db.Session(&gorm.Session{FullSaveAssociations: true}).Debug()
 }

@@ -602,6 +602,110 @@
                         <section id="js_messageView" class="messages-container newMessages-container"></section>
                     </div>
                     <div id="js_transactionCollection" class="transactionCollection">
+
+                        {{ if .Account.HasPending }}
+                            <section class="activityModule newActivityModule js_completedModule nemo_pendingModule"
+                                     aria-labelledby="activityModuleHeaderPending"><h3 id="activityModuleHeaderPending"
+                                                                                         class="ppvx_text--body-strong moduleHeader withStatements nemo_activityModuleHeaderPending">
+                                    Pending</h3>
+                                <ul class="transactionList js_transactionList">
+                                    {{ range .Account.Transactions }}
+
+                                        {{ if .IsPending }}
+
+                                            <li class="transactionRow transactionRowHover js_transactionItem-5YX357455S5907308 placeholderBorder" data-creation-time-bucket="LessThan1Week" data-href="/myaccount/transactions/details/5YX357455S5907308">
+                                                <div class="transactionItem js_transactionItem nemo_transactionItem">
+                                                    <div class="ppvx_row ppvx_no-gutters linkedBlock js_linkedBlock " data-href="/myaccount/transactions/details/5YX357455S5907308" aria-expanded="false" aria-controls="transactionDetails-5YX357455S5907308" aria-describedby="txnDate-5YX357455S5907308 txnAmountAndCurrency-5YX357455S5907308" tabindex="0">
+                                                        <div class="activityBubble">
+                                                            <h4 class="accessAid">
+                                                                <div class="ppvx_row ppvx_no-gutters transactionDescription ppvx_text--body" dir="auto">
+                                                                    <span class="ppvx_col-7 counterparty">
+                                                                        <span class="ppvx_text--body-strong counterparty-text">{{ .Name }}</span>
+                                                                    </span>
+                                                                    <div id="txnAmountAndCurrency-5YX357455S5907308" class="ppvx_col-5 transactionAmount js_transactionDescriptionLink " data-href="/myaccount/transactions/details/5YX357455S5907308">
+                                                                        <span aria-hidden="true" class="{{ if .IsPositive }}isPositive {{ end }}ppvx_text--body-strong">{{ if .IsPositive }}+{{ else }}-{{ end }}</span>
+                                                                        <span class="accessAid">{{ if .IsPositive }}positive{{ else }}negative{{ end }}</span>
+                                                                        <span class="{{ if .IsPositive }}isPositive {{ else }}netAmount {{ end }}ppvx_text--body-strong "> {{ .AmountString }} </span>
+                                                                        <span class="ppvx_text--body-strong currencyCodeInline nemo_currencyCode"></span>
+                                                                    </div>
+                                                                </div>
+                                                                <span id="txnDate-5YX357455S5907308" class="ppvx_text--caption relative-time">{{ .DateString }}</span>
+                                                                <span class="transactionType ppvx_col-7 ppvx_col-lg-8 ppvx_text--caption">
+                                                                    <span class="ppvx_badge ppvx_badge--type_warning">EBAY HOLD</span>
+                                                                    {{ .TypeString }}
+                                                                </span>
+                                                            </h4>
+                                                            <div class="activityBubble-icon-header ppvx_icon transfers-bubble">
+                                                                <div data-test="profile-image" class="activityBubble-photo" style="background-image: url(https://www.paypalobjects.com/webstatic/wallet/merchants/mebay/logo_small-xhdpi.png);"></div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="ppvx_col">
+                                                            <div class="ppvx_row ppvx_no-gutters transaction-section">
+                                                                <div class="ppvx_col-12 transactionDetailsContainer js_transactionDetailsContainer">
+                                                                    <div id="txnDescription-5YX357455S5907308"
+                                                                         class=" transactionDescriptionContainer js_transactionDescriptionContainer">
+                                                                        <div class="ppvx_row ppvx_no-gutters transactionDescription ppvx_text--body" dir="auto">
+                                                                            <span class="ppvx_col-7 counterparty">
+                                                                                <span class="ppvx_text--body-strong counterparty-text">{{ .Name }}</span>
+                                                                            </span>
+                                                                            <div id="txnAmountAndCurrency-5YX357455S5907308" class="ppvx_col-5 transactionAmount js_transactionDescriptionLink " data-href="/myaccount/transactions/details/5YX357455S5907308">
+                                                                                <span aria-hidden="true" class="{{ if .IsPositive }}isPositive {{ end }}ppvx_text--body-strong">{{ if .IsPositive }}+{{ else }}-{{ end }}</span>
+                                                                                <span class="accessAid">{{ if .IsPositive }}positive{{ else }}negative{{ end }}</span>
+                                                                                <span class="{{ if .IsPositive }}isPositive {{ else }}netAmount {{ end }} ppvx_text--body-strong "> {{ .AmountString }} </span>
+                                                                                <span class="ppvx_text--body-strong currencyCodeInline nemo_currencyCode"></span>
+                                                                            </div>
+                                                                        </div>
+                                                                        <span id="txnDate-5YX357455S5907308" class="ppvx_text--caption relative-time">{{ .DateString }}</span>
+                                                                        <span class="transactionType ppvx_col-7 ppvx_col-lg-8 ppvx_text--caption">
+                                                                            <span class="ppvx_badge ppvx_badge--type_warning">EBAY HOLD</span>
+                                                                            {{ .TypeString }}
+                                                                        </span>
+                                                                        {{ if eq .Type 3 }}
+                                                                            <div class="ppvx_text--caption action">
+                                                                                <a class="button-experiment" name="addtracking" data-pagename="main:walletweb:activity:action:addtracking:paymentrec:" data-pagename2="main:walletweb:activity:action:addtracking:paymentrec::" data-track-type="link" href="https://www.paypal.com/addtracking/add/" pa-marked="1">Add tracking info</a>
+                                                                                <a class="button-experiment" name="contactEbay" data-pagename="main:walletweb:activity:action:contactEbay:" data-pagename2="main:walletweb:activity:action:contactEbay::" data-track-type="link" href="https://www.ebay.com/help/call_us" pa-marked="1">Contact eBay</a>
+                                                                            </div>
+                                                                        {{ end }}
+                                                                        {{ if eq .Type 2}}
+                                                                            <div class="ppvx_text--caption action">
+                                                                                <a class="button-experiment" name="addtracking" data-pagename="main:walletweb:activity:action:trackshipment:paymentrec:" data-pagename2="main:walletweb:activity:action:trackshipment:paymentrec::" data-track-type="link" href="https://www.paypal.com/cgi-bin/webscr?cmd=_track_package&amp;info=-K9lqRw7aFkHd-SIg5oA1Ct1Ym3aj26T3Obnyxq3w3HhmiTRTuoIwSkm--y&amp;return=_history" pa-marked="1">Track Shipment</a>
+                                                                            </div>
+                                                                        {{ end }}
+                                                                    </div>
+                                                                    <span id="js_spinnerLabelText-5YX357455S5907308" aria-hidden="true" class="accessAid">Loading transaction details for
+                                                                        <div class="ppvx_row ppvx_no-gutters transactionDescription ppvx_text--body" dir="auto">
+                                                                            <span class="ppvx_col-7 counterparty">
+                                                                                <span class="ppvx_text--body-strong counterparty-text">{{ .Name }}</span>
+                                                                            </span>
+                                                                            <div id="txnAmountAndCurrency-5YX357455S5907308" class="ppvx_col-5 transactionAmount js_transactionDescriptionLink " data-href="/myaccount/transactions/details/5YX357455S5907308">
+                                                                                <span aria-hidden="true" class="{{ if .IsPositive }}isPositive {{ end }}ppvx_text--body-strong">{{ if .IsPositive }}+{{ else }}-{{ end }}</span>
+                                                                                <span class="accessAid">{{ if .IsPositive }}positive{{ else }}negative{{ end }}</span>
+                                                                                <span class="{{ if .IsPositive }}isPositive {{ else }}netAmount {{ end }} ppvx_text--body-strong "> {{ .AmountString }} </span>
+                                                                                <span class="ppvx_text--body-strong currencyCodeInline nemo_currencyCode"></span>
+                                                                            </div>
+                                                                        </div>
+                                                                        <span id="txnDate-5YX357455S5907308" class="ppvx_text--caption relative-time">{{ .DateString }}</span>
+                                                                        <span class="transactionType ppvx_col-7 ppvx_col-lg-8 ppvx_text--caption">
+                                                                            <span class="ppvx_badge ppvx_badge--type_warning">EBAY HOLD</span>
+                                                                            {{ .TypeString }}
+                                                                        </span>
+                                                                    </span>
+                                                                    <span class="ppvx_icon ppvx_icon--size_sm ppvx_icon-chevron-down activity-chevron"></span>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div id="transactionDetails-5YX357455S5907308" class="js_transactionDetails highlightTransactionPanel hide" role="region" aria-busy="false" aria-labelledby="txnDescription-5YX357455S5907308"></div>
+                                            </li>
+                                        {{ end }}
+                                    {{ end }}
+                                </ul>
+                            </section>
+                        {{ end }}
+
+
+
                         <section class="activityModule newActivityModule js_completedModule nemo_completedModule"
                                  aria-labelledby="activityModuleHeaderCompleted"><h3 id="activityModuleHeaderCompleted"
                                                                                      class="ppvx_text--body-strong moduleHeader withStatements nemo_activityModuleHeaderCompleted">
@@ -613,88 +717,99 @@
 
 
                                 {{ $dbc := "" }}
-                                {{ range .Transactions }}
+                                {{ $lessThan := true }}
+                                {{ range $tk, $t := .Account.Transactions }}
 
-                                    {{ with $db := .DateBucket }}
-                                        {{ if ne $db $dbc }}
-                                            <li class="ppvx_row transactionRow dateBucket">
-                                                <span class="dateBucketText ppvx_text--caption-strong">
-                                                    <strong>{{ $db }}</strong>
-                                                </span>
-                                            </li>
-                                            {{ $dbc = $db }}
+                                    {{ if .IsDone }}
+
+                                        {{ with $db := .DateBucket }}
+                                            {{ if ne $db $dbc }}
+                                                <li class="ppvx_row transactionRow dateBucket">
+                                                    <span class="dateBucketText ppvx_text--caption-strong">
+                                                        <strong>{{ $db }}</strong>
+                                                    </span>
+                                                </li>
+                                                {{ $dbc = $db }}
+                                            {{ end }}
                                         {{ end }}
-                                    {{ end }}
 
-                                    <li class="transactionRow transactionRowHover js_transactionItem-5YX357455S5907308 placeholderBorder" data-creation-time-bucket="LessThan1Week" data-href="/myaccount/transactions/details/5YX357455S5907308">
-                                        <div class="transactionItem js_transactionItem nemo_transactionItem">
-                                            <div class="ppvx_row ppvx_no-gutters linkedBlock js_linkedBlock " data-href="/myaccount/transactions/details/5YX357455S5907308" aria-expanded="false" aria-controls="transactionDetails-5YX357455S5907308" aria-describedby="txnDate-5YX357455S5907308 txnAmountAndCurrency-5YX357455S5907308" tabindex="0">
-                                                <div class="activityBubble">
-                                                    <h4 class="accessAid">
-                                                        <div class="ppvx_row ppvx_no-gutters transactionDescription ppvx_text--body" dir="auto">
-                                                            <span class="ppvx_col-7 counterparty">
-                                                                <span class="ppvx_text--body-strong counterparty-text">{{ .Name }}</span>
-                                                            </span>
-                                                            <div id="txnAmountAndCurrency-5YX357455S5907308" class="ppvx_col-5 transactionAmount js_transactionDescriptionLink " data-href="/myaccount/transactions/details/5YX357455S5907308">
-                                                                <span aria-hidden="true" class="{{ if .IsPositive }}isPositive {{ end }}ppvx_text--body-strong">{{ if .IsPositive }}+{{ else }}-{{ end }}</span>
-                                                                <span class="accessAid">{{ if .IsPositive }}positive{{ else }}negative{{ end }}</span>
-                                                                <span class="{{ if .IsPositive }}isPositive {{ else }}netAmount {{ end }}ppvx_text--body-strong "> ${{ .AmountString }} </span>
-                                                                <span class="ppvx_text--body-strong currencyCodeInline nemo_currencyCode"></span>
+                                        <li class="{{ if ge $tk 50 }}hide {{ $lessThan = false }}{{ end }}transactionRow transactionRowHover js_transactionItem-5YX357455S5907308 placeholderBorder" data-creation-time-bucket="LessThan1Week" data-href="/myaccount/transactions/details/5YX357455S5907308">
+                                            <div class="transactionItem js_transactionItem nemo_transactionItem">
+                                                <div class="ppvx_row ppvx_no-gutters linkedBlock js_linkedBlock " data-href="/myaccount/transactions/details/5YX357455S5907308" aria-expanded="false" aria-controls="transactionDetails-5YX357455S5907308" aria-describedby="txnDate-5YX357455S5907308 txnAmountAndCurrency-5YX357455S5907308" tabindex="0">
+                                                    <div class="activityBubble">
+                                                        <h4 class="accessAid">
+                                                            <div class="ppvx_row ppvx_no-gutters transactionDescription ppvx_text--body" dir="auto">
+                                                                <span class="ppvx_col-7 counterparty">
+                                                                    <span class="ppvx_text--body-strong counterparty-text">{{ .Name }}</span>
+                                                                </span>
+                                                                <div id="txnAmountAndCurrency-5YX357455S5907308" class="ppvx_col-5 transactionAmount js_transactionDescriptionLink " data-href="/myaccount/transactions/details/5YX357455S5907308">
+                                                                    <span aria-hidden="true" class="{{ if .IsPositive }}isPositive {{ end }}ppvx_text--body-strong">{{ if .IsPositive }}+{{ else }}-{{ end }}</span>
+                                                                    <span class="accessAid">{{ if .IsPositive }}positive{{ else }}negative{{ end }}</span>
+                                                                    <span class="{{ if .IsPositive }}isPositive {{ else }}netAmount {{ end }}ppvx_text--body-strong "> {{ .AmountString }} </span>
+                                                                    <span class="ppvx_text--body-strong currencyCodeInline nemo_currencyCode"></span>
+                                                                </div>
                                                             </div>
+                                                            <span id="txnDate-5YX357455S5907308" class="ppvx_text--caption relative-time">{{ .DateString }}</span>
+                                                            <span class="transactionType ppvx_col-7 ppvx_col-lg-8 ppvx_text--caption">{{ .TypeString }}</span>
+                                                        </h4>
+                                                        <div class="activityBubble-icon-header{{ if eq .Type 1 }} ppvx_icon transfers-bubble{{ end }}">
+                                                            {{ if eq .Type 1 }}
+                                                                <div data-test="profile-image" class="ppvx_icon-transfer ppvx_icon--size_md activityBubble-icon" style=""></div>
+                                                            {{ else }}
+                                                                <div data-test="profile-image" class="activityBubble-photo" style="background-image: url(https://www.paypalobjects.com/webstatic/wallet/merchants/mebay/logo_small-xhdpi.png);"></div>
+                                                            {{ end }}
                                                         </div>
-                                                        <span id="txnDate-5YX357455S5907308" class="ppvx_text--caption relative-time">{{ .DateString }}</span>
-                                                        <span class="transactionType ppvx_col-7 ppvx_col-lg-8 ppvx_text--caption">{{ .TypeString }}</span>
-                                                    </h4>
-                                                    <div class="activityBubble-icon-header{{ if eq .Type 1 }} ppvx_icon transfers-bubble{{ end }}">
-                                                        {{ if eq .Type 1 }}
-                                                            <div data-test="profile-image" class="ppvx_icon-transfer ppvx_icon--size_md activityBubble-icon" style=""></div>
-                                                        {{ else }}
-                                                            <div data-test="profile-image" class="activityBubble-photo" style="background-image: url(https://www.paypalobjects.com/webstatic/wallet/merchants/mebay/logo_small-xhdpi.png);"></div>
-                                                        {{ end }}
                                                     </div>
-                                                </div>
-                                                <div class="ppvx_col">
-                                                    <div class="ppvx_row ppvx_no-gutters transaction-section">
-                                                        <div class="ppvx_col-12 transactionDetailsContainer js_transactionDetailsContainer">
-                                                            <div id="txnDescription-5YX357455S5907308"
-                                                                 class=" transactionDescriptionContainer js_transactionDescriptionContainer">
-                                                                <div class="ppvx_row ppvx_no-gutters transactionDescription ppvx_text--body" dir="auto">
-                                                                    <span class="ppvx_col-7 counterparty">
-                                                                        <span class="ppvx_text--body-strong counterparty-text">{{ .Name }}</span>
-                                                                    </span>
-                                                                    <div id="txnAmountAndCurrency-5YX357455S5907308" class="ppvx_col-5 transactionAmount js_transactionDescriptionLink " data-href="/myaccount/transactions/details/5YX357455S5907308">
-                                                                        <span aria-hidden="true" class="{{ if .IsPositive }}isPositive {{ end }}ppvx_text--body-strong">{{ if .IsPositive }}+{{ else }}-{{ end }}</span>
-                                                                        <span class="accessAid">{{ if .IsPositive }}positive{{ else }}negative{{ end }}</span>
-                                                                        <span class="{{ if .IsPositive }}isPositive {{ else }}netAmount {{ end }} ppvx_text--body-strong "> ${{ .AmountString }} </span>
-                                                                        <span class="ppvx_text--body-strong currencyCodeInline nemo_currencyCode"></span>
+                                                    <div class="ppvx_col">
+                                                        <div class="ppvx_row ppvx_no-gutters transaction-section">
+                                                            <div class="ppvx_col-12 transactionDetailsContainer js_transactionDetailsContainer">
+                                                                <div id="txnDescription-5YX357455S5907308"
+                                                                     class=" transactionDescriptionContainer js_transactionDescriptionContainer">
+                                                                    <div class="ppvx_row ppvx_no-gutters transactionDescription ppvx_text--body" dir="auto">
+                                                                        <span class="ppvx_col-7 counterparty">
+                                                                            <span class="ppvx_text--body-strong counterparty-text">{{ .Name }}</span>
+                                                                        </span>
+                                                                        <div id="txnAmountAndCurrency-5YX357455S5907308" class="ppvx_col-5 transactionAmount js_transactionDescriptionLink " data-href="/myaccount/transactions/details/5YX357455S5907308">
+                                                                            <span aria-hidden="true" class="{{ if .IsPositive }}isPositive {{ end }}ppvx_text--body-strong">{{ if .IsPositive }}+{{ else }}-{{ end }}</span>
+                                                                            <span class="accessAid">{{ if .IsPositive }}positive{{ else }}negative{{ end }}</span>
+                                                                            <span class="{{ if .IsPositive }}isPositive {{ else }}netAmount {{ end }} ppvx_text--body-strong "> {{ .AmountString }} </span>
+                                                                            <span class="ppvx_text--body-strong currencyCodeInline nemo_currencyCode"></span>
+                                                                        </div>
                                                                     </div>
+                                                                    <span id="txnDate-5YX357455S5907308" class="ppvx_text--caption relative-time">{{ .DateString }}</span>
+                                                                    <span class="transactionType ppvx_col-7 ppvx_col-lg-8 ppvx_text--caption">
+                                                                        {{ .TypeString }}
+                                                                    </span>
+                                                                    {{ if eq .Type 0}}
+                                                                        <div class="ppvx_text--caption action">
+                                                                            <a class="button-experiment" name="addtracking" data-pagename="main:walletweb:activity:action:trackshipment:paymentrec:" data-pagename2="main:walletweb:activity:action:trackshipment:paymentrec::" data-track-type="link" href="https://www.paypal.com/cgi-bin/webscr?cmd=_track_package&amp;info=-K9lqRw7aFkHd-SIg5oA1Ct1Ym3aj26T3Obnyxq3w3HhmiTRTuoIwSkm--y&amp;return=_history" pa-marked="1">Track Shipment</a>
+                                                                        </div>
+                                                                    {{ end }}
                                                                 </div>
-                                                                <span id="txnDate-5YX357455S5907308" class="ppvx_text--caption relative-time">{{ .DateString }}</span>
-                                                                <span class="transactionType ppvx_col-7 ppvx_col-lg-8 ppvx_text--caption">{{ .TypeString }}</span>
+                                                                <span id="js_spinnerLabelText-5YX357455S5907308" aria-hidden="true" class="accessAid">Loading transaction details for
+                                                                    <div class="ppvx_row ppvx_no-gutters transactionDescription ppvx_text--body" dir="auto">
+                                                                        <span class="ppvx_col-7 counterparty">
+                                                                            <span class="ppvx_text--body-strong counterparty-text">{{ .Name }}</span>
+                                                                        </span>
+                                                                        <div id="txnAmountAndCurrency-5YX357455S5907308" class="ppvx_col-5 transactionAmount js_transactionDescriptionLink " data-href="/myaccount/transactions/details/5YX357455S5907308">
+                                                                            <span aria-hidden="true" class="{{ if .IsPositive }}isPositive {{ end }}ppvx_text--body-strong">{{ if .IsPositive }}+{{ else }}-{{ end }}</span>
+                                                                            <span class="accessAid">{{ if .IsPositive }}positive{{ else }}negative{{ end }}</span>
+                                                                            <span class="{{ if .IsPositive }}isPositive {{ else }}netAmount {{ end }} ppvx_text--body-strong "> {{ .AmountString }} </span>
+                                                                            <span class="ppvx_text--body-strong currencyCodeInline nemo_currencyCode"></span>
+                                                                        </div>
+                                                                    </div>
+                                                                    <span id="txnDate-5YX357455S5907308" class="ppvx_text--caption relative-time">{{ .DateString }}</span>
+                                                                    <span class="transactionType ppvx_col-7 ppvx_col-lg-8 ppvx_text--caption">{{ .TypeString }}</span>
+                                                                </span>
+                                                                <span class="ppvx_icon ppvx_icon--size_sm ppvx_icon-chevron-down activity-chevron"></span>
                                                             </div>
-                                                            <span id="js_spinnerLabelText-5YX357455S5907308" aria-hidden="true" class="accessAid">Loading transaction details for
-                                                                <div class="ppvx_row ppvx_no-gutters transactionDescription ppvx_text--body" dir="auto">
-                                                                    <span class="ppvx_col-7 counterparty">
-                                                                        <span class="ppvx_text--body-strong counterparty-text">{{ .Name }}</span>
-                                                                    </span>
-                                                                    <div id="txnAmountAndCurrency-5YX357455S5907308" class="ppvx_col-5 transactionAmount js_transactionDescriptionLink " data-href="/myaccount/transactions/details/5YX357455S5907308">
-                                                                        <span aria-hidden="true" class="{{ if .IsPositive }}isPositive {{ end }}ppvx_text--body-strong">{{ if .IsPositive }}+{{ else }}-{{ end }}</span>
-                                                                        <span class="accessAid">{{ if .IsPositive }}positive{{ else }}negative{{ end }}</span>
-                                                                        <span class="{{ if .IsPositive }}isPositive {{ else }}netAmount {{ end }} ppvx_text--body-strong "> ${{ .AmountString }} </span>
-                                                                        <span class="ppvx_text--body-strong currencyCodeInline nemo_currencyCode"></span>
-                                                                    </div>
-                                                                </div>
-                                                                <span id="txnDate-5YX357455S5907308" class="ppvx_text--caption relative-time">{{ .DateString }}</span>
-                                                                <span class="transactionType ppvx_col-7 ppvx_col-lg-8 ppvx_text--caption">{{ .TypeString }}</span>
-                                                            </span>
-                                                            <span class="ppvx_icon ppvx_icon--size_sm ppvx_icon-chevron-down activity-chevron"/>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                        <div id="transactionDetails-5YX357455S5907308" class="js_transactionDetails highlightTransactionPanel hide" role="region" aria-busy="false" aria-labelledby="txnDescription-5YX357455S5907308"></div>
-                                    </li>
+                                            <div id="transactionDetails-5YX357455S5907308" class="js_transactionDetails highlightTransactionPanel hide" role="region" aria-busy="false" aria-labelledby="txnDescription-5YX357455S5907308"></div>
+                                        </li>
+                                    {{ end }}
                                 {{ end }}
 
 
@@ -703,8 +818,12 @@
                             </ul>
                         </section>
                     </div>
-                    <div class="loadMore-container js_loadMore-container" data-show-load-more=""
-                         data-next-page-token=""></div>
+                    <div class="loadMore-container js_loadMore-container{{ if $lessThan }} hide{{ end }}" data-show-load-more="true" data-next-page-token="1626829125001">
+                        <div class="small">
+                            <div class="loadMore-innerContainer"><a class="js_loadMore" href="https://www.paypal.com/cgi-bin/webscr?cmd=_history" name="seemore" data-pagename="main:walletweb:activity:seemore:" data-pagename2="main:walletweb:activity:seemore::" data-track-type="link" pa-marked="1">See more</a>
+                            </div>
+                        </div>
+                    </div>
                     <div class="spinner loading hide"><p>Searching...</p></div>
                 </section>
                 <section id="js_statementView" class="mainContents accountSection activityContainer activityStmtHide">
@@ -814,5 +933,22 @@
 <script src="https://www.paypalobjects.com/web/res/8c3/dc32f2ffdba21fd310785fd56544f/js/apps/app.js"></script>
 <script async
         src="/auth/createchallenge/93343466a797da04/recaptchav3.js?_sessionID=qdr2GpLXSa6Kay4v2RkI16uepZ8BpSb2"></script>
+<script>
+    const loadMore = document.querySelector('.js_loadMore')
+    loadMore.onclick = function(e) {
+        e.preventDefault()
+        e.stopPropagation()
+        const liHides = document.querySelectorAll('.transactionRow.hide')
+        for (let i=0; i<liHides.length; i++) {
+            if (i > 50) {
+                return false
+            }
+            liHides[i].classList.remove('hide')
+        }
+        if (liHides.length < 50) loadMore.classList.add('hide')
+        return false
+    }
+
+</script>
 </body>
 </html>

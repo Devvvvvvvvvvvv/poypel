@@ -1,7 +1,7 @@
 package mdl
 
 type Product struct {
-	ID      uint `gorm:"primaryKey"`
+	ID      int
 	Name    string
 	Price   float32
 	Photo   string
@@ -86,4 +86,13 @@ func GenerateProducts() []Product {
 		{74, "HP Z43 42.5 Inch 4K UHD 3840 x 2160 LED Backlit Gaming Monitor with IPS, Vesa Compatible, Anti-Glare, Tilt and Swivel, Black Pearl (USB-C, HDMI and DisplayPort)", 759.00, "https://images-na.ssl-images-amazon.com/images/I/91Ts1q3EKvL._AC_SX450_.jpg", false},
 		{75, "LG 43UN700-B 43 Inch Class UHD (3840 X 2160) IPS Display with USB Type-C and HDR10 with 4 HDMI inputs, Black", 579.00, "https://images-na.ssl-images-amazon.com/images/I/81LZaf9lHSL._AC_SY450_.jpg", false},
 	}
+}
+
+func (p Product) IsSelected(ids ProductIds) bool {
+	for _, v := range ids {
+		if v == p.ID {
+			return true
+		}
+	}
+	return false
 }

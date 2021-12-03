@@ -1,19 +1,22 @@
 package mdl
 
 import (
-	"fmt"
 	"github.com/Pallinder/go-randomdata"
+	"github.com/leekchan/accounting"
+	"github.com/lithammer/shortuuid/v3"
 	"math/rand"
+	"poypel/srv"
 	"time"
 )
 
 type Transaction struct {
-	Type      TransactionType
-	Name      string
-	Session   string
-	Amount    float32
-	Date      time.Time
-	ProductId uint
+	ID        string          `gorm:"primaryKey" schema:"id"`
+	Type      TransactionType `schema:"type"`
+	Name      string          `schema:"name"`
+	Session   string          `gorm:"foreignKey:UserRefer" schema:"session"`
+	Amount    float32         `schema:"amount"`
+	Date      time.Time       `schema:"date"`
+	ProductId int             `schema:"product_id"`
 }
 
 type TransactionType int
@@ -27,7 +30,7 @@ const (
 
 func GenerateTransactions(account Session) []Transaction {
 
-	var transactions []Transaction
+	transactions := []Transaction{}
 
 	// Random days count for activity period
 	minDate := account.DateStart
@@ -37,40 +40,105 @@ func GenerateTransactions(account Session) []Transaction {
 
 	var transactionsSum float32
 
-	for date.Before(time.Now()) {
-		productInd := rand.Intn(len(products))
-		transactionType := COMPLETED
-		if transactionsSum != 0 {
+	for date.Before(account.DateEnd) {
+		productInd := rand.Intn(len(account.Products)) // pick random product
+		transactionType := COMPLETED                   // set first transaction COMPLETED (by product)
+		if transactionsSum != 0 {                      // if there some balance on account
+			// get random type of transaction between COMPLETED (by product) or BANK (withdraw)
 			transactionType = TransactionType(rand.Intn(2))
-			if transactionsSum > 2000 {
-				transactionType = BANK
+			if transactionsSum > 2000 { // if balance > 2000 USD
+				transactionType = BANK // transaction type immediately set to BANK (withdraw)
 			}
 		}
-		transactionAmount := products[productInd].Price
+		transactionAmount := products[account.Products[productInd]].Price
 		if transactionType == BANK {
 			transactionAmount = transactionsSum
-			transactionsSum = 0
+			transactionsSum = 0 // if transaction type is BANK, balance to zero
 		} else {
 			transactionsSum += transactionAmount
 		}
 		transactions = append(transactions, Transaction{
+			ID:        shortuuid.New(),
 			Type:      transactionType,
 			Name:      GenerateTransactionName(transactionType, account),
 			Session:   account.ID,
 			Amount:    transactionAmount,
 			Date:      date,
-			ProductId: products[productInd].ID,
+			ProductId: account.Products[productInd],
 		})
 
 		// Random hours count between transactions
 		date = date.Add(time.Duration(randomdata.Number(account.HoursMin, account.HoursMax) * 60 * 60 * 1000 * 1000 * 1000))
+	}
 
+	// Hold chance of few last transactions
+	transactions = RandomizeHolds(transactions)
+
+	// Reverse transactions
+	return ReverseTransaction(transactions)
+}
+
+func UpdateTransactions(transactions []Transaction, account Session) []Transaction {
+	transactions = ReverseTransaction(transactions)
+	newTransactions := []Transaction{}
+	products := GenerateProducts()
+	ln := len(transactions) - 1
+	var transactionsSum float32
+	for _, t := range transactions {
+		if t.Date.Unix() >= account.DateStart.Unix() && t.Date.Unix() <= account.DateEnd.Unix() {
+			if t.Type == BANK {
+				t.Name = account.Bank
+				transactionsSum = 0
+			} else {
+				transactionsSum += t.Amount
+			}
+			if t.Type == HOLD_SHIP || t.Type == HOLD_NOT_SHIP {
+				t.Type = COMPLETED
+			}
+			newTransactions = append(newTransactions, t)
+		}
 	}
-	var transactionReversed []Transaction
-	for i := len(transactions) - 1; i >= 0; i-- {
-		transactionReversed = append(transactionReversed, transactions[i])
+	maxHours := int64(account.HoursMax * 60 * 60)
+	if ln > -1 && account.DateEnd.Unix()-transactions[ln].Date.Unix() > maxHours {
+		minDate := transactions[ln].Date
+		date := minDate
+		for date.Before(account.DateEnd) {
+			productInd := rand.Intn(len(account.Products))
+			transactionType := COMPLETED
+			if transactionsSum != 0 { // if there some balance on account
+				// get random type of transaction between COMPLETED (by product) or BANK (withdraw)
+				transactionType = TransactionType(rand.Intn(2))
+				if transactionsSum > 2000 { // if balance > 2000 USD
+					transactionType = BANK // transaction type immediately set to BANK (withdraw)
+				}
+			}
+			transactionAmount := products[account.Products[productInd]].Price
+			if transactionType == BANK {
+				transactionAmount = transactionsSum
+				transactionsSum = 0 // if transaction type is BANK, balance to zero
+			} else {
+				transactionsSum += transactionAmount
+			}
+			newTransactions = append(newTransactions, Transaction{
+				ID:        shortuuid.New(),
+				Type:      transactionType,
+				Name:      GenerateTransactionName(transactionType, account),
+				Session:   account.ID,
+				Amount:    transactionAmount,
+				Date:      date,
+				ProductId: account.Products[productInd],
+			})
+
+			// Random hours count between transactions
+			date = date.Add(time.Duration(randomdata.Number(account.HoursMin, account.HoursMax) * 60 * 60 * 1000 * 1000 * 1000))
+		}
 	}
-	return transactionReversed
+
+	// Hold chance of few last transactions
+	newTransactions = RandomizeHolds(newTransactions)
+
+	// Reverse transactions
+	return ReverseTransaction(newTransactions)
 }
 
 func GenerateTransactionName(transactionType TransactionType, account Session) string {
@@ -81,6 +149,55 @@ func GenerateTransactionName(transactionType TransactionType, account Session) s
 		transactionName = "eBay - " + randomdata.FullName(randomdata.RandomGender)
 	}
 	return transactionName
+}
+
+func GetTransactions(session Session, params Params) []Transaction {
+	if params.Action == "generate" {
+		return GenerateTransactions(session)
+	}
+	var transactions []Transaction
+	srv.GetDB().Order("date desc").Find(&transactions, "session = ?", session.ID)
+	if len(session.Transactions) > 0 {
+		return session.Transactions
+	}
+	if len(transactions) > 0 {
+		return transactions
+	}
+	return GenerateTransactions(session)
+}
+
+func ReverseTransaction(transactions []Transaction) []Transaction {
+	var transactionReversed []Transaction
+	for i := len(transactions) - 1; i >= 0; i-- {
+		transactionReversed = append(transactionReversed, transactions[i])
+	}
+	return transactionReversed
+}
+
+func RandomizeHolds(transactions []Transaction) []Transaction {
+	ln := len(transactions) - 1
+	if ln < 2 {
+		return transactions
+	}
+	for i := ln; i > ln-2; i-- {
+		if transactions[i].Type == BANK {
+			return transactions
+		}
+		transactions[i].RandomizeHold()
+	}
+	return transactions
+}
+
+func (t *Transaction) RandomizeHold() {
+	if t.Type == COMPLETED {
+		if randomdata.Boolean() {
+			if randomdata.Boolean() {
+				t.Type = HOLD_NOT_SHIP
+			} else {
+				t.Type = HOLD_SHIP
+			}
+		}
+	}
 }
 
 func (t Transaction) TypeString() string {
@@ -101,12 +218,27 @@ func (t Transaction) IsPositive() bool {
 	return true
 }
 
+func (t Transaction) IsDone() bool {
+	if t.Type == BANK || t.Type == COMPLETED {
+		return true
+	}
+	return false
+}
+
+func (t Transaction) IsPending() bool {
+	if t.Type == HOLD_SHIP || t.Type == HOLD_NOT_SHIP {
+		return true
+	}
+	return false
+}
+
 func (t Transaction) DateString() string {
 	return t.Date.Format("2 Jan")
 }
 
 func (t Transaction) AmountString() string {
-	return fmt.Sprintf("%.2f", t.Amount)
+	ac := accounting.Accounting{Symbol: "$", Precision: 2}
+	return ac.FormatMoney(t.Amount)
 }
 
 func (t Transaction) DateBucket() string {
