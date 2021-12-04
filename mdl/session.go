@@ -37,10 +37,12 @@ type Session struct {
 }
 
 type Params struct {
-	Action          string `schema:"action"`
-	SessionSelected string `schema:"session_selected"`
-	LoadName        string `schema:"loadname"`
-	ID              string `schema:"id"`
+	Action          string    `schema:"action"`
+	SessionSelected string    `schema:"session_selected"`
+	LoadName        string    `schema:"loadname"`
+	Update          time.Time `schema:"update"`
+	SaveIt          bool      `schema:"saveit"`
+	ID              string    `schema:"id"`
 }
 
 type ProductIds []int
@@ -83,24 +85,24 @@ func StartSession(w http.ResponseWriter, r *http.Request) map[string]interface{}
 
 	err, params, sessionParams := CheckParams(w, r)
 
-	if params.Action == "create" {
-		store.MaxAge(-1)
-		session, _ := store.Get(r, "sid")
-		session.Options.MaxAge = -1
-		err = session.Save(r, w)
-		http.Redirect(w, r, "/build", 302)
-		return nil
-	}
-
 	sessionId := CheckSession(w, r)
 	if params.Action == "load" {
 		sessionId = params.SessionSelected
 	}
 
+	if params.Action == "create" {
+		session, _ := store.Get(r, "sid")
+		sessionId := shortuuid.New()
+		session.Values["Id"] = sessionId
+		err = session.Save(r, w)
+		http.Redirect(w, r, "/build", 302)
+		return nil
+	}
+
 	if params.LoadName != "" {
 		loadName := strings.ReplaceAll(params.LoadName, "_", " ")
 		s := Session{}
-		srv.GetDB().Find(&s, "name ilike ?", loadName)
+		srv.GetDB().Find(&s, "name like ?", loadName)
 		if s.ID != "" {
 			sessionId = s.ID
 		}
@@ -125,6 +127,9 @@ func StartSession(w http.ResponseWriter, r *http.Request) map[string]interface{}
 		}
 	}
 
+	storedSession = storedSession.CheckDefaults()
+	storedSession.Transactions = GetTransactions(storedSession, params)
+
 	if params.Action == "generate" {
 		err = mergo.Merge(&storedSession, sessionParams, mergo.WithOverride)
 		if err != nil {
@@ -137,11 +142,9 @@ func StartSession(w http.ResponseWriter, r *http.Request) map[string]interface{}
 		srv.GetDB().Delete(&Transaction{}, "session = ?", storedSession.ID)
 	}
 
-	if params.Action == "save" {
-		err = mergo.Merge(&storedSession, sessionParams, mergo.WithOverride)
-		if err != nil {
-			fmt.Println(err)
-		}
+	if params.Update.Year() > 1 {
+		storedSession.DateEnd = params.Update
+		storedSession.Transactions = UpdateTransactions(storedSession.Transactions, storedSession)
 		err = SaveSession(&storedSession)
 		if err != nil {
 			fmt.Println(err)
@@ -160,8 +163,16 @@ func StartSession(w http.ResponseWriter, r *http.Request) map[string]interface{}
 		}
 	}
 
-	storedSession = storedSession.CheckDefaults()
-	storedSession.Transactions = GetTransactions(storedSession, params)
+	if params.Action == "save" {
+		err = mergo.Merge(&storedSession, sessionParams, mergo.WithOverride)
+		if err != nil {
+			fmt.Println(err)
+		}
+		err = SaveSession(&storedSession)
+		if err != nil {
+			fmt.Println(err)
+		}
+	}
 
 	var dbSessions []Session
 	srv.GetDB().Find(&dbSessions)
@@ -185,6 +196,7 @@ func SaveSession(session *Session) error {
 	srv.GetDB().First(&dbSession, "id = ?", session.ID)
 	srv.GetDB().Delete(&Transaction{}, "session = ?", session.ID)
 	var res *gorm.DB
+	fmt.Println(session.Transactions)
 	if dbSession.ID != "" {
 		res = srv.GetDB().Save(session)
 	} else {

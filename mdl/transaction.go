@@ -132,10 +132,9 @@ func UpdateTransactions(transactions []Transaction, account Session) []Transacti
 			// Random hours count between transactions
 			date = date.Add(time.Duration(randomdata.Number(account.HoursMin, account.HoursMax) * 60 * 60 * 1000 * 1000 * 1000))
 		}
+		// Hold chance of few last transactions
+		newTransactions = RandomizeHolds(newTransactions)
 	}
-
-	// Hold chance of few last transactions
-	newTransactions = RandomizeHolds(newTransactions)
 
 	// Reverse transactions
 	return ReverseTransaction(newTransactions)

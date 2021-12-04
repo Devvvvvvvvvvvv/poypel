@@ -2,10 +2,15 @@
 
 ## URL params description
 
+#### Pages:
+* /build
+* /myaccount/transactions/
+
 ### main params:
 
 * id — loading session by ID
 * loadname — loading session by name
+* update — date for update transactions, updated transactions will be saved
 * session_selected — needed for action=load, action=delete: loading/deleting session by given ID
 * action=
     * create — create new session
