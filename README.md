@@ -4,6 +4,7 @@
 
 #### Pages:
 * /build
+* /myaccount/summary/
 * /myaccount/transactions/
 
 ### main params:

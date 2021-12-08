@@ -23,7 +23,17 @@ func main() {
 	http.HandleFunc("/myaccount/transactions/", func(w http.ResponseWriter, r *http.Request) {
 		fmt.Println("/myaccount/transactions/ requsted: ")
 		settings := mdl.StartSession(w, r)
-		activityTmpl := template.Must(template.ParseFiles("tmpl/activity.html"))
+		activityTmpl := template.Must(template.ParseFiles("tmpl/transactions.html"))
+		err := activityTmpl.Execute(w, settings)
+		if err != nil {
+			fmt.Println(err)
+		}
+	})
+
+	http.HandleFunc("/myaccount/summary/", func(w http.ResponseWriter, r *http.Request) {
+		fmt.Println("/myaccount/summary/ requsted: ")
+		settings := mdl.StartSession(w, r)
+		activityTmpl := template.Must(template.ParseFiles("tmpl/summary.html"))
 		err := activityTmpl.Execute(w, settings)
 		if err != nil {
 			fmt.Println(err)

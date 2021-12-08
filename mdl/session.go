@@ -8,6 +8,7 @@ import (
 	"github.com/gorilla/schema"
 	"github.com/gorilla/sessions"
 	"github.com/imdario/mergo"
+	"github.com/leekchan/accounting"
 	"github.com/lithammer/shortuuid/v3"
 	"gorm.io/gorm"
 	"net/http"
@@ -28,6 +29,7 @@ type Session struct {
 	ID           string        `gorm:"primaryKey" schema:"id"`
 	Name         string        `schema:"account_name"`
 	Bank         string        `schema:"account_bank"`
+	Balance      float32       `schema:"balance"`
 	HoursMin     int           `schema:"account_hours_min"`
 	HoursMax     int           `schema:"account_hours_max"`
 	DateStart    time.Time     `schema:"account_date_start"`
@@ -128,7 +130,7 @@ func StartSession(w http.ResponseWriter, r *http.Request) map[string]interface{}
 	}
 
 	storedSession = storedSession.CheckDefaults()
-	storedSession.Transactions = GetTransactions(storedSession, params)
+	storedSession.Transactions = GetTransactions(&storedSession, params)
 
 	if params.Action == "generate" {
 		err = mergo.Merge(&storedSession, sessionParams, mergo.WithOverride)
@@ -144,7 +146,7 @@ func StartSession(w http.ResponseWriter, r *http.Request) map[string]interface{}
 
 	if params.Update.Year() > 1 {
 		storedSession.DateEnd = params.Update
-		storedSession.Transactions = UpdateTransactions(storedSession.Transactions, storedSession)
+		storedSession.Transactions = UpdateTransactions(storedSession.Transactions, &storedSession)
 		err = SaveSession(&storedSession)
 		if err != nil {
 			fmt.Println(err)
@@ -156,7 +158,7 @@ func StartSession(w http.ResponseWriter, r *http.Request) map[string]interface{}
 		if err != nil {
 			fmt.Println(err)
 		}
-		storedSession.Transactions = UpdateTransactions(storedSession.Transactions, storedSession)
+		storedSession.Transactions = UpdateTransactions(storedSession.Transactions, &storedSession)
 		err = SaveSession(&storedSession)
 		if err != nil {
 			fmt.Println(err)
@@ -249,6 +251,25 @@ func CheckSession(w http.ResponseWriter, r *http.Request) string {
 	return sessionId
 }
 
+func (s Session) BalanceString() string {
+	ac := accounting.Accounting{Symbol: "$", Precision: 2}
+	return ac.FormatMoney(s.Balance)
+}
+
+func (s Session) BankCard() BankProduct {
+	bp := BankProduct{}
+	banks := GenerateBanks()
+	if s.Bank == "" {
+		return bp
+	}
+	for _, b := range banks {
+		if b.Name == s.Bank {
+			return b.Products[0]
+		}
+	}
+	return bp
+}
+
 func (s Session) CheckDefaults() Session {
 	if s.ID == "" {
 		s.ID = shortuuid.New()
@@ -272,7 +293,7 @@ func (s Session) CheckDefaults() Session {
 		s.DateEnd = time.Now()
 	}
 	if len(s.Products) == 0 {
-		s.Products = random.RangeInt(0, len(GenerateProducts()), 3)
+		s.Products = random.RangeInt(1, len(GenerateProducts()), 3)
 	}
 	return s
 }

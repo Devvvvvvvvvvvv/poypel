@@ -28,7 +28,7 @@ const (
 	HOLD_NOT_SHIP
 )
 
-func GenerateTransactions(account Session) []Transaction {
+func GenerateTransactions(account *Session) []Transaction {
 
 	transactions := []Transaction{}
 
@@ -36,21 +36,21 @@ func GenerateTransactions(account Session) []Transaction {
 	minDate := account.DateStart
 
 	date := minDate
-	products := GenerateProducts()
 
 	var transactionsSum float32
 
 	for date.Before(account.DateEnd) {
-		productInd := rand.Intn(len(account.Products)) // pick random product
-		transactionType := COMPLETED                   // set first transaction COMPLETED (by product)
-		if transactionsSum != 0 {                      // if there some balance on account
+		productId := account.Products[rand.Intn(len(account.Products))] // pick random product
+		transactionType := COMPLETED                                    // set first transaction COMPLETED (by product)
+		if transactionsSum != 0 {                                       // if there some balance on account
 			// get random type of transaction between COMPLETED (by product) or BANK (withdraw)
 			transactionType = TransactionType(rand.Intn(2))
 			if transactionsSum > 2000 { // if balance > 2000 USD
 				transactionType = BANK // transaction type immediately set to BANK (withdraw)
 			}
 		}
-		transactionAmount := products[account.Products[productInd]].Price
+		product := GetProduct(productId)
+		transactionAmount := product.Price
 		if transactionType == BANK {
 			transactionAmount = transactionsSum
 			transactionsSum = 0 // if transaction type is BANK, balance to zero
@@ -64,7 +64,7 @@ func GenerateTransactions(account Session) []Transaction {
 			Session:   account.ID,
 			Amount:    transactionAmount,
 			Date:      date,
-			ProductId: account.Products[productInd],
+			ProductId: product.ID,
 		})
 
 		// Random hours count between transactions
@@ -74,14 +74,15 @@ func GenerateTransactions(account Session) []Transaction {
 	// Hold chance of few last transactions
 	transactions = RandomizeHolds(transactions)
 
+	account.Balance = transactionsSum
+
 	// Reverse transactions
 	return ReverseTransaction(transactions)
 }
 
-func UpdateTransactions(transactions []Transaction, account Session) []Transaction {
+func UpdateTransactions(transactions []Transaction, account *Session) []Transaction {
 	transactions = ReverseTransaction(transactions)
 	newTransactions := []Transaction{}
-	products := GenerateProducts()
 	ln := len(transactions) - 1
 	var transactionsSum float32
 	for _, t := range transactions {
@@ -103,7 +104,7 @@ func UpdateTransactions(transactions []Transaction, account Session) []Transacti
 		minDate := transactions[ln].Date
 		date := minDate
 		for date.Before(account.DateEnd) {
-			productInd := rand.Intn(len(account.Products))
+			productId := account.Products[rand.Intn(len(account.Products))] // pick random product
 			transactionType := COMPLETED
 			if transactionsSum != 0 { // if there some balance on account
 				// get random type of transaction between COMPLETED (by product) or BANK (withdraw)
@@ -112,7 +113,8 @@ func UpdateTransactions(transactions []Transaction, account Session) []Transacti
 					transactionType = BANK // transaction type immediately set to BANK (withdraw)
 				}
 			}
-			transactionAmount := products[account.Products[productInd]].Price
+			product := GetProduct(productId)
+			transactionAmount := product.Price
 			if transactionType == BANK {
 				transactionAmount = transactionsSum
 				transactionsSum = 0 // if transaction type is BANK, balance to zero
@@ -126,7 +128,7 @@ func UpdateTransactions(transactions []Transaction, account Session) []Transacti
 				Session:   account.ID,
 				Amount:    transactionAmount,
 				Date:      date,
-				ProductId: account.Products[productInd],
+				ProductId: product.ID,
 			})
 
 			// Random hours count between transactions
@@ -136,11 +138,13 @@ func UpdateTransactions(transactions []Transaction, account Session) []Transacti
 		newTransactions = RandomizeHolds(newTransactions)
 	}
 
+	account.Balance = transactionsSum
+
 	// Reverse transactions
 	return ReverseTransaction(newTransactions)
 }
 
-func GenerateTransactionName(transactionType TransactionType, account Session) string {
+func GenerateTransactionName(transactionType TransactionType, account *Session) string {
 	transactionName := ""
 	if transactionType == BANK {
 		transactionName = account.Bank
@@ -150,7 +154,7 @@ func GenerateTransactionName(transactionType TransactionType, account Session) s
 	return transactionName
 }
 
-func GetTransactions(session Session, params Params) []Transaction {
+func GetTransactions(session *Session, params Params) []Transaction {
 	if params.Action == "generate" {
 		return GenerateTransactions(session)
 	}

@@ -88,6 +88,15 @@ func GenerateProducts() []Product {
 	}
 }
 
+func GetProduct(id int) *Product {
+	for _, p := range GenerateProducts() {
+		if p.ID == id {
+			return &p
+		}
+	}
+	return nil
+}
+
 func (p Product) IsSelected(ids ProductIds) bool {
 	for _, v := range ids {
 		if v == p.ID {
