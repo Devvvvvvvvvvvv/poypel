@@ -118,6 +118,37 @@
                     </div>
                 </div>
                 <div class="form-group">
+                    <div class="col-3 col-sm-12">
+                        <label class="form-label">Banners</label>
+                    </div>
+                    <div class="col-9 col-sm-12">
+                        <div class="input-group">
+                            <label class="form-switch">
+                                <input type="checkbox" name="account_need_app"{{ if .Account.NeedApp }} checked{{ end }}>
+                                <i class="form-icon"></i> Download app
+                            </label>
+                            <label class="form-switch">
+                                <input type="checkbox" name="account_need_key"{{ if .Account.NeedKey }} checked{{ end }}>
+                                <i class="form-icon"></i> PayPal key
+                            </label>
+                            <label class="form-switch">
+                                <input type="checkbox" name="account_need_card"{{ if .Account.NeedCard }} checked{{ end }}>
+                                <i class="form-icon"></i> PayPal card
+                            </label>
+                            <label class="form-switch">
+                                <input type="checkbox" name="account_need_photo"{{ if .Account.NeedPhoto }} checked{{ end }}>
+                                <i class="form-icon"></i> Upload photo
+                            </label>
+                            <label class="form-switch">
+                                <input type="checkbox" name="account_carousel"{{ if .Account.Carousel }} checked{{ end }}>
+                                <i class="form-icon"></i> Promo carousel
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="form-group">
                     <div class="col-3 col-sm-12"></div>
                     <div class="col-9 col-sm-12">
                         <button type="submit" class="btn btn-success tooltip" data-tooltip="Regenerate all new transactions

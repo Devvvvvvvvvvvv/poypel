@@ -274,9 +274,185 @@
         <div aria-label="PayPal: Summary" class="ppvx_container-fluid">
             <div class="ppvx_row noGutter">
                 <div id="A" class="ppvx_col-md-7 noGutter"><h2 class="ppvx_screenreader">Products</h2>
-                    <div class="leftSide-container"><span class="ppvx_text--xl3 ppvx_text--regular welcome-container"
-                                                          data-widget-name="greeting">Good afternoon, {{ .Account.Name }}</span>
-                        <div></div>
+                    <div class="leftSide-container">
+                        {{ if ne .Account.SayHello "" }}
+                            <span class="ppvx_text--xl3 ppvx_text--regular welcome-container" data-widget-name="greeting">
+                                {{ .Account.SayHello }},
+                                {{ .Account.Name }}
+                            </span>
+                        {{ end }}
+
+                        <!-- Download app banner -->
+                        {{ if .Account.NeedApp }}
+                            <div>
+                                <div><a data-name="download_app"
+                                        href="https://www.paypal.com/cgp/app-redirect?intent=download&amp;src=account_card_us"
+                                        class="ppvx_text--medium aq1 ppvx_elevation--level1 ppvx_link"
+                                        data-impression-url="https://www.paypal.com/webapps/mch/cmd/?v=3.0&amp;t=1639000027&amp;cfdata=GllRBXMEDAAfFVxHSUUMXF02fwl9Z1l6EygvCWEtDFoPVjskbgt-ZEFUZQ9mWXtXZ1RaVXsHWBoFRlRGHEBeWllieFp0Z15wRXF5Wn8tHlQuKw4dFmYXHDk3B30COwIpHw&amp;cks=OWFjMTc4OTlkMzg3ZDljYjQxYzg2YzM0MTkwOWZkNzY&amp;e=1.0"
+                                        data-presentment-url="https://www.paypal.com/webapps/mch/cmd/?v=3.0&amp;t=1639000027&amp;cfdata=GllRBXMEDAAfFVxHSUUMXF02fwl9Z1l6EygvCWEtDFoPVjskbgt-ZEFUZQ9mWXtXZ1RaVXsHWBoFRlRGHEBeWllieFp0Z15wRXF5Wn8tHlQ9NQILHXwcGDEpAQ&amp;cks=MTUwNmM1MTFlNTZhNzFhNjgwYTk1ZGUwZjk4ODBjMGQ&amp;e=1.0"
+                                        data-tracking-url="https://www.paypal.com/webapps/mch/cmd/?v=3.0&amp;t=1639000027&amp;cfdata=GllRBXMEDAAfFVxHSUUMXF02fwl9Z1l6EygvCWEtDFoPVjskbgt-ZEFUZQ9mWXtXZ1RaVXsHWBoFRlRGHEBeWllieFp0Z15wRXF5Wn8tHlQuKw4bEw&amp;cks=YzUwYjdkZGMzMGNkZjVjYjRkMjg4N2M5ZTBhNjgxMGM&amp;e=1.0"
+                                        data-fpti-tag-name="aqtile" data-aqtile-name="download_app"
+                                        data-fpti-click="{&quot;msg_id&quot;:&quot;6961530771016023805&quot;,&quot;devc_type&quot;:&quot;DESKTOP&quot;,&quot;client_os&quot;:&quot;Windows 10&quot;,&quot;browser_type&quot;:&quot;Chrome&quot;}"
+                                        aria-label="The new PayPal app is here. Easily buy, pay, save, give, and explore - all in one place."
+                                        target="_self" rel="noopener noreferrer" data-widget-name="accountquality_primary"
+                                        pa-marked="1">
+                                        <div class="ppvx_d-table aq1-inner-wrapper">
+                                            <div class="aq1__logocontainer" aria-hidden="true"><img
+                                                        src="https://www.paypalobjects.com/paypal-ui/icons/svg/rocket.svg" loading="lazy"
+                                                        class="aq1__logocontainer__logo" alt="rocket"></div>
+                                            <div class="ppvx_text--md ppvx_d-table-cell aq1__body-wrapper">
+                                                <div class="aq1__body">The new PayPal app is here. Easily buy, pay, save,
+                                                    give, and explore - all in one place.
+                                                </div>
+                                            </div>
+                                            <div class="aq1__arrow-container" aria-hidden="true"><span
+                                                        class="ppvx_icon ppvx_icon--size_sm ppvx_icon-chevron-right"></span>
+                                            </div>
+                                        </div>
+                                    </a></div>
+                            </div>
+                        {{ end }}
+                        <!-- End Download app banner -->
+
+
+                        <!-- Holydays Carousel -->
+                        {{ if .Account.Carousel }}
+                            <div>
+                                <div class="cw_tile-promo-widget hero-engagement auto-rotate">
+                                    <div class="cw-carousel-slideshowContainer">
+                                        <div id="cw-carousel-swipezone" class="cw-carousel-swipezone_animation">
+                                            <div data-widget-name="HERO_ENGAGEMENT" data-name="hero_ec_swipe" data-carousel-enabled="true" class="cw-carousel-mySlides fade cw-table-row">
+                                                <div style="position:relative"><a href="https://www.paypal.com/open_web?url=https%3A%2f%2fwww.paypal.com%2fcgp%2fsweepstakes%3Fsrc%3Dec_web_track_entries&amp;intent=sweepstakes_details&amp;src=ec_web_track_entries&amp;type=internal" target="_blank" rel="noopener noreferrer" data-impression-url="https://www.paypal.com/webapps/mch/cmd/?v=3.0&amp;t=1639000027&amp;cfdata=GllRBXMEDAAfFVxHSUUMXF02fwl9Z1l6EygvCWEtDFoPVjskbwJ6ZkRTZwlmUX9WZ1RaXnUHWhoFR11CHkVZWF9icF51Z15wTn95WH8tHlQuKw4dFmYXHDk3B30COwIpHw&amp;cks=YjUwYzY3MzgyMDFkMGNlNTczMjM4OWYxZTlhYTQzMWQ&amp;e=1.0" data-tracking-url="https://www.paypal.com/webapps/mch/cmd/?v=3.0&amp;t=1639000027&amp;cfdata=GllRBXMEDAAfFVxHSUUMXF02fwl9Z1l6EygvCWEtDFoPVjskbwJ6ZkRTZwlmUX9WZ1RaXnUHWhoFR11CHkVZWF9icF51Z15wTn95WH8tHlQuKw4bEw&amp;cks=OTg1MjBiNDg2OTUxODRjNDM2OTMxZWMxNWQyYWFhZDk&amp;e=1.0" data-name="WEB_Opted_in_(Launch)" data-widget-name="heroEngagement" data-fpti-impression="{&quot;msg_id&quot;:&quot;7023042179406028607&quot;,&quot;devc_type&quot;:&quot;DESKTOP&quot;,&quot;client_os&quot;:&quot;Windows 10&quot;,&quot;browser_type&quot;:&quot;Chrome&quot;,&quot;card_type&quot;:&quot;WEB_Opted_in_(Launch)&quot;}" data-fpti-availability="{&quot;msg_id&quot;:&quot;7023042179406028607&quot;,&quot;devc_type&quot;:&quot;DESKTOP&quot;,&quot;client_os&quot;:&quot;Windows 10&quot;,&quot;browser_type&quot;:&quot;Chrome&quot;,&quot;card_type&quot;:&quot;WEB_Opted_in_(Launch)&quot;}" data-fpti-click="{&quot;msg_id&quot;:&quot;7023042179406028607&quot;,&quot;devc_type&quot;:&quot;DESKTOP&quot;,&quot;client_os&quot;:&quot;Windows 10&quot;,&quot;browser_type&quot;:&quot;Chrome&quot;,&quot;card_type&quot;:&quot;WEB_Opted_in_(Launch)&quot;}" class="cw_tile-promo-main-container ppvx_link ppvx_elevation--level1" pa-marked="1">
+                                                        <div class="cw_tile-promo-title-container" style="background-image:url(https://www.paypalobjects.com/marketing/ps/us/img_master_PayPal_Holiday_EC_Web_02.png)"></div>
+                                                    </a>
+                                                    <div class="cw_tile-promo-body"><a href="https://www.paypal.com/open_web?url=https%3A%2f%2fwww.paypal.com%2fcgp%2fsweepstakes%3Fsrc%3Dec_web_track_entries&amp;intent=sweepstakes_details&amp;src=ec_web_track_entries&amp;type=internal" target="_blank" rel="noopener noreferrer" data-impression-url="https://www.paypal.com/webapps/mch/cmd/?v=3.0&amp;t=1639000027&amp;cfdata=GllRBXMEDAAfFVxHSUUMXF02fwl9Z1l6EygvCWEtDFoPVjskbwJ6ZkRTZwlmUX9WZ1RaXnUHWhoFR11CHkVZWF9icF51Z15wTn95WH8tHlQuKw4dFmYXHDk3B30COwIpHw&amp;cks=YjUwYzY3MzgyMDFkMGNlNTczMjM4OWYxZTlhYTQzMWQ&amp;e=1.0" data-tracking-url="https://www.paypal.com/webapps/mch/cmd/?v=3.0&amp;t=1639000027&amp;cfdata=GllRBXMEDAAfFVxHSUUMXF02fwl9Z1l6EygvCWEtDFoPVjskbwJ6ZkRTZwlmUX9WZ1RaXnUHWhoFR11CHkVZWF9icF51Z15wTn95WH8tHlQuKw4bEw&amp;cks=OTg1MjBiNDg2OTUxODRjNDM2OTMxZWMxNWQyYWFhZDk&amp;e=1.0" data-name="WEB_Opted_in_(Launch)" data-fpti-impression="{&quot;msg_id&quot;:&quot;7023042179406028607&quot;,&quot;devc_type&quot;:&quot;DESKTOP&quot;,&quot;client_os&quot;:&quot;Windows 10&quot;,&quot;browser_type&quot;:&quot;Chrome&quot;,&quot;card_type&quot;:&quot;WEB_Opted_in_(Launch)&quot;}" data-fpti-availability="{&quot;msg_id&quot;:&quot;7023042179406028607&quot;,&quot;devc_type&quot;:&quot;DESKTOP&quot;,&quot;client_os&quot;:&quot;Windows 10&quot;,&quot;browser_type&quot;:&quot;Chrome&quot;,&quot;card_type&quot;:&quot;WEB_Opted_in_(Launch)&quot;}" data-fpti-click="{&quot;msg_id&quot;:&quot;7023042179406028607&quot;,&quot;devc_type&quot;:&quot;DESKTOP&quot;,&quot;client_os&quot;:&quot;Windows 10&quot;,&quot;browser_type&quot;:&quot;Chrome&quot;,&quot;card_type&quot;:&quot;WEB_Opted_in_(Launch)&quot;}" class="ec-footer-link" pa-marked="1"><span class="cw_tile-promo-body_inner ppvx_text--md ppvx_text--medium" style="color:#0070BA">Track my entries in the app</span></a>
+                                                    </div>
+                                                    <div class="cw_tile-promo-title_header">
+                                                        <div class="ppvx_text--xl ppvx_text--medium ec_title_dw1"> We’re
+                                                            giving away $20 million in prizes for the holidays
+                                                        </div>
+                                                        <div class="ppvx_text--caption-strong ec_subtitle_dw1">Rules apply
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div data-widget-name="HERO_ENGAGEMENT" data-name="hero_ec_swipe" data-carousel-enabled="true" class="cw-carousel-mySlides fade ">
+                                                <div style="position:relative"><a href="https://www.paypal.com/cgp/app-download?intent=download&amp;src=ec_cashback5" target="_blank" rel="noopener noreferrer" data-impression-url="https://www.paypal.com/webapps/mch/cmd/?v=3.0&amp;t=1639000027&amp;cfdata=GllRBXMEDAAfFVxHSUUMXF02fwl9Z1l6EygvCWEtDFoPVjskbwJ6ZEVebQFpXn5fY1BZX3QEWxoFR11CHERUUldtf198Y1pzT356WX8tHlQuKw4dFmYXHDk3B30COwIpHw&amp;cks=NjBkNWVkMjJiOWIxYzZiMTIyY2ZhNzRkYjRiMGMxN2U&amp;e=1.0" data-tracking-url="https://www.paypal.com/webapps/mch/cmd/?v=3.0&amp;t=1639000027&amp;cfdata=GllRBXMEDAAfFVxHSUUMXF02fwl9Z1l6EygvCWEtDFoPVjskbwJ6ZEVebQFpXn5fY1BZX3QEWxoFR11CHERUUldtf198Y1pzT356WX8tHlQuKw4bEw&amp;cks=MmRlZjEwMGEwZWYzYmQwOTBlMTBhY2E2NTdhOWUxYzM&amp;e=1.0" data-name="App_Download_Incentive_Q4" data-widget-name="heroEngagement" data-fpti-impression="{&quot;msg_id&quot;:&quot;7021198986592419736&quot;,&quot;devc_type&quot;:&quot;DESKTOP&quot;,&quot;client_os&quot;:&quot;Windows 10&quot;,&quot;browser_type&quot;:&quot;Chrome&quot;,&quot;card_type&quot;:&quot;App_Download_Incentive_Q4&quot;}" data-fpti-availability="{&quot;msg_id&quot;:&quot;7021198986592419736&quot;,&quot;devc_type&quot;:&quot;DESKTOP&quot;,&quot;client_os&quot;:&quot;Windows 10&quot;,&quot;browser_type&quot;:&quot;Chrome&quot;,&quot;card_type&quot;:&quot;App_Download_Incentive_Q4&quot;}" data-fpti-click="{&quot;msg_id&quot;:&quot;7021198986592419736&quot;,&quot;devc_type&quot;:&quot;DESKTOP&quot;,&quot;client_os&quot;:&quot;Windows 10&quot;,&quot;browser_type&quot;:&quot;Chrome&quot;,&quot;card_type&quot;:&quot;App_Download_Incentive_Q4&quot;}" class="cw_tile-promo-main-container ppvx_link ppvx_elevation--level1" pa-marked="1">
+                                                        <div class="cw_tile-promo-title-container" style="background-image:url(https://www.paypalobjects.com/marketing/ps/us/EC_1_0_Web_App_Download_Incentive_US_bg_2x.png)"></div>
+                                                    </a>
+                                                    <div class="cw_tile-promo-body"><a href="https://www.paypal.com/cgp/app-download?intent=download&amp;src=ec_cashback5" target="_blank" rel="noopener noreferrer" data-impression-url="https://www.paypal.com/webapps/mch/cmd/?v=3.0&amp;t=1639000027&amp;cfdata=GllRBXMEDAAfFVxHSUUMXF02fwl9Z1l6EygvCWEtDFoPVjskbwJ6ZEVebQFpXn5fY1BZX3QEWxoFR11CHERUUldtf198Y1pzT356WX8tHlQuKw4dFmYXHDk3B30COwIpHw&amp;cks=NjBkNWVkMjJiOWIxYzZiMTIyY2ZhNzRkYjRiMGMxN2U&amp;e=1.0" data-tracking-url="https://www.paypal.com/webapps/mch/cmd/?v=3.0&amp;t=1639000027&amp;cfdata=GllRBXMEDAAfFVxHSUUMXF02fwl9Z1l6EygvCWEtDFoPVjskbwJ6ZEVebQFpXn5fY1BZX3QEWxoFR11CHERUUldtf198Y1pzT356WX8tHlQuKw4bEw&amp;cks=MmRlZjEwMGEwZWYzYmQwOTBlMTBhY2E2NTdhOWUxYzM&amp;e=1.0" data-name="App_Download_Incentive_Q4" data-fpti-impression="{&quot;msg_id&quot;:&quot;7021198986592419736&quot;,&quot;devc_type&quot;:&quot;DESKTOP&quot;,&quot;client_os&quot;:&quot;Windows 10&quot;,&quot;browser_type&quot;:&quot;Chrome&quot;,&quot;card_type&quot;:&quot;App_Download_Incentive_Q4&quot;}" data-fpti-availability="{&quot;msg_id&quot;:&quot;7021198986592419736&quot;,&quot;devc_type&quot;:&quot;DESKTOP&quot;,&quot;client_os&quot;:&quot;Windows 10&quot;,&quot;browser_type&quot;:&quot;Chrome&quot;,&quot;card_type&quot;:&quot;App_Download_Incentive_Q4&quot;}" data-fpti-click="{&quot;msg_id&quot;:&quot;7021198986592419736&quot;,&quot;devc_type&quot;:&quot;DESKTOP&quot;,&quot;client_os&quot;:&quot;Windows 10&quot;,&quot;browser_type&quot;:&quot;Chrome&quot;,&quot;card_type&quot;:&quot;App_Download_Incentive_Q4&quot;}" class="ec-footer-link" pa-marked="1"><span class="cw_tile-promo-body_inner ppvx_text--md ppvx_text--medium" style="color:#0070BA">Claim Your $5</span></a></div>
+                                                    <div class="cw_tile-promo-title_header">
+                                                        <div class="ppvx_text--xl ppvx_text--medium ec_title_dw1"> Don't
+                                                            have the new app yet?
+                                                        </div>
+                                                        <div class="ppvx_text--caption-strong ec_subtitle_dw1">Download it,
+                                                            log in, and you can get $5. Offer ends 12/31/21. Terms apply.
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div data-widget-name="HERO_ENGAGEMENT" data-name="hero_ec_swipe" data-carousel-enabled="true" class="cw-carousel-mySlides fade ">
+                                                <div style="position:relative"><a href="https://www.paypal.com/myaccount/crypto/" target="_self" rel="noopener noreferrer" data-impression-url="https://www.paypal.com/webapps/mch/cmd/?v=3.0&amp;t=1639000027&amp;cfdata=GllRBXMEDAAfFVxHSUUMXF02fwl9Z1l6EygvCWEtDFoPVjskbwJ4bURQYQ1jWX9UaFRcU3IFWRoFR11AFUVaXltneF53aF52Q3h7W38tHlQuKw4dFmYXHDk3B30COwIpHw&amp;cks=YzY1NDc2ZTA1Mzc5OWRjYjYyMWZhZDVkYTJkYTNjMjc&amp;e=1.0" data-tracking-url="https://www.paypal.com/webapps/mch/cmd/?v=3.0&amp;t=1639000027&amp;cfdata=GllRBXMEDAAfFVxHSUUMXF02fwl9Z1l6EygvCWEtDFoPVjskbwJ4bURQYQ1jWX9UaFRcU3IFWRoFR11AFUVaXltneF53aF52Q3h7W38tHlQuKw4bEw&amp;cks=MGE0ZDRmZjI4MWU0Y2FiMGY4YzQ5MjIwMGM3MDRlNjI&amp;e=1.0" data-name="Engagement_Crypto" data-widget-name="heroEngagement" data-fpti-impression="{&quot;msg_id&quot;:&quot;7008074521429045124&quot;,&quot;devc_type&quot;:&quot;DESKTOP&quot;,&quot;client_os&quot;:&quot;Windows 10&quot;,&quot;browser_type&quot;:&quot;Chrome&quot;,&quot;card_type&quot;:&quot;Engagement_Crypto&quot;}" data-fpti-availability="{&quot;msg_id&quot;:&quot;7008074521429045124&quot;,&quot;devc_type&quot;:&quot;DESKTOP&quot;,&quot;client_os&quot;:&quot;Windows 10&quot;,&quot;browser_type&quot;:&quot;Chrome&quot;,&quot;card_type&quot;:&quot;Engagement_Crypto&quot;}" data-fpti-click="{&quot;msg_id&quot;:&quot;7008074521429045124&quot;,&quot;devc_type&quot;:&quot;DESKTOP&quot;,&quot;client_os&quot;:&quot;Windows 10&quot;,&quot;browser_type&quot;:&quot;Chrome&quot;,&quot;card_type&quot;:&quot;Engagement_Crypto&quot;}" class="cw_tile-promo-main-container ppvx_link ppvx_elevation--level1" pa-marked="1">
+                                                        <div class="cw_tile-promo-title-container" style="background-image:url(https://www.paypalobjects.com/cryptocurrency/engagementcards/crypto-engagement-card573x184.png)"></div>
+                                                    </a>
+                                                    <div class="cw_tile-promo-body"><a href="https://www.paypal.com/myaccount/crypto/" target="_self" rel="noopener noreferrer" data-impression-url="https://www.paypal.com/webapps/mch/cmd/?v=3.0&amp;t=1639000027&amp;cfdata=GllRBXMEDAAfFVxHSUUMXF02fwl9Z1l6EygvCWEtDFoPVjskbwJ4bURQYQ1jWX9UaFRcU3IFWRoFR11AFUVaXltneF53aF52Q3h7W38tHlQuKw4dFmYXHDk3B30COwIpHw&amp;cks=YzY1NDc2ZTA1Mzc5OWRjYjYyMWZhZDVkYTJkYTNjMjc&amp;e=1.0" data-tracking-url="https://www.paypal.com/webapps/mch/cmd/?v=3.0&amp;t=1639000027&amp;cfdata=GllRBXMEDAAfFVxHSUUMXF02fwl9Z1l6EygvCWEtDFoPVjskbwJ4bURQYQ1jWX9UaFRcU3IFWRoFR11AFUVaXltneF53aF52Q3h7W38tHlQuKw4bEw&amp;cks=MGE0ZDRmZjI4MWU0Y2FiMGY4YzQ5MjIwMGM3MDRlNjI&amp;e=1.0" data-name="Engagement_Crypto" data-fpti-impression="{&quot;msg_id&quot;:&quot;7008074521429045124&quot;,&quot;devc_type&quot;:&quot;DESKTOP&quot;,&quot;client_os&quot;:&quot;Windows 10&quot;,&quot;browser_type&quot;:&quot;Chrome&quot;,&quot;card_type&quot;:&quot;Engagement_Crypto&quot;}" data-fpti-availability="{&quot;msg_id&quot;:&quot;7008074521429045124&quot;,&quot;devc_type&quot;:&quot;DESKTOP&quot;,&quot;client_os&quot;:&quot;Windows 10&quot;,&quot;browser_type&quot;:&quot;Chrome&quot;,&quot;card_type&quot;:&quot;Engagement_Crypto&quot;}" data-fpti-click="{&quot;msg_id&quot;:&quot;7008074521429045124&quot;,&quot;devc_type&quot;:&quot;DESKTOP&quot;,&quot;client_os&quot;:&quot;Windows 10&quot;,&quot;browser_type&quot;:&quot;Chrome&quot;,&quot;card_type&quot;:&quot;Engagement_Crypto&quot;}" class="ec-footer-link" pa-marked="1"><span class="cw_tile-promo-body_inner ppvx_text--md ppvx_text--medium" style="color:#103082">Buy Bitcoin and more</span></a>
+                                                    </div>
+                                                    <div class="cw_tile-promo-title_header">
+                                                        <div class="ppvx_text--xl ppvx_text--medium ec_title_dw1"> Buy
+                                                            Bitcoin and other crypto with PayPal
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div data-widget-name="HERO_ENGAGEMENT" data-name="hero_ec_swipe" data-carousel-enabled="true" class="cw-carousel-mySlides fade ">
+                                                <div style="position:relative"><a href="https://www.paypal.com/myaccount/bundle/vba?intent=eip-ui&amp;flow=signin" target="_self" rel="noopener noreferrer" data-impression-url="https://www.paypal.com/webapps/mch/cmd/?v=3.0&amp;t=1639000027&amp;cfdata=GllRBXMEDAAfFVxHSUUMXF02fwl9Z1l6EygvCWEtDFoPVjskbgtwYUJQZw5pW3tTaVJRXnAFXhoFRlRIGUNaWFhtelpwaVh7Tnp7XH8tHlQuKw4dFmYXHDk3B30COwIpHw&amp;cks=MGVjODAyZDI2Yzg0ZTQ3NzNlMjUyOGMzY2RiYzMyNmM&amp;e=1.0" data-tracking-url="https://www.paypal.com/webapps/mch/cmd/?v=3.0&amp;t=1639000027&amp;cfdata=GllRBXMEDAAfFVxHSUUMXF02fwl9Z1l6EygvCWEtDFoPVjskbgtwYUJQZw5pW3tTaVJRXnAFXhoFRlRIGUNaWFhtelpwaVh7Tnp7XH8tHlQuKw4bEw&amp;cks=ZDY4NGNjZDljYTMyNzYwNzcwOGJkZmI4MGI4OTBhMmY&amp;e=1.0" data-name="DIRECT_DEPOSIT" data-widget-name="heroEngagement" data-fpti-impression="{&quot;msg_id&quot;:&quot;6984672683058698323&quot;,&quot;devc_type&quot;:&quot;DESKTOP&quot;,&quot;client_os&quot;:&quot;Windows 10&quot;,&quot;browser_type&quot;:&quot;Chrome&quot;,&quot;card_type&quot;:&quot;DIRECT_DEPOSIT&quot;}" data-fpti-availability="{&quot;msg_id&quot;:&quot;6984672683058698323&quot;,&quot;devc_type&quot;:&quot;DESKTOP&quot;,&quot;client_os&quot;:&quot;Windows 10&quot;,&quot;browser_type&quot;:&quot;Chrome&quot;,&quot;card_type&quot;:&quot;DIRECT_DEPOSIT&quot;}" data-fpti-click="{&quot;msg_id&quot;:&quot;6984672683058698323&quot;,&quot;devc_type&quot;:&quot;DESKTOP&quot;,&quot;client_os&quot;:&quot;Windows 10&quot;,&quot;browser_type&quot;:&quot;Chrome&quot;,&quot;card_type&quot;:&quot;DIRECT_DEPOSIT&quot;}" class="cw_tile-promo-main-container ppvx_link ppvx_elevation--level1" pa-marked="1">
+                                                        <div class="cw_tile-promo-title-container" style="background-image:url(https://www.paypalobjects.com/HomeScreen/direct-deposit.png)"></div>
+                                                    </a>
+                                                    <div class="cw_tile-promo-body"><a href="https://www.paypal.com/myaccount/bundle/vba?intent=eip-ui&amp;flow=signin" target="_self" rel="noopener noreferrer" data-impression-url="https://www.paypal.com/webapps/mch/cmd/?v=3.0&amp;t=1639000027&amp;cfdata=GllRBXMEDAAfFVxHSUUMXF02fwl9Z1l6EygvCWEtDFoPVjskbgtwYUJQZw5pW3tTaVJRXnAFXhoFRlRIGUNaWFhtelpwaVh7Tnp7XH8tHlQuKw4dFmYXHDk3B30COwIpHw&amp;cks=MGVjODAyZDI2Yzg0ZTQ3NzNlMjUyOGMzY2RiYzMyNmM&amp;e=1.0" data-tracking-url="https://www.paypal.com/webapps/mch/cmd/?v=3.0&amp;t=1639000027&amp;cfdata=GllRBXMEDAAfFVxHSUUMXF02fwl9Z1l6EygvCWEtDFoPVjskbgtwYUJQZw5pW3tTaVJRXnAFXhoFRlRIGUNaWFhtelpwaVh7Tnp7XH8tHlQuKw4bEw&amp;cks=ZDY4NGNjZDljYTMyNzYwNzcwOGJkZmI4MGI4OTBhMmY&amp;e=1.0" data-name="DIRECT_DEPOSIT" data-fpti-impression="{&quot;msg_id&quot;:&quot;6984672683058698323&quot;,&quot;devc_type&quot;:&quot;DESKTOP&quot;,&quot;client_os&quot;:&quot;Windows 10&quot;,&quot;browser_type&quot;:&quot;Chrome&quot;,&quot;card_type&quot;:&quot;DIRECT_DEPOSIT&quot;}" data-fpti-availability="{&quot;msg_id&quot;:&quot;6984672683058698323&quot;,&quot;devc_type&quot;:&quot;DESKTOP&quot;,&quot;client_os&quot;:&quot;Windows 10&quot;,&quot;browser_type&quot;:&quot;Chrome&quot;,&quot;card_type&quot;:&quot;DIRECT_DEPOSIT&quot;}" data-fpti-click="{&quot;msg_id&quot;:&quot;6984672683058698323&quot;,&quot;devc_type&quot;:&quot;DESKTOP&quot;,&quot;client_os&quot;:&quot;Windows 10&quot;,&quot;browser_type&quot;:&quot;Chrome&quot;,&quot;card_type&quot;:&quot;DIRECT_DEPOSIT&quot;}" class="ec-footer-link" pa-marked="1"><span class="cw_tile-promo-body_inner ppvx_text--md ppvx_text--medium" style="color:#0070BA">Get started now</span></a></div>
+                                                    <div class="cw_tile-promo-title_header">
+                                                        <div class="ppvx_text--xl ppvx_text--medium ec_title_dw1"> Use
+                                                            Direct Deposit for government &amp; payroll payments​
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div data-widget-name="HERO_ENGAGEMENT" data-name="hero_ec_swipe" data-carousel-enabled="true" class="cw-carousel-mySlides fade ">
+                                                <div style="position:relative"><a href="https://www.paypal.com/myaccount/transfer/invite-friends?traffic_source=home_screen_mgm_marketing_card_q420" target="_self" rel="noopener noreferrer" data-impression-url="https://www.paypal.com/webapps/mch/cmd/?v=3.0&amp;t=1639000027&amp;cfdata=GllRBXMEDAAfFVxHSUUMXF02fwl9Z1l6EygvCWEtDFoPVjskbgt.YkBWbAhgX3NeYFdYVHADWRoFRlRHGkFcU15kflJ9YF1yRHp9W38tHlQuKw4dFmYXHDk3B30COwIpHw&amp;cks=OWEyODcxMDE2OGIxMjU4MjZkYzZlZmE3NmI1MWEwNDQ&amp;e=1.0" data-tracking-url="https://www.paypal.com/webapps/mch/cmd/?v=3.0&amp;t=1639000027&amp;cfdata=GllRBXMEDAAfFVxHSUUMXF02fwl9Z1l6EygvCWEtDFoPVjskbgt.YkBWbAhgX3NeYFdYVHADWRoFRlRHGkFcU15kflJ9YF1yRHp9W38tHlQuKw4bEw&amp;cks=MDk1YWU5MTBiMjdkMDc3ZGVjMjc0ZDE3MTBmMzljNDM&amp;e=1.0" data-name="NNA_UPLIFT" data-widget-name="heroEngagement" data-fpti-impression="{&quot;msg_id&quot;:&quot;6977419017881302344&quot;,&quot;devc_type&quot;:&quot;DESKTOP&quot;,&quot;client_os&quot;:&quot;Windows 10&quot;,&quot;browser_type&quot;:&quot;Chrome&quot;,&quot;card_type&quot;:&quot;NNA_UPLIFT&quot;}" data-fpti-availability="{&quot;msg_id&quot;:&quot;6977419017881302344&quot;,&quot;devc_type&quot;:&quot;DESKTOP&quot;,&quot;client_os&quot;:&quot;Windows 10&quot;,&quot;browser_type&quot;:&quot;Chrome&quot;,&quot;card_type&quot;:&quot;NNA_UPLIFT&quot;}" data-fpti-click="{&quot;msg_id&quot;:&quot;6977419017881302344&quot;,&quot;devc_type&quot;:&quot;DESKTOP&quot;,&quot;client_os&quot;:&quot;Windows 10&quot;,&quot;browser_type&quot;:&quot;Chrome&quot;,&quot;card_type&quot;:&quot;NNA_UPLIFT&quot;}" class="cw_tile-promo-main-container ppvx_link ppvx_elevation--level1" pa-marked="1">
+                                                        <div class="cw_tile-promo-title-container" style="background-image:url(https://www.paypalobjects.com/marketing/ps/us/191163_userledgrowth/MGM_holiday.png)"></div>
+                                                    </a>
+                                                    <div class="cw_tile-promo-body"><a href="https://www.paypal.com/myaccount/transfer/invite-friends?traffic_source=home_screen_mgm_marketing_card_q420" target="_self" rel="noopener noreferrer" data-impression-url="https://www.paypal.com/webapps/mch/cmd/?v=3.0&amp;t=1639000027&amp;cfdata=GllRBXMEDAAfFVxHSUUMXF02fwl9Z1l6EygvCWEtDFoPVjskbgt.YkBWbAhgX3NeYFdYVHADWRoFRlRHGkFcU15kflJ9YF1yRHp9W38tHlQuKw4dFmYXHDk3B30COwIpHw&amp;cks=OWEyODcxMDE2OGIxMjU4MjZkYzZlZmE3NmI1MWEwNDQ&amp;e=1.0" data-tracking-url="https://www.paypal.com/webapps/mch/cmd/?v=3.0&amp;t=1639000027&amp;cfdata=GllRBXMEDAAfFVxHSUUMXF02fwl9Z1l6EygvCWEtDFoPVjskbgt.YkBWbAhgX3NeYFdYVHADWRoFRlRHGkFcU15kflJ9YF1yRHp9W38tHlQuKw4bEw&amp;cks=MDk1YWU5MTBiMjdkMDc3ZGVjMjc0ZDE3MTBmMzljNDM&amp;e=1.0" data-name="NNA_UPLIFT" data-fpti-impression="{&quot;msg_id&quot;:&quot;6977419017881302344&quot;,&quot;devc_type&quot;:&quot;DESKTOP&quot;,&quot;client_os&quot;:&quot;Windows 10&quot;,&quot;browser_type&quot;:&quot;Chrome&quot;,&quot;card_type&quot;:&quot;NNA_UPLIFT&quot;}" data-fpti-availability="{&quot;msg_id&quot;:&quot;6977419017881302344&quot;,&quot;devc_type&quot;:&quot;DESKTOP&quot;,&quot;client_os&quot;:&quot;Windows 10&quot;,&quot;browser_type&quot;:&quot;Chrome&quot;,&quot;card_type&quot;:&quot;NNA_UPLIFT&quot;}" data-fpti-click="{&quot;msg_id&quot;:&quot;6977419017881302344&quot;,&quot;devc_type&quot;:&quot;DESKTOP&quot;,&quot;client_os&quot;:&quot;Windows 10&quot;,&quot;browser_type&quot;:&quot;Chrome&quot;,&quot;card_type&quot;:&quot;NNA_UPLIFT&quot;}" class="ec-footer-link" pa-marked="1"><span class="cw_tile-promo-body_inner ppvx_text--md ppvx_text--medium" style="color:#0070BA">Invite your friends </span></a>
+                                                    </div>
+                                                    <div class="cw_tile-promo-title_header">
+                                                        <div class="ppvx_text--xl ppvx_text--medium ec_title_dw1"> Share the
+                                                            joy of shopping with PayPal &amp; earn up to $100
+                                                        </div>
+                                                        <div class="ppvx_text--caption-strong ec_subtitle_dw1">Offer may be
+                                                            canceled or modified at any time. Terms apply.
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <button class="cw-carousel-prev" aria-label="previous" title="previous" data-name="hero_ec_carousel_prev_btn" domain-type="HERO_ENGAGEMENT" pa-marked="1">❮
+                                            </button>
+                                            <button class="cw-carousel-next" aria-label="next" title="next" data-name="hero_ec_carousel_next_btn" domain-type="HERO_ENGAGEMENT" pa-marked="1">❯
+                                            </button>
+                                        </div>
+                                        <div class="cw-carousel-nav">
+                                            <button class="cw-carousel-dot cw-carousel-active" aria-label="1 of 5" title="1 of 5" domain-type="HERO_ENGAGEMENT" data-name="hero_ec_dot_btn" pa-marked="1"></button>
+                                            <button class="cw-carousel-dot " aria-label="2 of 5" title="2 of 5" domain-type="HERO_ENGAGEMENT" data-name="hero_ec_dot_btn" pa-marked="1"></button>
+                                            <button class="cw-carousel-dot " aria-label="3 of 5" title="3 of 5" domain-type="HERO_ENGAGEMENT" data-name="hero_ec_dot_btn" pa-marked="1"></button>
+                                            <button class="cw-carousel-dot " aria-label="4 of 5" title="4 of 5" domain-type="HERO_ENGAGEMENT" data-name="hero_ec_dot_btn" pa-marked="1"></button>
+                                            <button class="cw-carousel-dot " aria-label="5 of 5" title="5 of 5" domain-type="HERO_ENGAGEMENT" data-name="hero_ec_dot_btn" pa-marked="1"></button>
+                                        </div>
+                                        <div class="ppvx_modal-backdrop cw_tile__event-modal" id="carousel-modal" role="dialog" aria-modal="true" aria-hidden="true" style="z-index: 1045;">
+                                            <div data-action-close-modal="true" aria-label="close lightbox" style="position: absolute; inset: 0px;"></div>
+                                            <article class="ppvx_modal" tabindex="-1">
+                                                <header class="ppvx_modal-header ppvx_modal-header--no-logo">
+                                                    <div class="ppvx_modal-header__action"></div>
+                                                    <div class="ppvx_modal-header__close">
+                                                        <button id="hide-carousel-modal" class="ppvx_modal-header__close-btn" data-action-close-modal="true" aria-label="close lightbox" tabindex="0" pa-marked="1"></button>
+                                                    </div>
+                                                </header>
+                                                <section class="ppvx_modal__contents" id="carousel-modal-content">
+                                                    <div></div>
+                                                </section>
+                                            </article>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        {{ end }}
+                        <!-- End Holydays Carousel -->
+
+
+                        <!-- PayPal Key -->
+                        {{ if .Account.NeedKey }}
+                            <div>
+                                <div data-widget-name="ppkey" data-fpti-error="" class="cw_tile-container ">
+                                    <div id="ppkey-tile-header" style="display:none">PayPal Key</div>
+                                    <h3 class="cw_tile-header"><a data-name="ppkeyHeader" class="cw_tile-headerLink  ppvx_text--heading-md ppvx_link" href="https://www.paypal.com/myaccount/debitcards/enroll/virtual-card?entrypoint=web_dt_cr" target="" pa-marked="1">PayPal Key</a></h3>
+                                    <div class="ppvx_overflow-menu cw_overflowMenu-container">
+                                        <button class="ppvx_overflow-menu__btn" data-overflow-menu="ppkeyOverflowmenu" data-test-id="ppkeyOverflowmenu" tabindex="0" aria-label="Overflow" aria-haspopup="true" aria-expanded="false" data-name="overflowMenu" pa-marked="1"></button>
+                                        <ul class="ppvx_overflow-menu__list" tabindex="-1" role="menu" aria-label="Overflow" id="ppkeyOverflowmenu">
+                                            <li>
+                                                <a href="https://www.paypal.com/smarthelp/article/what-is-paypal-key-and-where-can-i-use-it-faq4240" role="menuitem" data-name="getHelp" data-test-id="getHelp" aria-describedby="cw_overflowMenu-itemDescriptor" tabindex="-1" class="cw_overflowMenu-item  ppvx_overflow-menu__list-item" pa-marked="1">Get help</a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <div>
+                                        <div class="ppvx_d-flex">
+                                            <img class="ppvx_align-self-start" src="https://www.paypalobjects.com/HomeScreen/PayPal_Key.png" width="48" alt="PayPal Key Logo">
+                                            <span class="ppvx_flex-grow-1 ppkey-msg">Introducing a virtual card like no other.</span>
+                                        </div>
+                                        <div class="ppkey-details"><a data-name="getPPKey" href="https://www.paypal.com/myaccount/debitcards/enroll/virtual-card?entrypoint=web_dt_cr" class="ppvx_btn ppvx_btn--secondary ppvx_btn--size_sm" data-tracking-url="https://www.paypal.com/webapps/mch/cmd/?v=3.0&amp;t=1639000027&amp;fdata=OBcGAzRHBBYcHAQeSFRMKk90PRgwNE9jVWhoGjAsS0gtRmZpbgd8YkFQbAxhWH9fY1VeUnEOTEdaUUwTRBFMSy50aFx9YlhwRn98XmtwU1tUVXJoYAJpdFdGdFcnAS9HcCRJR3UPWF5JSVRAFEVZX1tkcVN3aFtjV2poTjYhDkhMJ2Z5bgp9bURebAhoWH9TZFVQX3EOWEdYU0xRTlRMKk90BiQWGDoHV2hqTng4BAgAAmZ5GBNpbRYGOVQOHy4EDhcdCy5WHx9YUU5RDAUBAwp0aCpkcBknFBY8DCoXDgYABi42B0YhORE4IVckCyMWPg0GEmIWTkdYEwURDFQtS08aBzkMBStjV2poTjopGkhMJ2Z5aRNpdlVGMFY1DD9HcCRJR3MWTEVYUQ4RRBFMSy50aFx9ZFZyT3F-V2x6XlFeUHRsbwFpdFdGdEwhBCICcEUoR2IBVVVPQVRGFEFZU19gcFp1ZVd2V2hqTng-S0gtRmZrdgJpdFdGdEwiSWomcEVZUHAOXVZJQF9HDFROS088Jx4zNDErEmhoL3hpXFFcVHZrYQd4Y0RVZwtlUH1TZEVJRWIWBAgNBggvThoJD090CUtkFDodJhkWORAaPjwsKxgbGWAMdFVEdBk4Bj8DIzsbAzJoHwMKFRlRDDVMSwg0JRkgcE9hV2ggAS0pCR0eAjZ5eXJpdERJZRlwS2pHMgsdCDdFFEdYMExReCZMS010aB82NAodEzE9CismCwUBHmZ5GBNpMxULJl1wSWhHcC07OQB7JCUyJCUieFRMKk90LwspIgtjV2poTik6DxoICSYsMV0mCgAeJV1wSQtHcFJQVXUGVFBIRlhIFERcU1lnf19kcE1jVz0uHTAsS0gtRmZuYAF-Z0RQYghjUH5SZl1QXnYHTEdaUUwdRgEKGAskIA5kcC5jV3AqX2opDA8IVnA8aFN-ZhdRNgBnX3MDMAIOXiZRXgRIUUxTDFQAARoyOw8jOApjVwloTmArWloMASE9aQUsZRVRZltnC3NQZlwNByVRVQMfQw9BDFROS08jOh4sNU9jNmhoVjp4WQgLASJpb1Z4NEJUNg4yUH1RaQEJACUPCABKElxRDFZMSxw0JwFkcC5jV3t9TnhrS0geEiUHO1omdFUndBkeJhgvBSFJR2AWTBMKFR8vSgAEDk90CUtkZF0mQXF9Dj15XQtdBiNobAcpZBYBM1lnDi5QNVJRUyEWTEVYURgDSAcyGQsmOgMqPzElAyAtTngIS0hUBHdrYAZxYkVQMQgwXypWaF1ZBSFTDAIfSQlEGxNUX090aktkNAoxKTE9TngIS0hcV39ubgdkZEVTbQppRHpXY1ZYVW8GXV5IQl9cHEVdXlhkZVt0Z11wT2V4Xmx7XlhBVnZpYQNxeUVXZgpnUGdXYVVcXnsbXFZIQF9GAURdWVhjcUZ0YVp3R3xlXmh8WlxdS3ZobAd7bVhWZA5kUXtKYFVZX3EGQVdIQl9BGllcW15gfl9pYF9zR3t7Q2h5Ul5cVWtpaQR.ZEdLZAhmWXNQfVVZV3QDW0pIQV9CHExBW15ncV5yfV9zQX5wW3V5WllYVX50aQNwYkBTeQlgWnlSY0hZVnEBX1RVQV1CGEFZRl9keFp8Yk9jVWhoGSo8Aw1MRgd5eQsrZUdfYQFmWXwCYQVfB3MOVFcaEgkRSRNUDlpjL1NwcE9hV2g.HC06Aw1MRgd5eQd7MUNfYVk1WXwEYQUMVncCDFcbFgsRGxMIXApjcF8ncE9hV2g7Cj8hDkhMJ2Z5bgp9bURebAhoWH9TZFVQX3EOWEdYU0xRVRBMSy50aFt1YFZzQGVlQ3VpS0pMRj8seRMIdFVWZQBgWnlKfUhER2IUTEccBExRbVRMKSIcCiE&amp;cks=YmJmODMyMzIzODc4ZmFhZWE4OWJlNGRjY2MyYTg2YTM&amp;e=1.0" pa-marked="1">Get Your PayPal Key</a></div>
+                                    </div>
+                                </div>
+                            </div>
+                        {{ end }}
+                        <!-- End PayPal Key -->
+
+
+                        <!-- Balance -->
                         <div>
                             <div data-widget-name="balance"
                                  data-fpti-impression="{&quot;domain_status&quot;:&quot;DEFAULT&quot;}"
@@ -321,57 +497,101 @@
                                     <a data-name="balanceTransferMoney"
                                        href="/myaccount/money/balances/transfer?flow=eyJyZXR1cm5VcmwiOiIvbXlhY2NvdW50L3N1bW1hcnkvIiwiY2FuY2VsVXJsIjoiL215YWNjb3VudC9zdW1tYXJ5LyJ9"
                                        role="button"
-                                       class="ppvx_btn ppvx_btn--secondary ppvx_btn--size_sm cw_tile-button test_balance_btn-transferMoney">Transfer
-                                        Money</a></div>
+                                       class="ppvx_btn ppvx_btn--secondary ppvx_btn--size_sm cw_tile-button test_balance_btn-transferMoney">Transfer Money</a></div>
                             </div>
                         </div>
+                        <!-- End Balance -->
+
+
                         <div></div>
                         <div></div>
-                        <div>
-                            <div class="cw_tile-promo-widget">
-                                <div style="position:relative"><a href="https://www.paypal.com/myaccount/settings/"
-                                                                  target="_self" rel="noopener noreferrer"
-                                                                  data-impression-url="https://www.paypal.com/webapps/mch/cmd/?v=3.0&amp;t=1638871192&amp;cfdata=GllRUnYCCVQbRFxHSUUMUgpkfFxxZg8gRCwvCWx5WVhVVTskbgp-ZUFfZA9lUXtXZFJYVXQFVRoFMSk0ciUlJToaFicAAj0DMQxvCi11KSUkIgkMB3sFBSYiBmsYJwU&amp;cks=ZDJjMzI3NzcwYmRmNTE0MjY2ODQ5MDQyNzAwNmRlODM&amp;e=1.0"
-                                                                  data-tracking-url="https://www.paypal.com/webapps/mch/cmd/?v=3.0&amp;t=1638871192&amp;cfdata=GllRUnYCCVQbRFxHSUUMUgpkfFxxZg8gRCwvCWx5WVhVVTskbgp-ZUFfZA9lUXtXZFJYVXQFVRoFMSk0ciUlJToaFicAAj0DMQxvCi11KSUkJAw&amp;cks=Yjg3MGJiZGI2ZWJhNmYwMjk0ZGVjZDlmMTJkOTk3NmE&amp;e=1.0"
-                                                                  data-name="Web_Engagement_Non_Hero_PhotoId"
-                                                                  data-widget-name="engagement"
-                                                                  data-fpti-impression="{&quot;msg_id&quot;:&quot;6860581749015603728&quot;,&quot;devc_type&quot;:&quot;DESKTOP&quot;,&quot;client_os&quot;:&quot;OS X&quot;,&quot;browser_type&quot;:&quot;Chrome&quot;,&quot;card_type&quot;:&quot;Web_Engagement_Non_Hero_PhotoId&quot;}"
-                                                                  data-fpti-availability="{&quot;msg_id&quot;:&quot;6860581749015603728&quot;,&quot;devc_type&quot;:&quot;DESKTOP&quot;,&quot;client_os&quot;:&quot;OS X&quot;,&quot;browser_type&quot;:&quot;Chrome&quot;,&quot;card_type&quot;:&quot;Web_Engagement_Non_Hero_PhotoId&quot;}"
-                                                                  data-fpti-click="{&quot;msg_id&quot;:&quot;6860581749015603728&quot;,&quot;devc_type&quot;:&quot;DESKTOP&quot;,&quot;client_os&quot;:&quot;OS X&quot;,&quot;browser_type&quot;:&quot;Chrome&quot;,&quot;card_type&quot;:&quot;Web_Engagement_Non_Hero_PhotoId&quot;}"
-                                                                  class="cw_tile-promo-main-container ppvx_link ppvx_elevation--level1">
-                                        <div class="cw_tile-promo-title-container"
-                                             style="background-image:url(https://www.paypalobjects.com/HomeScreen/AddPhoto.png)"></div>
-                                    </a>
-                                    <div class="cw_tile-promo-body"><a href="https://www.paypal.com/myaccount/settings/"
-                                                                       target="_self" rel="noopener noreferrer"
-                                                                       data-impression-url="https://www.paypal.com/webapps/mch/cmd/?v=3.0&amp;t=1638871192&amp;cfdata=GllRUnYCCVQbRFxHSUUMUgpkfFxxZg8gRCwvCWx5WVhVVTskbgp-ZUFfZA9lUXtXZFJYVXQFVRoFMSk0ciUlJToaFicAAj0DMQxvCi11KSUkIgkMB3sFBSYiBmsYJwU&amp;cks=ZDJjMzI3NzcwYmRmNTE0MjY2ODQ5MDQyNzAwNmRlODM&amp;e=1.0"
-                                                                       data-tracking-url="https://www.paypal.com/webapps/mch/cmd/?v=3.0&amp;t=1638871192&amp;cfdata=GllRUnYCCVQbRFxHSUUMUgpkfFxxZg8gRCwvCWx5WVhVVTskbgp-ZUFfZA9lUXtXZFJYVXQFVRoFMSk0ciUlJToaFicAAj0DMQxvCi11KSUkJAw&amp;cks=Yjg3MGJiZGI2ZWJhNmYwMjk0ZGVjZDlmMTJkOTk3NmE&amp;e=1.0"
-                                                                       data-name="Web_Engagement_Non_Hero_PhotoId"
-                                                                       data-fpti-impression="{&quot;msg_id&quot;:&quot;6860581749015603728&quot;,&quot;devc_type&quot;:&quot;DESKTOP&quot;,&quot;client_os&quot;:&quot;OS X&quot;,&quot;browser_type&quot;:&quot;Chrome&quot;,&quot;card_type&quot;:&quot;Web_Engagement_Non_Hero_PhotoId&quot;}"
-                                                                       data-fpti-availability="{&quot;msg_id&quot;:&quot;6860581749015603728&quot;,&quot;devc_type&quot;:&quot;DESKTOP&quot;,&quot;client_os&quot;:&quot;OS X&quot;,&quot;browser_type&quot;:&quot;Chrome&quot;,&quot;card_type&quot;:&quot;Web_Engagement_Non_Hero_PhotoId&quot;}"
-                                                                       data-fpti-click="{&quot;msg_id&quot;:&quot;6860581749015603728&quot;,&quot;devc_type&quot;:&quot;DESKTOP&quot;,&quot;client_os&quot;:&quot;OS X&quot;,&quot;browser_type&quot;:&quot;Chrome&quot;,&quot;card_type&quot;:&quot;Web_Engagement_Non_Hero_PhotoId&quot;}"
-                                                                       class="ec-footer-link"><span
-                                                    class="cw_tile-promo-body_inner ppvx_text--md ppvx_text--medium"
-                                                    style="color:#0070BA">Add your photo</span></a>
-                                        <button class="ppvx_icon-button___1-4-8 ppvx_icon-button--primary___1-4-8 ec_dismiss-container ec_dismiss-single_option"
-                                                type="button" data-name="Web_Engagement_Non_Hero_PhotoId|dismiss"
-                                                aria-label="dismiss" tabindex="0"
-                                                data-dismiss-url="https://www.paypal.com/webapps/mch/cmd/?v=3.0&amp;t=1638871192&amp;cfdata=GllRUnYCCVQbRFxHSUUMUgpkfFxxZg8gRCwvCWx5WVhVVTskbgp-ZUFfZA9lUXtXZFJYVXQFVRoFMSk0ciUlJToaFicAAj0DMQxvCi11LiA-Kg4LCw&amp;cks=MDI3MmIxOWZkODZmY2MyZjcwMGM0MWU5MzcwNTdjMTM&amp;e=1.0"
-                                                data-fpti-impression="{&quot;msg_id&quot;:&quot;6860581749015603728&quot;,&quot;devc_type&quot;:&quot;DESKTOP&quot;,&quot;client_os&quot;:&quot;OS X&quot;,&quot;browser_type&quot;:&quot;Chrome&quot;,&quot;card_type&quot;:&quot;Web_Engagement_Non_Hero_PhotoId&quot;}"
-                                                data-fpti-availability="{&quot;msg_id&quot;:&quot;6860581749015603728&quot;,&quot;devc_type&quot;:&quot;DESKTOP&quot;,&quot;client_os&quot;:&quot;OS X&quot;,&quot;browser_type&quot;:&quot;Chrome&quot;,&quot;card_type&quot;:&quot;Web_Engagement_Non_Hero_PhotoId&quot;}"
-                                                data-fpti-click="{&quot;msg_id&quot;:&quot;6860581749015603728&quot;,&quot;devc_type&quot;:&quot;DESKTOP&quot;,&quot;client_os&quot;:&quot;OS X&quot;,&quot;browser_type&quot;:&quot;Chrome&quot;,&quot;card_type&quot;:&quot;Web_Engagement_Non_Hero_PhotoId&quot;}">
-                                            <span class="ppvx_icon___6-7-16 ppvx_icon--size_sm___6-7-16 ppvx_icon-close___6-7-16 ppvx_icon-button__icon___1-4-8"><span
-                                                        class="ppvx_icon-button__label___1-4-8"></span></span></button>
-                                    </div>
-                                    <div class="cw_tile-promo-title_header">
-                                        <div class="ppvx_text--xl ppvx_text--medium ec_title_dw1"> Let others know they
-                                            have the right account
+
+
+                        <!-- Photo -->
+                        {{ if .Account.NeedPhoto }}
+                            <div>
+                                <div class="cw_tile-promo-widget">
+                                    <div style="position:relative"><a href="https://www.paypal.com/myaccount/settings/"
+                                                                      target="_self" rel="noopener noreferrer"
+                                                                      data-impression-url="https://www.paypal.com/webapps/mch/cmd/?v=3.0&amp;t=1638871192&amp;cfdata=GllRUnYCCVQbRFxHSUUMUgpkfFxxZg8gRCwvCWx5WVhVVTskbgp-ZUFfZA9lUXtXZFJYVXQFVRoFMSk0ciUlJToaFicAAj0DMQxvCi11KSUkIgkMB3sFBSYiBmsYJwU&amp;cks=ZDJjMzI3NzcwYmRmNTE0MjY2ODQ5MDQyNzAwNmRlODM&amp;e=1.0"
+                                                                      data-tracking-url="https://www.paypal.com/webapps/mch/cmd/?v=3.0&amp;t=1638871192&amp;cfdata=GllRUnYCCVQbRFxHSUUMUgpkfFxxZg8gRCwvCWx5WVhVVTskbgp-ZUFfZA9lUXtXZFJYVXQFVRoFMSk0ciUlJToaFicAAj0DMQxvCi11KSUkJAw&amp;cks=Yjg3MGJiZGI2ZWJhNmYwMjk0ZGVjZDlmMTJkOTk3NmE&amp;e=1.0"
+                                                                      data-name="Web_Engagement_Non_Hero_PhotoId"
+                                                                      data-widget-name="engagement"
+                                                                      data-fpti-impression="{&quot;msg_id&quot;:&quot;6860581749015603728&quot;,&quot;devc_type&quot;:&quot;DESKTOP&quot;,&quot;client_os&quot;:&quot;OS X&quot;,&quot;browser_type&quot;:&quot;Chrome&quot;,&quot;card_type&quot;:&quot;Web_Engagement_Non_Hero_PhotoId&quot;}"
+                                                                      data-fpti-availability="{&quot;msg_id&quot;:&quot;6860581749015603728&quot;,&quot;devc_type&quot;:&quot;DESKTOP&quot;,&quot;client_os&quot;:&quot;OS X&quot;,&quot;browser_type&quot;:&quot;Chrome&quot;,&quot;card_type&quot;:&quot;Web_Engagement_Non_Hero_PhotoId&quot;}"
+                                                                      data-fpti-click="{&quot;msg_id&quot;:&quot;6860581749015603728&quot;,&quot;devc_type&quot;:&quot;DESKTOP&quot;,&quot;client_os&quot;:&quot;OS X&quot;,&quot;browser_type&quot;:&quot;Chrome&quot;,&quot;card_type&quot;:&quot;Web_Engagement_Non_Hero_PhotoId&quot;}"
+                                                                      class="cw_tile-promo-main-container ppvx_link ppvx_elevation--level1">
+                                            <div class="cw_tile-promo-title-container"
+                                                 style="background-image:url(https://www.paypalobjects.com/HomeScreen/AddPhoto.png)"></div>
+                                        </a>
+                                        <div class="cw_tile-promo-body"><a href="https://www.paypal.com/myaccount/settings/"
+                                                                           target="_self" rel="noopener noreferrer"
+                                                                           data-impression-url="https://www.paypal.com/webapps/mch/cmd/?v=3.0&amp;t=1638871192&amp;cfdata=GllRUnYCCVQbRFxHSUUMUgpkfFxxZg8gRCwvCWx5WVhVVTskbgp-ZUFfZA9lUXtXZFJYVXQFVRoFMSk0ciUlJToaFicAAj0DMQxvCi11KSUkIgkMB3sFBSYiBmsYJwU&amp;cks=ZDJjMzI3NzcwYmRmNTE0MjY2ODQ5MDQyNzAwNmRlODM&amp;e=1.0"
+                                                                           data-tracking-url="https://www.paypal.com/webapps/mch/cmd/?v=3.0&amp;t=1638871192&amp;cfdata=GllRUnYCCVQbRFxHSUUMUgpkfFxxZg8gRCwvCWx5WVhVVTskbgp-ZUFfZA9lUXtXZFJYVXQFVRoFMSk0ciUlJToaFicAAj0DMQxvCi11KSUkJAw&amp;cks=Yjg3MGJiZGI2ZWJhNmYwMjk0ZGVjZDlmMTJkOTk3NmE&amp;e=1.0"
+                                                                           data-name="Web_Engagement_Non_Hero_PhotoId"
+                                                                           data-fpti-impression="{&quot;msg_id&quot;:&quot;6860581749015603728&quot;,&quot;devc_type&quot;:&quot;DESKTOP&quot;,&quot;client_os&quot;:&quot;OS X&quot;,&quot;browser_type&quot;:&quot;Chrome&quot;,&quot;card_type&quot;:&quot;Web_Engagement_Non_Hero_PhotoId&quot;}"
+                                                                           data-fpti-availability="{&quot;msg_id&quot;:&quot;6860581749015603728&quot;,&quot;devc_type&quot;:&quot;DESKTOP&quot;,&quot;client_os&quot;:&quot;OS X&quot;,&quot;browser_type&quot;:&quot;Chrome&quot;,&quot;card_type&quot;:&quot;Web_Engagement_Non_Hero_PhotoId&quot;}"
+                                                                           data-fpti-click="{&quot;msg_id&quot;:&quot;6860581749015603728&quot;,&quot;devc_type&quot;:&quot;DESKTOP&quot;,&quot;client_os&quot;:&quot;OS X&quot;,&quot;browser_type&quot;:&quot;Chrome&quot;,&quot;card_type&quot;:&quot;Web_Engagement_Non_Hero_PhotoId&quot;}"
+                                                                           class="ec-footer-link"><span
+                                                        class="cw_tile-promo-body_inner ppvx_text--md ppvx_text--medium"
+                                                        style="color:#0070BA">Add your photo</span></a>
+                                            <button class="ppvx_icon-button___1-4-8 ppvx_icon-button--primary___1-4-8 ec_dismiss-container ec_dismiss-single_option"
+                                                    type="button" data-name="Web_Engagement_Non_Hero_PhotoId|dismiss"
+                                                    aria-label="dismiss" tabindex="0"
+                                                    data-dismiss-url="https://www.paypal.com/webapps/mch/cmd/?v=3.0&amp;t=1638871192&amp;cfdata=GllRUnYCCVQbRFxHSUUMUgpkfFxxZg8gRCwvCWx5WVhVVTskbgp-ZUFfZA9lUXtXZFJYVXQFVRoFMSk0ciUlJToaFicAAj0DMQxvCi11LiA-Kg4LCw&amp;cks=MDI3MmIxOWZkODZmY2MyZjcwMGM0MWU5MzcwNTdjMTM&amp;e=1.0"
+                                                    data-fpti-impression="{&quot;msg_id&quot;:&quot;6860581749015603728&quot;,&quot;devc_type&quot;:&quot;DESKTOP&quot;,&quot;client_os&quot;:&quot;OS X&quot;,&quot;browser_type&quot;:&quot;Chrome&quot;,&quot;card_type&quot;:&quot;Web_Engagement_Non_Hero_PhotoId&quot;}"
+                                                    data-fpti-availability="{&quot;msg_id&quot;:&quot;6860581749015603728&quot;,&quot;devc_type&quot;:&quot;DESKTOP&quot;,&quot;client_os&quot;:&quot;OS X&quot;,&quot;browser_type&quot;:&quot;Chrome&quot;,&quot;card_type&quot;:&quot;Web_Engagement_Non_Hero_PhotoId&quot;}"
+                                                    data-fpti-click="{&quot;msg_id&quot;:&quot;6860581749015603728&quot;,&quot;devc_type&quot;:&quot;DESKTOP&quot;,&quot;client_os&quot;:&quot;OS X&quot;,&quot;browser_type&quot;:&quot;Chrome&quot;,&quot;card_type&quot;:&quot;Web_Engagement_Non_Hero_PhotoId&quot;}">
+                                                <span class="ppvx_icon___6-7-16 ppvx_icon--size_sm___6-7-16 ppvx_icon-close___6-7-16 ppvx_icon-button__icon___1-4-8"><span
+                                                            class="ppvx_icon-button__label___1-4-8"></span></span></button>
+                                        </div>
+                                        <div class="cw_tile-promo-title_header">
+                                            <div class="ppvx_text--xl ppvx_text--medium ec_title_dw1"> Let others know they
+                                                have the right account
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        <div></div>
+                        {{ end }}
+                        <!-- End Photo -->
+
+
+                        <!-- PayPal cash -->
+                        {{ if .Account.NeedCard }}
+                            <div style="position:relative"><a href="https://www.paypal.com/myaccount/bundle/upgrade?src=webNonHeroEgmt" target="_self" rel="noopener noreferrer" data-impression-url="https://www.paypal.com/webapps/mch/cmd/?v=3.0&amp;t=1639000027&amp;cfdata=GllRBXMEDAAfFVxHSUUMXF02fwl9Z1l6EygvCWEtDFoPVjskbgt.YkJfYwtpX3pRYl1cX3YBVBoFID0zbCYlKS8HDTUIFD0RNw4MSTw8VyohLgIWDG0BGCQ1EGsCIQQo&amp;cks=Njc5NGY1M2NjYjJmODIzY2E1NjBmNmRmYzUzNDQxODE&amp;e=1.0" data-tracking-url="https://www.paypal.com/webapps/mch/cmd/?v=3.0&amp;t=1639000027&amp;cfdata=GllRBXMEDAAfFVxHSUUMXF02fwl9Z1l6EygvCWEtDFoPVjskbgt.YkJfYwtpX3pRYl1cX3YBVBoFID0zbCYlKS8HDTUIFD0RNw4MSTw8VyohLgQT&amp;cks=NjhlNzEzNGY2ODdhOGJiOTg2MzhlMDE1MGY4YWVmYmU&amp;e=1.0" data-name="WEB_CASH_CARD" data-widget-name="engagement" data-fpti-impression="{&quot;msg_id&quot;:&quot;6977686387173949569&quot;,&quot;devc_type&quot;:&quot;DESKTOP&quot;,&quot;client_os&quot;:&quot;Windows 10&quot;,&quot;browser_type&quot;:&quot;Chrome&quot;,&quot;card_type&quot;:&quot;WEB_CASH_CARD&quot;}" data-fpti-availability="{&quot;msg_id&quot;:&quot;6977686387173949569&quot;,&quot;devc_type&quot;:&quot;DESKTOP&quot;,&quot;client_os&quot;:&quot;Windows 10&quot;,&quot;browser_type&quot;:&quot;Chrome&quot;,&quot;card_type&quot;:&quot;WEB_CASH_CARD&quot;}" data-fpti-click="{&quot;msg_id&quot;:&quot;6977686387173949569&quot;,&quot;devc_type&quot;:&quot;DESKTOP&quot;,&quot;client_os&quot;:&quot;Windows 10&quot;,&quot;browser_type&quot;:&quot;Chrome&quot;,&quot;card_type&quot;:&quot;WEB_CASH_CARD&quot;}" class="cw_tile-promo-main-container ppvx_link ppvx_elevation--level1" pa-marked="1">
+                                    <div class="cw_tile-promo-title-container" style="background-image:url(https://www.paypalobjects.com/HomeScreen/CashCard.png)"></div>
+                                </a>
+                                <div class="cw_tile-promo-body"><a href="https://www.paypal.com/myaccount/bundle/upgrade?src=webNonHeroEgmt" target="_self" rel="noopener noreferrer" data-impression-url="https://www.paypal.com/webapps/mch/cmd/?v=3.0&amp;t=1639000027&amp;cfdata=GllRBXMEDAAfFVxHSUUMXF02fwl9Z1l6EygvCWEtDFoPVjskbgt.YkJfYwtpX3pRYl1cX3YBVBoFID0zbCYlKS8HDTUIFD0RNw4MSTw8VyohLgIWDG0BGCQ1EGsCIQQo&amp;cks=Njc5NGY1M2NjYjJmODIzY2E1NjBmNmRmYzUzNDQxODE&amp;e=1.0" data-tracking-url="https://www.paypal.com/webapps/mch/cmd/?v=3.0&amp;t=1639000027&amp;cfdata=GllRBXMEDAAfFVxHSUUMXF02fwl9Z1l6EygvCWEtDFoPVjskbgt.YkJfYwtpX3pRYl1cX3YBVBoFID0zbCYlKS8HDTUIFD0RNw4MSTw8VyohLgQT&amp;cks=NjhlNzEzNGY2ODdhOGJiOTg2MzhlMDE1MGY4YWVmYmU&amp;e=1.0" data-name="WEB_CASH_CARD" data-fpti-impression="{&quot;msg_id&quot;:&quot;6977686387173949569&quot;,&quot;devc_type&quot;:&quot;DESKTOP&quot;,&quot;client_os&quot;:&quot;Windows 10&quot;,&quot;browser_type&quot;:&quot;Chrome&quot;,&quot;card_type&quot;:&quot;WEB_CASH_CARD&quot;}" data-fpti-availability="{&quot;msg_id&quot;:&quot;6977686387173949569&quot;,&quot;devc_type&quot;:&quot;DESKTOP&quot;,&quot;client_os&quot;:&quot;Windows 10&quot;,&quot;browser_type&quot;:&quot;Chrome&quot;,&quot;card_type&quot;:&quot;WEB_CASH_CARD&quot;}" data-fpti-click="{&quot;msg_id&quot;:&quot;6977686387173949569&quot;,&quot;devc_type&quot;:&quot;DESKTOP&quot;,&quot;client_os&quot;:&quot;Windows 10&quot;,&quot;browser_type&quot;:&quot;Chrome&quot;,&quot;card_type&quot;:&quot;WEB_CASH_CARD&quot;}" class="ec-footer-link" pa-marked="1"><span class="cw_tile-promo-body_inner ppvx_text--md ppvx_text--medium" style="color:#103082">Get a PayPal Cash Card</span></a>
+                                    <button class="ppvx_icon-button___1-4-8 ppvx_icon-button--primary___1-4-8 ec_dismiss-container ec_dismiss-single_option" type="button" data-name="WEB_CASH_CARD|dismiss" aria-label="dismiss" tabindex="0" data-dismiss-url="https://www.paypal.com/webapps/mch/cmd/?v=3.0&amp;t=1639000027&amp;cfdata=GllRBXMEDAAfFVxHSUUMXF02fwl9Z1l6EygvCWEtDFoPVjskbgt.YkJfYwtpX3pRYl1cX3YBVBoFID0zbCYlKS8HDTUIFD0RNw4MSTw8Vy0kNAoRC2E&amp;cks=NWY4ZTk3NDZhNTk0YTRiYmY3MTI5YjQ5NDY4MDExZDE&amp;e=1.0" data-fpti-impression="{&quot;msg_id&quot;:&quot;6977686387173949569&quot;,&quot;devc_type&quot;:&quot;DESKTOP&quot;,&quot;client_os&quot;:&quot;Windows 10&quot;,&quot;browser_type&quot;:&quot;Chrome&quot;,&quot;card_type&quot;:&quot;WEB_CASH_CARD&quot;}" data-fpti-availability="{&quot;msg_id&quot;:&quot;6977686387173949569&quot;,&quot;devc_type&quot;:&quot;DESKTOP&quot;,&quot;client_os&quot;:&quot;Windows 10&quot;,&quot;browser_type&quot;:&quot;Chrome&quot;,&quot;card_type&quot;:&quot;WEB_CASH_CARD&quot;}" data-fpti-click="{&quot;msg_id&quot;:&quot;6977686387173949569&quot;,&quot;devc_type&quot;:&quot;DESKTOP&quot;,&quot;client_os&quot;:&quot;Windows 10&quot;,&quot;browser_type&quot;:&quot;Chrome&quot;,&quot;card_type&quot;:&quot;WEB_CASH_CARD&quot;}" pa-marked="1"><span class="ppvx_icon___6-7-16 ppvx_icon--size_sm___6-7-16 ppvx_icon-close___6-7-16 ppvx_icon-button__icon___1-4-8"><span class="ppvx_icon-button__label___1-4-8"></span></span></button>
+                                </div>
+                                <div class="cw_tile-promo-title_header">
+                                    <div class="ppvx_text--xl ppvx_text--medium ec_title_dw1"> Shop in-store and
+                                        online. Plus, get cash at ATMs.
+                                    </div>
+                                </div>
+                            </div>
+                        {{ end }}
+                        <!-- End PayPal cash -->
+
+
+                        <!-- Download app -->
+                        {{ if .Account.NeedApp }}
+                            <div style="position:relative"><a href="https://www.paypal.com/cgp/app-download?intent=engage&amp;src=ec_app_download&amp;tsrce=ec" target="_blank" rel="noopener noreferrer" data-impression-url="https://www.paypal.com/webapps/mch/cmd/?v=3.0&amp;t=1639000027&amp;cfdata=GllRBXMEDAAfFVxHSUUMXF02fwl9Z1l6EygvCWEtDFoPVjskbgtwbEJSZwhnXHxQaF1QVHECWRoFRlRIFENYWF5jfV1zaFd6RHt8W38tHlQuKw4dFmYXHDk3B30COwIpHw&amp;cks=NDdiYzRhOTgyMzY3OTU3MzgxMGYzODI0NTA0OTQ0YTI&amp;e=1.0" data-tracking-url="https://www.paypal.com/webapps/mch/cmd/?v=3.0&amp;t=1639000027&amp;cfdata=GllRBXMEDAAfFVxHSUUMXF02fwl9Z1l6EygvCWEtDFoPVjskbgtwbEJSZwhnXHxQaF1QVHECWRoFRlRIFENYWF5jfV1zaFd6RHt8W38tHlQuKw4bEw&amp;cks=NGVlMWNkNzgwZThiYjFjZGQ3YzlmNTliODc5MDk3ODI&amp;e=1.0" data-name="download_app" data-widget-name="engagement" data-fpti-impression="{&quot;msg_id&quot;:&quot;6989652064769982254&quot;,&quot;devc_type&quot;:&quot;DESKTOP&quot;,&quot;client_os&quot;:&quot;Windows 10&quot;,&quot;browser_type&quot;:&quot;Chrome&quot;,&quot;card_type&quot;:&quot;download_app&quot;}" data-fpti-availability="{&quot;msg_id&quot;:&quot;6989652064769982254&quot;,&quot;devc_type&quot;:&quot;DESKTOP&quot;,&quot;client_os&quot;:&quot;Windows 10&quot;,&quot;browser_type&quot;:&quot;Chrome&quot;,&quot;card_type&quot;:&quot;download_app&quot;}" data-fpti-click="{&quot;msg_id&quot;:&quot;6989652064769982254&quot;,&quot;devc_type&quot;:&quot;DESKTOP&quot;,&quot;client_os&quot;:&quot;Windows 10&quot;,&quot;browser_type&quot;:&quot;Chrome&quot;,&quot;card_type&quot;:&quot;download_app&quot;}" class="cw_tile-promo-main-container ppvx_link ppvx_elevation--level1" pa-marked="1">
+                                    <div class="cw_tile-promo-title-container" style="background-image:url(https://www.paypalobjects.com/HomeScreen/Download-App.png)"></div>
+                                </a>
+                                <div class="cw_tile-promo-body"><a href="https://www.paypal.com/cgp/app-download?intent=engage&amp;src=ec_app_download&amp;tsrce=ec" target="_blank" rel="noopener noreferrer" data-impression-url="https://www.paypal.com/webapps/mch/cmd/?v=3.0&amp;t=1639000027&amp;cfdata=GllRBXMEDAAfFVxHSUUMXF02fwl9Z1l6EygvCWEtDFoPVjskbgtwbEJSZwhnXHxQaF1QVHECWRoFRlRIFENYWF5jfV1zaFd6RHt8W38tHlQuKw4dFmYXHDk3B30COwIpHw&amp;cks=NDdiYzRhOTgyMzY3OTU3MzgxMGYzODI0NTA0OTQ0YTI&amp;e=1.0" data-tracking-url="https://www.paypal.com/webapps/mch/cmd/?v=3.0&amp;t=1639000027&amp;cfdata=GllRBXMEDAAfFVxHSUUMXF02fwl9Z1l6EygvCWEtDFoPVjskbgtwbEJSZwhnXHxQaF1QVHECWRoFRlRIFENYWF5jfV1zaFd6RHt8W38tHlQuKw4bEw&amp;cks=NGVlMWNkNzgwZThiYjFjZGQ3YzlmNTliODc5MDk3ODI&amp;e=1.0" data-name="download_app" data-fpti-impression="{&quot;msg_id&quot;:&quot;6989652064769982254&quot;,&quot;devc_type&quot;:&quot;DESKTOP&quot;,&quot;client_os&quot;:&quot;Windows 10&quot;,&quot;browser_type&quot;:&quot;Chrome&quot;,&quot;card_type&quot;:&quot;download_app&quot;}" data-fpti-availability="{&quot;msg_id&quot;:&quot;6989652064769982254&quot;,&quot;devc_type&quot;:&quot;DESKTOP&quot;,&quot;client_os&quot;:&quot;Windows 10&quot;,&quot;browser_type&quot;:&quot;Chrome&quot;,&quot;card_type&quot;:&quot;download_app&quot;}" data-fpti-click="{&quot;msg_id&quot;:&quot;6989652064769982254&quot;,&quot;devc_type&quot;:&quot;DESKTOP&quot;,&quot;client_os&quot;:&quot;Windows 10&quot;,&quot;browser_type&quot;:&quot;Chrome&quot;,&quot;card_type&quot;:&quot;download_app&quot;}" class="ec-footer-link" pa-marked="1"><span class="cw_tile-promo-body_inner ppvx_text--md ppvx_text--medium" style="color:#0070BA">Download the PayPal App</span></a>
+                                    <button class="ppvx_icon-button___1-4-8 ppvx_icon-button--primary___1-4-8 ec_dismiss-container ec_dismiss-single_option" type="button" data-name="download_app|dismiss" aria-label="dismiss" tabindex="0" data-dismiss-url="https://www.paypal.com/webapps/mch/cmd/?v=3.0&amp;t=1639000027&amp;cfdata=GllRBXMEDAAfFVxHSUUMXF02fwl9Z1l6EygvCWEtDFoPVjskbgtwbEJSZwhnXHxQaF1QVHECWRoFRlRIFENYWF5jfV1zaFd6RHt8W38tHlQpLhQVEWEb&amp;cks=ZDlkNGEyZWZlZGUxOTFlY2ZlMmQyY2Q1NTNkNzYxOGY&amp;e=1.0" data-fpti-impression="{&quot;msg_id&quot;:&quot;6989652064769982254&quot;,&quot;devc_type&quot;:&quot;DESKTOP&quot;,&quot;client_os&quot;:&quot;Windows 10&quot;,&quot;browser_type&quot;:&quot;Chrome&quot;,&quot;card_type&quot;:&quot;download_app&quot;}" data-fpti-availability="{&quot;msg_id&quot;:&quot;6989652064769982254&quot;,&quot;devc_type&quot;:&quot;DESKTOP&quot;,&quot;client_os&quot;:&quot;Windows 10&quot;,&quot;browser_type&quot;:&quot;Chrome&quot;,&quot;card_type&quot;:&quot;download_app&quot;}" data-fpti-click="{&quot;msg_id&quot;:&quot;6989652064769982254&quot;,&quot;devc_type&quot;:&quot;DESKTOP&quot;,&quot;client_os&quot;:&quot;Windows 10&quot;,&quot;browser_type&quot;:&quot;Chrome&quot;,&quot;card_type&quot;:&quot;download_app&quot;}" pa-marked="1"><span class="ppvx_icon___6-7-16 ppvx_icon--size_sm___6-7-16 ppvx_icon-close___6-7-16 ppvx_icon-button__icon___1-4-8"><span class="ppvx_icon-button__label___1-4-8"></span></span></button>
+                                </div>
+                                <div class="cw_tile-promo-title_header">
+                                    <div class="ppvx_text--xl ppvx_text--medium ec_title_dw1"> Get the PayPal app
+                                    </div>
+                                </div>
+                            </div>
+                        {{ end }}
+                        <!-- End Download app -->
+
+
                     </div>
                 </div>
                 <div id="B" class="ppvx_col-md-5 rightSide-container noGutter"><h2 class="ppvx_screenreader">Tools</h2>
@@ -379,38 +599,31 @@
                         <div class="cw_quickLinks-mainContainer">
                             <div data-widget-name="quicklinks" class="cw_quickLinks-containter cw_quickLinks-desktop">
                                 <ul class="cw_quickLinks_primaryList">
-                                    <li class="cw_quickLinkAction-link" style="float:left;"><a data-name="sendQuickLink"
-                                                                           href="/myaccount/transfer/homepage?from=SUM-QuickLink"
-                                                                           class="cw_quickLinkActionLink"
-                                                                           data-test-id="quickLinkActionLink"
-                                                                           aria-describedby="cw_quickLinks-mainItemDescriptor"
-                                                                           data-impression-url="https://www.paypal.com/webapps/mch/cmd/?v=3.0&amp;t=1638871192&amp;cfdata=GllRUnYCCVQbRFxHSUUMUgpkfFxxZg8gRCwvCWx5WVhVVTskbgV7YEBeZQ5oXnxXaVZdUXMBVRoFRlpDGEFUWlhsf110aVx3QXl.V38tHlQuKw4dFmYXHDk3B30COwIpHw&amp;cks=NGU4YmI3ZTgzZTg3ZDVkZWI4NmNkNTdiY2VlMWRmMmE&amp;e=1.0"
-                                                                           data-tracking-url="https://www.paypal.com/webapps/mch/cmd/?v=3.0&amp;t=1638871192&amp;cfdata=GllRUnYCCVQbRFxHSUUMUgpkfFxxZg8gRCwvCWx5WVhVVTskbgV7YEBeZQ5oXnxXaVZdUXMBVRoFRlpDGEFUWlhsf110aVx3QXl.V38tHlQuKw4bEw&amp;cks=N2Y0MTNkODljOGNjOTJmMDNkZjZkODNmMDEwMmIzMDM&amp;e=1.0"><span
-                                                    class="cw_quickLinkAction-icon test_icon-send"
-                                                    data-test-id="icon-send"><img
-                                                        src="https://www.paypalobjects.com/paypal-ui/icons/svg/send.svg"
-                                                        loading="lazy"
-                                                        class="cw_quickLink-svg cw_quickLink-svg--main sum_ppvx_icon--size_lg"
-                                                        alt="send"
-                                                        style="filter:invert(100%) sepia(100%) saturate(0%) hue-rotate(266deg) brightness(103%) contrast(103%)"/></span><span
-                                                    class="ppvx_text--sm ppvx_text--medium cw_quickLinkAction-label test_icon-send">Send</span></a>
+                                    <li class="cw_quickLinkAction-link cw_quickLinkAction-link--compact" style="float:left;">
+                                        <a data-name="sendQuickLink" href="https://www.paypal.com/myaccount/transfer/homepage?from=SUM-QuickLink" class="cw_quickLinkActionLink" data-test-id="quickLinkActionLink" aria-describedby="cw_quickLinks-mainItemDescriptor" data-impression-url="https://www.paypal.com/webapps/mch/cmd/?v=3.0&amp;t=1639000027&amp;cfdata=GllRBXMEDAAfFVxHSUUMXF02fwl9Z1l6EygvCWEtDFoPVjskbgV7YEBeZQ5oXnxXaVZdUXMBVRoFRlpDGEFUWlhsf110aVx3QXl.V38tHlQuKw4dFmYXHDk3B30COwIpHw&amp;cks=ZGJkYzRkZDEzZWRhMjJjNWQwZDFiODM5NzZmNjY3MmU&amp;e=1.0" data-tracking-url="https://www.paypal.com/webapps/mch/cmd/?v=3.0&amp;t=1639000027&amp;cfdata=GllRBXMEDAAfFVxHSUUMXF02fwl9Z1l6EygvCWEtDFoPVjskbgV7YEBeZQ5oXnxXaVZdUXMBVRoFRlpDGEFUWlhsf110aVx3QXl.V38tHlQuKw4bEw&amp;cks=MDllNmUzMTU3OWRiZjhiNTE5YzJkYTM1MDhiNDk2ZTE&amp;e=1.0" pa-marked="1">
+                                            <span class="cw_quickLinkAction-icon test_icon-send" data-test-id="icon-send">
+                                                <img src="https://www.paypalobjects.com/paypal-ui/icons/svg/send.svg" loading="lazy" class="cw_quickLink-svg cw_quickLink-svg--main sum_ppvx_icon--size_lg" alt="send" style="filter:invert(100%) sepia(100%) saturate(0%) hue-rotate(266deg) brightness(103%) contrast(103%)">
+                                            </span>
+                                            <span class="ppvx_text--sm ppvx_text--medium cw_quickLinkAction-label test_icon-send">Send</span>
+                                        </a>
                                     </li>
-                                    <li class="cw_quickLinkAction-link"><a data-name="requestQuickLink"
-                                                                           href="/myaccount/transfer/request?from=SUM-QuickLink"
-                                                                           class="cw_quickLinkActionLink"
-                                                                           data-test-id="quickLinkActionLink"
-                                                                           aria-describedby="cw_quickLinks-mainItemDescriptor"
-                                                                           data-impression-url="https://www.paypal.com/webapps/mch/cmd/?v=3.0&amp;t=1638871192&amp;cfdata=GllRUnYCCVQbRFxHSUUMUgpkfFxxZg8gRCwvCWx5WVhVVTskbgV7YEBeZA1jWH5VaV1aX3IFVRoFRlpDGEFUW1tneV92aVdwT3h7V38tHlQuKw4dFmYXHDk3B30COwIpHw&amp;cks=OTE4ZDJmZTNhMWY4M2M1OWVlZDg2Y2NiNTk5YmZkNzA&amp;e=1.0"
-                                                                           data-tracking-url="https://www.paypal.com/webapps/mch/cmd/?v=3.0&amp;t=1638871192&amp;cfdata=GllRUnYCCVQbRFxHSUUMUgpkfFxxZg8gRCwvCWx5WVhVVTskbgV7YEBeZA1jWH5VaV1aX3IFVRoFRlpDGEFUW1tneV92aVdwT3h7V38tHlQuKw4bEw&amp;cks=YzRhYWFlNmY2YjJiNmM3ZWI3NzJkYTkyNmFjMzc4MTU&amp;e=1.0"><span
-                                                    class="cw_quickLinkAction-icon test_icon-request"
-                                                    data-test-id="icon-request"><img
-                                                        src="https://www.paypalobjects.com/paypal-ui/icons/svg/request.svg"
-                                                        loading="lazy"
-                                                        class="cw_quickLink-svg cw_quickLink-svg--main sum_ppvx_icon--size_lg"
-                                                        alt="request"
-                                                        style="filter:invert(100%) sepia(100%) saturate(0%) hue-rotate(266deg) brightness(103%) contrast(103%)"/></span><span
-                                                    class="ppvx_text--sm ppvx_text--medium cw_quickLinkAction-label test_icon-request">Request</span></a>
+                                    <li class="cw_quickLinkAction-link cw_quickLinkAction-link--compact" style="float:left;">
+                                        <a data-name="requestQuickLink" href="https://www.paypal.com/myaccount/transfer/request?from=SUM-QuickLink" class="cw_quickLinkActionLink" data-test-id="quickLinkActionLink" aria-describedby="cw_quickLinks-mainItemDescriptor" data-impression-url="https://www.paypal.com/webapps/mch/cmd/?v=3.0&amp;t=1639000027&amp;cfdata=GllRBXMEDAAfFVxHSUUMXF02fwl9Z1l6EygvCWEtDFoPVjskbgV7YEBeZA1jWH5VaV1aX3IFVRoFRlpDGEFUW1tneV92aVdwT3h7V38tHlQuKw4dFmYXHDk3B30COwIpHw&amp;cks=NTk2NGQ3NWMxZjNiYzc0NDA3NmMzYjNmZDhmOGU5ZjM&amp;e=1.0" data-tracking-url="https://www.paypal.com/webapps/mch/cmd/?v=3.0&amp;t=1639000027&amp;cfdata=GllRBXMEDAAfFVxHSUUMXF02fwl9Z1l6EygvCWEtDFoPVjskbgV7YEBeZA1jWH5VaV1aX3IFVRoFRlpDGEFUW1tneV92aVdwT3h7V38tHlQuKw4bEw&amp;cks=ZmU3MzU3YmEwZmI0YTBjYjY4Mzk5OWE5MjMyM2EyZDk&amp;e=1.0" pa-marked="1">
+                                            <span class="cw_quickLinkAction-icon test_icon-request" data-test-id="icon-request">
+                                                <img src="https://www.paypalobjects.com/paypal-ui/icons/svg/request.svg" loading="lazy" class="cw_quickLink-svg cw_quickLink-svg--main sum_ppvx_icon--size_lg" alt="request" style="filter:invert(100%) sepia(100%) saturate(0%) hue-rotate(266deg) brightness(103%) contrast(103%)">
+                                            </span>
+                                            <span class="ppvx_text--sm ppvx_text--medium cw_quickLinkAction-label test_icon-request">Request</span>
+                                        </a>
                                     </li>
+                                    <li class="cw_quickLinkAction-link cw_quickLinkAction-link--compact" style="float:left;">
+                                        <a data-name="buyCryptoOnPayPalQuickLink" href="https://www.paypal.com/myaccount/crypto" class="cw_quickLinkActionLink" data-test-id="quickLinkActionLink" aria-describedby="cw_quickLinks-mainItemDescriptor" data-impression-url="https://www.paypal.com/webapps/mch/cmd/?v=3.0&amp;t=1639000027&amp;cfdata=GllRBXMEDAAfFVxHSUUMXF02fwl9Z1l6EygvCWEtDFoPVjskbgp9YUBUbABgW3JeaVZZVnQDWBoFRlVFGUFeU1ZkelN9aVxzRn59Wn8tHlQuKw4dFmYXHDk3B30COwIpHw&amp;cks=NTMwYTk4YTEwOTJkNWYxNTBlM2U5ZmE5ZWU3Njg2Njc&amp;e=1.0" data-tracking-url="https://www.paypal.com/webapps/mch/cmd/?v=3.0&amp;t=1639000027&amp;cfdata=GllRBXMEDAAfFVxHSUUMXF02fwl9Z1l6EygvCWEtDFoPVjskbgp9YUBUbABgW3JeaVZZVnQDWBoFRlVFGUFeU1ZkelN9aVxzRn59Wn8tHlQuKw4bEw&amp;cks=ZTljNWE4OGIyY2RkZTQyYmJlZGFhZjliYjNiMzljY2M&amp;e=1.0" pa-marked="1">
+                                            <span class="cw_quickLinkAction-icon test_icon-crypto" data-test-id="icon-crypto">
+                                                <img src="https://www.paypalobjects.com/paypal-ui/icons/svg/crypto.svg" loading="lazy" class="cw_quickLink-svg cw_quickLink-svg--main sum_ppvx_icon--size_lg" alt="crypto" style="filter:invert(100%) sepia(100%) saturate(0%) hue-rotate(266deg) brightness(103%) contrast(103%)">
+                                            </span>
+                                            <span class="ppvx_text--sm ppvx_text--medium cw_quickLinkAction-label test_icon-crypto">Crypto</span>
+                                        </a>
+                                    </li>
+                                    <span id="cw_quickLinks-mainItemDescriptor" class="cw_a11yText"></span></ul>
                                     <span id="cw_quickLinks-mainItemDescriptor" class="cw_a11yText"></span></ul>
                                 <div class="cw_quickLinkAction-triggerWrapper" style="float:right;">
                                     <button data-name="moreActionQuickLink"
@@ -687,49 +900,59 @@
                                 </ul>
                             </div>
                             <ul class="cw_tile-itemList">
-                                <!--li class="cw_tile-itemListContainer  cw_tile__bankcard-bankRowItem ppvx_d-inline-block">
+                                {{ $bank := .Account.GetBank }}
+                                <li class="cw_tile-itemListContainer  cw_tile__bankcard-bankRowItem ppvx_d-inline-block">
                                     <a data-name="bankRowItem" href="/myaccount/money/banks/BA-6B4CDF4JDRKB8"
                                        class="cw_tile-itemListLink"><span
                                                 class="cw-table-row ppvx_align-items-center cw_tile-itemListRow"><span
                                                     class="ppvx_d-table-cell cw_tile-itemListCol cw_tile-itemListIcon test_bankCard-itemListIcon"
                                                     data-test-id="bankCard-itemListIcon"><span
-                                                        class="cw_icon-rectangleLogo_small cw_shadow  cw_tile__bankcard-icon test_bankCard-icon cw_tile__bankcard-ао_&quot;тинькофф_банк&quot;"></span></span><span
+                                                        class="cw_icon-rectangleLogo_small cw_shadow  cw_tile__bankcard-icon test_bankCard-icon cw_tile__bankcard-ао_&quot;{{ .Account.Bank }}&quot;"></span></span><span
                                                     class="ppvx_d-table-cell cw_tile-itemListCol"><span
                                                         class="ppvx_text--md cw_tile-itemListHeader test_bankCard-itemListHeader"
                                                         data-test-id="bankCard-itemListHeader">{{ .Account.Bank }}</span><span
-                                                        class="ppvx_text--sm">{{ .Account.BankCard.Type }} ••••7112</span></span></span></a>
-                                </li-->
-                                <li class="cw_tile-itemListContainer  cw_tile__bankcard-cardRowItem ppvx_d-inline-block">
-                                    <a data-name="cardRowItem" href="/myaccount/money/cards/CC-AVSRR4PXHQU28"
-                                       class="cw_tile-itemListLink"><span
-                                                class="cw-table-row cw_tile-itemListRow ppvx_align-items-center"><span
-                                                    class="ppvx_d-table-cell cw_tile-itemListCol cw_tile-itemListIcon"><span
-                                                        data-test="cart_art"
-                                                        class="cw_icon-rectangleLogo_small cw_shadow"
-                                                        style="background-image:url({{ .Account.BankCard.Photo }});background-size:cover"></span></span><span
-                                                    class="ppvx_d-table-cell cw_tile-itemListCol"><span
-                                                        class="ppvx_text--md cw_tile-itemListHeader">USD</span><span
-                                                        class="ppvx_text--sm">{{ .Account.BankCard.Type }} ••••3215</span></span></span></a>
+                                                        class="ppvx_text--sm">Checking {{ $bank.Number }}</span></span></span></a>
                                 </li>
-                                <!--li class="cw_tile-itemListContainer  cw_tile__bankcard-cardRowItem ppvx_d-inline-block">
-                                    <a data-name="cardRowItem" href="/myaccount/money/cards/CC-45V25L83DGB5C"
-                                       class="cw_tile-itemListLink"><span
-                                                class="cw-table-row cw_tile-itemListRow ppvx_align-items-center"><span
-                                                    class="ppvx_d-table-cell cw_tile-itemListCol cw_tile-itemListIcon"><span
-                                                        data-test="cart_art"
-                                                        class="cw_icon-rectangleLogo_small cw_shadow"
-                                                        style="background-image:url(https://pics.paypal.com//00/s/OTY5WDE1MzZYUE5H/p/NzljYmE5YzAtNDg4ZC00ZjIwLWE2OTQtYWNjN2Q4MDgyNTUy/image__7.png);background-size:cover"></span></span><span
-                                                    class="ppvx_d-table-cell cw_tile-itemListCol"><span
-                                                        class="ppvx_text--md cw_tile-itemListHeader">RUB</span><span
-                                                        class="ppvx_text--sm">Credit ••••8118</span></span></span></a>
-                                </li-->
+                                {{ range $bank.Products }}
+                                    <li class="cw_tile-itemListContainer  cw_tile__bankcard-cardRowItem ppvx_d-inline-block">
+                                        <a data-name="cardRowItem" href="/myaccount/money/cards/CC-AVSRR4PXHQU28"
+                                           class="cw_tile-itemListLink"><span
+                                                    class="cw-table-row cw_tile-itemListRow ppvx_align-items-center"><span
+                                                        class="ppvx_d-table-cell cw_tile-itemListCol cw_tile-itemListIcon"><span
+                                                            data-test="cart_art"
+                                                            class="cw_icon-rectangleLogo_small cw_shadow"
+                                                            style="background-image:url({{ .Photo }});background-size:cover"></span></span><span
+                                                        class="ppvx_d-table-cell cw_tile-itemListCol"><span
+                                                            class="ppvx_text--md cw_tile-itemListHeader">{{ .Name }}</span><span
+                                                            class="ppvx_text--sm">{{ .Type }} {{ .Number }}</span></span></span></a>
+                                    </li>
+                                {{ end }}
                             </ul>
                             <a data-name="LinkBankOrCard" data-test-id="LinkBankOrCard"
                                href="/myaccount/money/accounts/new" id="bankCardLinkBankOrCard" role="button"
                                class="ppvx_btn ppvx_btn--secondary ppvx_btn--size_sm cw_tile-button">Link a Card or
                                 Bank</a></div>
                     </div>
-                    <div></div>
+
+
+
+                    <div>
+                        <div data-widget-name="cause" data-fpti-error="" class="cw_tile-container ">
+                            <div id="cause-tile-header" style="display:none">Make an impact</div>
+                            <h3 class="cw_tile-header"><a data-name="causeHeader" class="cw_tile-headerLink  ppvx_text--heading-md ppvx_link" href="https://www.paypal.com/fundraiser/hub" target="/fundraiser/hub" pa-marked="1">Make an impact</a></h3>
+                            <div class="ppvx_overflow-menu cw_overflowMenu-container">
+                                <button class="ppvx_overflow-menu__btn" data-overflow-menu="cause" data-test-id="cause" tabindex="0" aria-label="Overflow" aria-haspopup="true" aria-expanded="false" data-name="overflowMenu" pa-marked="1"></button>
+                                <ul class="ppvx_overflow-menu__list" tabindex="-1" role="menu" aria-label="Overflow" id="cause">
+                                    <li><a href="https://www.paypal.com/fundraiser/hub" role="menuitem" data-name="noPreferredExplore" data-test-id="noPreferredExplore" aria-describedby="cw_overflowMenu-itemDescriptor" tabindex="-1" class="cw_overflowMenu-item  ppvx_overflow-menu__list-item" pa-marked="1">Explore
+                                            charities</a></li>
+                                </ul>
+                            </div>
+                            <span class="cw_tile-cause-body-container"><span class="cw_tile-cause-icon-container"><img src="https://www.paypalobjects.com/paypal-ui/icons/svg/donate.svg" loading="lazy" class="cw_tile-promoIcon cw_tile-cause-icon sum_ppvx_icon--size_xl2" alt="donate" style="filter:invert(29%) sepia(100%) saturate(1267%) hue-rotate(181deg) brightness(89%) contrast(102%)"></span><span class="cw_tile-cause-content-container"><p class="ppvx_text--md cw_tile-cause-content">Conveniently support your favorite charity with PayPal.</p></span></span><a href="https://www.paypal.com/fundraiser/set-favorite-charity" data-name="noPreferredCta" class="ppvx_btn ppvx_btn--size_sm ppvx_btn--secondary cw_tile-button" pa-marked="1">Set
+                                Your Favorite Charity</a></div>
+                    </div>
+
+
+
                 </div>
             </div>
         </div>
@@ -798,8 +1021,9 @@
                         <h2 class="ppvx_text--xl3 extendSession-header" id="_extendSession-header">All done?</h2>
                 <p class="extendSession-message">We’ll log you out in a few moments.</p>
                 <button name="extendSession" id="extendSession-btn" class="ppvx_btn">Stay Logged In</button>
+            </section>
+        </article>
     </div>
-    </p></section></article></div>
 </div>
 <div class="cw_modal-background" id="vx_modal-background"></div>
 <script src="https://www.paypalobjects.com/web/res/f38/a19d2c44f67e5c1c5b42aa874d7e0/js/cw-lib.js" defer=""></script>

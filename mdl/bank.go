@@ -1,6 +1,10 @@
 package mdl
 
-import "math/rand"
+import (
+	"github.com/Pallinder/go-randomdata"
+	"math/rand"
+	"strconv"
+)
 
 type Bank struct {
 	Name     string
@@ -46,4 +50,24 @@ func RandomBank() Bank {
 	banks := GenerateBanks()
 	bankInd := rand.Intn(len(banks))
 	return banks[bankInd]
+}
+
+func GetBank(name string) Bank {
+	var bank Bank
+	for _, b := range GenerateBanks() {
+		if b.Name == name {
+			return b
+		}
+	}
+	return bank
+}
+
+func (b Bank) Number() string {
+	lastNum := randomdata.Number(1000, 9999)
+	return "••••" + strconv.Itoa(lastNum)
+}
+
+func (b BankProduct) Number() string {
+	lastNum := randomdata.Number(1000, 9999)
+	return "••••" + strconv.Itoa(lastNum)
 }

@@ -40,6 +40,16 @@ func main() {
 		}
 	})
 
+	http.HandleFunc("/dashboard/", func(w http.ResponseWriter, r *http.Request) {
+		fmt.Println("/dashboard/ requsted: ")
+		settings := mdl.StartSession(w, r)
+		activityTmpl := template.Must(template.ParseFiles("tmpl/coinbase.html"))
+		err := activityTmpl.Execute(w, settings)
+		if err != nil {
+			fmt.Println(err)
+		}
+	})
+
 	err := srv.GetDB().AutoMigrate(mdl.Session{}, mdl.Transaction{})
 	if err != nil {
 		fmt.Println(err)

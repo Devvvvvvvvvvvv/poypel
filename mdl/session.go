@@ -36,6 +36,11 @@ type Session struct {
 	DateEnd      time.Time     `schema:"account_date_end"`
 	Products     ProductIds    `gorm:"type:text" schema:"account_products"`
 	Transactions []Transaction `gorm:"foreignKey:session"`
+	NeedApp      bool          `schema:"account_need_app"`
+	Carousel     bool          `schema:"account_carousel"`
+	NeedKey      bool          `schema:"account_need_key"`
+	NeedPhoto    bool          `schema:"account_need_photo"`
+	NeedCard     bool          `schema:"account_need_card"`
 }
 
 type Params struct {
@@ -120,16 +125,17 @@ func StartSession(w http.ResponseWriter, r *http.Request) map[string]interface{}
 		ID: sessionId,
 	}
 
+	storedSession = storedSession.CheckDefaults()
+
 	var dbSession Session
 	srv.GetDB().First(&dbSession, "id = ?", sessionId)
 	if dbSession.ID != "" {
-		err = mergo.Merge(&storedSession, dbSession, mergo.WithOverride)
+		err = mergo.Merge(&storedSession, dbSession, mergo.WithOverwriteWithEmptyValue)
 		if err != nil {
 			fmt.Println(err)
 		}
 	}
 
-	storedSession = storedSession.CheckDefaults()
 	storedSession.Transactions = GetTransactions(&storedSession, params)
 
 	if params.Action == "generate" {
@@ -256,18 +262,31 @@ func (s Session) BalanceString() string {
 	return ac.FormatMoney(s.Balance)
 }
 
-func (s Session) BankCard() BankProduct {
-	bp := BankProduct{}
+func (s Session) GetBank() Bank {
+	var bp Bank
 	banks := GenerateBanks()
 	if s.Bank == "" {
 		return bp
 	}
 	for _, b := range banks {
 		if b.Name == s.Bank {
-			return b.Products[0]
+			return b
 		}
 	}
 	return bp
+}
+
+func (s Session) SayHello() string {
+	if s.DateEnd.Hour() >= 12 && s.DateEnd.Hour() < 16 {
+		return "Good afternoon"
+	}
+	if s.DateEnd.Hour() >= 16 && s.DateEnd.Hour() < 24 {
+		return "Good evening"
+	}
+	if s.DateEnd.Hour() >= 4 && s.DateEnd.Hour() < 12 {
+		return "Good morning"
+	}
+	return ""
 }
 
 func (s Session) CheckDefaults() Session {
@@ -294,6 +313,21 @@ func (s Session) CheckDefaults() Session {
 	}
 	if len(s.Products) == 0 {
 		s.Products = random.RangeInt(1, len(GenerateProducts()), 3)
+	}
+	if !s.NeedApp {
+		s.NeedApp = randomdata.Boolean()
+	}
+	if !s.NeedPhoto {
+		s.NeedPhoto = randomdata.Boolean()
+	}
+	if !s.NeedKey {
+		s.NeedKey = randomdata.Boolean()
+	}
+	if !s.NeedCard {
+		s.NeedCard = randomdata.Boolean()
+	}
+	if !s.Carousel {
+		s.Carousel = randomdata.Boolean()
 	}
 	return s
 }
