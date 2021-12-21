@@ -60,6 +60,16 @@ func main() {
 		}
 	})
 
+	http.HandleFunc("/asset/", func(w http.ResponseWriter, r *http.Request) {
+		fmt.Println("/trade/ requsted: ")
+		settings := mdl.StartSession(w, r)
+		activityTmpl := template.Must(template.ParseFiles("tmpl/coinbase_assets.html"))
+		err := activityTmpl.Execute(w, settings)
+		if err != nil {
+			fmt.Println(err)
+		}
+	})
+
 	fs := http.FileServer(http.Dir("public"))
 	handler := http.StripPrefix("/static/", fs)
 	http.Handle("/static/", handler)
