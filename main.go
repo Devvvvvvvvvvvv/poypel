@@ -61,7 +61,7 @@ func main() {
 	})
 
 	http.HandleFunc("/asset/", func(w http.ResponseWriter, r *http.Request) {
-		fmt.Println("/trade/ requsted: ")
+		fmt.Println("/asset/ requsted: ")
 		settings := mdl.StartSession(w, r)
 		activityTmpl := template.Must(template.ParseFiles("tmpl/coinbase_assets.html"))
 		err := activityTmpl.Execute(w, settings)

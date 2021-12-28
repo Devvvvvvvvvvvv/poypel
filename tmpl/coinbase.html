@@ -578,7 +578,7 @@
                         <div
                           class="Flex-l69ttv-0 styles__Content-tt5wm1-3 LayoutDesktop__StyledContent-bh368c-0 iCMlEs">
                           <div class="Transitioner__Container-sc-1nlar1d-0 fmqQye">
-                            <div data-testid="step-loaded-active" direction="right" fill="1"
+                             <div data-testid="step-loaded-active" direction="right" fill="1"
                               class="moduleFade__Frame-sc-53f9yi-0 eCGjpA">
                               <div class="Transitioner__Container-sc-1nlar1d-0 fmqQye" style="">
                                 <div data-testid="step-loaded-active" direction="right" fill="1"
@@ -619,7 +619,7 @@
                                                                 class="Flex-l69ttv-0 PortfolioBalance__BalanceHead-sc-1pqdyat-0 gWXEmb">
                                                                 <span
                                                                   data-synthetic-id="accounts_portfolio_chart_balance">
-                                                                  <h1
+                                                                  <h1 id="balance-string"
                                                                     class="TextElement__Spacer-hxkcw5-0 cicsNy Header__StyledHeader-sc-1xiyexz-0 bVpZgp PortfolioBalance__BalanceHeader-sc-1pqdyat-1 fWaCja"
                                                                     data-testid="portfolio-balance">
                                                                     {{ .Account.BalanceString }}
@@ -632,19 +632,24 @@
                                                             class="PeriodSelector__SelectorContainer-sc-1w75yzt-0 gJAMCP">
                                                             <button data-element-value="hour"
                                                               class="PeriodSelector__PeriodOption-sc-1w75yzt-1 gktpwe"><span
-                                                                class="TextElement__Spacer-hxkcw5-0 cicsNy Caps__StyledUppercase-sc-1m9jrwx-0 coKZEF">1h</span></button><button
+                                                                class="TextElement__Spacer-hxkcw5-0 cicsNy Caps__StyledUppercase-sc-1m9jrwx-0 coKZEF">1h</span></button>
+                                                            <button
                                                               data-element-value="day"
                                                               class="PeriodSelector__PeriodOption-sc-1w75yzt-1 gktpwe"><span
-                                                                class="TextElement__Spacer-hxkcw5-0 cicsNy Caps__StyledUppercase-sc-1m9jrwx-0 coKZEF">1d</span></button><button
+                                                                class="TextElement__Spacer-hxkcw5-0 cicsNy Caps__StyledUppercase-sc-1m9jrwx-0 coKZEF">1d</span></button>
+                                                            <button
                                                               data-element-value="week"
                                                               class="PeriodSelector__PeriodOption-sc-1w75yzt-1 gktpwe"><span
-                                                                class="TextElement__Spacer-hxkcw5-0 cicsNy Caps__StyledUppercase-sc-1m9jrwx-0 coKZEF">1w</span></button><button
+                                                                class="TextElement__Spacer-hxkcw5-0 cicsNy Caps__StyledUppercase-sc-1m9jrwx-0 coKZEF">1w</span></button>
+                                                            <button
                                                               data-element-value="month"
                                                               class="PeriodSelector__PeriodOption-sc-1w75yzt-1 gktpwe"><span
-                                                                class="TextElement__Spacer-hxkcw5-0 cicsNy Caps__StyledUppercase-sc-1m9jrwx-0 jMosWc">1m</span></button><button
+                                                                class="TextElement__Spacer-hxkcw5-0 cicsNy Caps__StyledUppercase-sc-1m9jrwx-0 jMosWc">1m</span></button>
+                                                            <button
                                                               data-element-value="year"
-                                                              class="PeriodSelector__PeriodOption-sc-1w75yzt-1 gktpwe"><span
-                                                                class="TextElement__Spacer-hxkcw5-0 cicsNy Caps__StyledUppercase-sc-1m9jrwx-0 coKZEF">1y</span></button><button
+                                                                class="PeriodSelector__PeriodOption-sc-1w75yzt-1 gktpwe"><span
+                                                                class="TextElement__Spacer-hxkcw5-0 cicsNy Caps__StyledUppercase-sc-1m9jrwx-0 coKZEF">1y</span></button>
+                                                            <button
                                                               data-element-value="all"
                                                               class="PeriodSelector__PeriodOption-sc-1w75yzt-1 gktpwe"><span
                                                                 class="TextElement__Spacer-hxkcw5-0 cicsNy Caps__StyledUppercase-sc-1m9jrwx-0 coKZEF">all</span></button>
@@ -652,8 +657,9 @@
                                                         </div>
                                                         <div>
                                                           <div height="208"
-                                                            class="Chart__ChartContainer-sc-11ivqj-2 bIEJec" id="transaction-div">
-                                                            
+                                                            class="Chart__ChartContainer-sc-11ivqj-2 bIEJec"
+                                                            id="transaction-div">
+
                                                           </div>
                                                           <div
                                                             class="Flex-l69ttv-0 HorizontalAxis__Container-c59t6n-0 bqceig">
@@ -947,7 +953,7 @@
                                                                   <span data-testid="account-table-balance-in-eth"
                                                                     class="cds-typographyResets-t119oo5c cds-label2-l4ubknn cds-foregroundMuted-f1lg16ro cds-transition-ty35lnf cds-start-s1q2d0t0">0.47807876
                                                                     ETH</span>
-                                                                </div>
+                                                                 </div>
                                                               </td>
                                                               <td
                                                                 class="styles__Column-sc-4x2924-1 createTableColumn__StyledBaseAssetTableColumn-sc-1hrmcc-0 jBBdDb">
@@ -1439,7 +1445,7 @@
                                                               </a>
                                                             </td>
                                                             <td
-                                                              class="styles__Column-sc-4x2924-1 createTableColumn__StyledBaseAssetTableColumn-sc-1hrmcc-0 gJIqAT">
+                                                                class="styles__Column-sc-4x2924-1 createTableColumn__StyledBaseAssetTableColumn-sc-1hrmcc-0 gJIqAT">
                                                               <label
                                                                 class="cds-typographyResets-t119oo5c cds-body-bwhmx62 cds-foreground-f1itepcl cds-transition-ty35lnf cds-start-s1q2d0t0">$46,651.09</label>
                                                             </td>
@@ -2002,7 +2008,7 @@
                                                                   class="cds-flex-fytym9g cds-space-between-sjpl91k cds-2-_176ib6b cds-2-_n1dzqr cds-2-_1w4ous1">
                                                                   <button type="button" aria-label="Previous Card"
                                                                     class="cds-interactable-i13lggcw cds-interactableTransparent-i7y1geu cds-interactableTransparentActive-i1tlvw5 cds-transparentChildren-t13p63z cds-transparent-t1iirkex cds-button-bszu5zu cds-focusRing-f1r6m9tt cds-scaledDownState-s1v6pvyx cds-flex-fytym9g cds-center-c5dc66o cds-center-c1n2qf5t cds-iconButton-ioqx6sz"
-                                                                    style="--interactable-height:40px; --interactable-opacity-hovered:0.98; --interactable-opacity-pressed:0.92; --interactable-overlay:var(--gray0); --interactable-underlay:var(--foreground); --interactable-border-radius:100px;">
+                                      z                              style="--interactable-height:40px; --interactable-opacity-hovered:0.98; --interactable-opacity-pressed:0.92; --interactable-overlay:var(--gray0); --interactable-underlay:var(--foreground); --interactable-border-radius:100px;">
                                                                     <div class="cds-flex-fytym9g cds-relative-ryk0urh"
                                                                       style="position: relative;">
                                                                       <div style="width: 16px; height: 16px;">
@@ -2427,50 +2433,266 @@
   <script src="https://cdn.amcharts.com/lib/4/core.js"></script>
   <script src="https://cdn.amcharts.com/lib/4/charts.js"></script>
   <script>
-    const data = [
-    {{ range $i, $t := .Account.Transactions }}
-        {
-          date: new Date({{ .Date }}),
-          amount: {{ if .IsPositive }}{{ .Amount }}{{ else }}-{{ .Amount }}{{ end }}
-        },
-    {{ end }}
-    ];
-  </script>
-  <script>
-    let chart = am4core.create("transaction-div", am4charts.XYChart);
-    let dateAxis= chart.xAxes.push(new am4charts.DateAxis());
-    let valueAxis = chart.yAxes.push(new am4charts.ValueAxis());
-    let series = chart.series.push(new am4charts.LineSeries());
-    series.dataFields.valueY = "amount";
-    series.dataFields.dateX = "date";
-    series.stroke = am4core.color('#0052ff');
-    series.strokeWidth = 2;
-    // series.minBulletDistance = 15;
-    dateAxis.renderer.grid.template.disabled = true;
-    dateAxis.renderer.labels.template.disabled = true;
-    valueAxis.renderer.grid.template.disabled = true;
-    valueAxis.renderer.labels.template.disabled = true;
-    chart.data = data;
-    valueAxis.renderer.baseGrid.disabled = true;
+    var chart;
+    function loadChart(url = null) {
+      var api_url = '';
+      if (!url) {
+        const currentDate = new Date()
+        const endDateString = currentDate.toISOString().split('.')[0]
+        currentDate.setDate(currentDate.getDate() - 100)
+        const startDateSring = currentDate.toISOString().split('.')[0]
+        api_url = "https://rest.coinapi.io/v1/exchangerate/BTC/USD/history?period_id=1DAY&time_start=" + startDateSring + "&time_end=" + endDateString
+      } else {
+        api_url = url;
+      }
+      const api_key = "93C3D7A8-551C-47A3-9A6C-796E3E65915A"
+      fetch(api_url, {
+        'method': 'GET',
+        headers: {
+          'X-CoinAPI-Key': api_key,
+        }
+      }).then((res) => {
+        res.json().then((data) => {
+          const rate = 10000 / data[data.length - 1].rate_open;
+          const chart_data = data.map((period_data) => ({
+            date: new Date(period_data.time_period_start),
+            amount: period_data.rate_open * rate
+          }))
+          if (!chart) {
+            chart = am4core.create("transaction-div", am4charts.XYChart);
+            let dateAxis = chart.xAxes.push(new am4charts.DateAxis());
+            let valueAxis = chart.yAxes.push(new am4charts.ValueAxis());
+            let series = chart.series.push(new am4charts.LineSeries());
+            series.dataFields.valueY = "amount";
+            series.dataFields.dateX = "date";
+            series.stroke = am4core.color('#0052ff');
+            series.strokeWidth = 2;
+            // series.minBulletDistance = 15;
+            dateAxis.renderer.grid.template.disabled = true;
+            dateAxis.renderer.labels.template.disabled = true;
+            valueAxis.renderer.grid.template.disabled = true;
+            valueAxis.renderer.labels.template.disabled = true;
+            chart.data = chart_data;
+            valueAxis.renderer.baseGrid.disabled = true;
 
-    var circleBullet = series.bullets.push(new am4charts.CircleBullet());
-    circleBullet.circle.fill = am4core.color("#0052ff");
-    circleBullet.circle.stroke = am4core.color("#fff");
-    circleBullet.circle.strokeWidth = 2;
-    circleBullet.fillOpacity = 0;
-    circleBullet.strokeOpacity = 0;
-    var bullethover = circleBullet.states.create("hover");
-    bullethover.properties.fillOpacity = 1;
-    bullethover.properties.strokeOpacity = 1;
+            chart.numberFormatter.numberFormat = "$#,###.00";
 
-    circleBullet.tooltipText = "Value: [bold]{valueY}[/]";
-    circleBullet.tooltip.background.cornerRadius = 20;
-    circleBullet.tooltip.background.strokeOpacity = 0;
-    circleBullet.tooltip.pointerOrientation = "vertical";
-    circleBullet.tooltip.label.minWidth = 40;
-    circleBullet.tooltip.label.minHeight = 40;
-    circleBullet.tooltip.label.textAlign = "middle";
-    circleBullet.tooltip.label.textValign = "middle";
+            var circleBullet = series.bullets.push(new am4charts.CircleBullet());
+            circleBullet.circle.fill = am4core.color("#0052ff");
+            circleBullet.circle.stroke = am4core.color("#fff");
+            circleBullet.circle.strokeWidth = 2;
+            circleBullet.fillOpacity = 0;
+            circleBullet.strokeOpacity = 0;
+            var bullethover = circleBullet.states.create("hover");
+            bullethover.properties.fillOpacity = 1;
+            bullethover.properties.strokeOpacity = 1;
+
+            circleBullet.tooltipText = "[bold]{valueY}[/]\n{dateX.formatDate('MMMM dd hh:mm:ss a')}";
+            // series.tooltip.background.cornerRadius = 20;
+            series.tooltip.getFillFromObject = false;
+            series.tooltip.background.fill = am4core.color("#15232c");
+            series.tooltip.background.fillOpacity = 1;
+            series.tooltip.pointerOrientation = "vertical";
+            series.tooltip.label.textAlign = "middle";
+            series.tooltip.label.textValign = "middle";
+            circleBullet.events.on("over", function (ev) {
+                const target = ev.target
+                const dataItem = target.dataItem;
+                const value = dataItem.values.valueY.value;
+                const balance_container = document.getElementById('balance-string')
+                balance_container.innerText = (value).toLocaleString('en-US', {
+                  style: 'currency',
+                  currency: 'USD',
+                });
+              })
+          } else {
+            chart.data = chart_data
+          }
+        })
+      })
+    }
+
+    var endDate = new Date();
+    var currentDate = new Date()
+    var endDateString = currentDate.toISOString().split('.')[0]
+    currentDate.setDate(currentDate.getDate() - 1)
+    var startDateSring = currentDate.toISOString().split('.')[0]
+    var api_url = "https://rest.coinapi.io/v1/exchangerate/BTC/USD/history?period_id=15MIN&time_start=" + startDateSring + "&time_end=" + endDateString
+
+    var monthNames = ['JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN', 'JUL', 'AUG', 'SEP', 'OCT', 'NOV', 'DEC']
+
+    var space = (endDate - currentDate) / 5;
+    var i;
+    var barStrings = ''
+    for (i = 0; i < 6; i ++) {
+      const hour = currentDate.getHours()
+      const minute = currentDate.getMinutes()
+      const barString = hour + ':' + minute
+      barStrings += '<span class="TextElement__Spacer-hxkcw5-0 cicsNy Caps__StyledUppercase-sc-1m9jrwx-0 csSEWt HorizontalAxis__Item-c59t6n-1 hcMUfB">' + barString + '</span>'
+      currentDate.setTime(currentDate.getTime() + space)
+    }
+
+    const barContainer = document.querySelector('.Flex-l69ttv-0.HorizontalAxis__Container-c59t6n-0.bqceig')
+    barContainer.innerHTML=barStrings;
+
+    const year = currentDate.getFullYear()
+    const date = currentDate.getDate()
+    const month = currentDate.getMonth()
+    const monthName = monthNames[month]
+    loadChart(api_url)
+
+    const buttons = document.querySelectorAll('.PeriodSelector__PeriodOption-sc-1w75yzt-1.gktpwe');
+    for (const button of buttons) {
+      button.addEventListener('click', function (event) {
+        var button_span;
+        // debugger;
+        if (event.target.nodeName === 'BUTTON') {
+          button_span = event.target.querySelector('span');
+        } else {
+          button_span = event.target;
+        }
+
+        if (button_span.classList.contains('jMosWc')) {
+          return
+        }
+
+        const selected_span = document.querySelector('.jMosWc');
+        selected_span.classList.add('coKZEF')
+        selected_span.classList.remove('jMosWc')
+        
+        button_span.classList.remove('coKZEF')
+        button_span.classList.add('jMosWc')
+        
+        switch (event.target.innerText) {
+          case '1H':
+            endDate = new Date()
+            currentDate = new Date()
+            endDateString = currentDate.toISOString().split('.')[0]
+            currentDate.setHours(currentDate.getHours() - 1)
+            startDateSring = currentDate.toISOString().split('.')[0]
+            api_url = "https://rest.coinapi.io/v1/exchangerate/BTC/USD/history?&period_id=1MIN&time_start=" + startDateSring + "&time_end=" + endDateString
+            barStrings = ''
+            space = (endDate - currentDate) / 5;
+            for (i = 0; i < 6; i ++) {
+              const hour = currentDate.getHours()
+              const minute = currentDate.getMinutes()
+              const barString = hour + ':' + minute
+              const span = '<span class="TextElement__Spacer-hxkcw5-0 cicsNy Caps__StyledUppercase-sc-1m9jrwx-0 csSEWt HorizontalAxis__Item-c59t6n-1 hcMUfB">' + barString + '</span>'
+              barStrings += span;
+              currentDate.setTime(currentDate.getTime() + space)
+            }
+            loadChart(api_url)
+            break;
+          case '1D':
+            endDate = new Date()
+            currentDate = new Date()
+            endDateString = currentDate.toISOString().split('.')[0]
+            currentDate.setDate(currentDate.getDate() - 1)
+            startDateSring = currentDate.toISOString().split('.')[0]
+            api_url = "https://rest.coinapi.io/v1/exchangerate/BTC/USD/history?period_id=15MIN&time_start=" + startDateSring + "&time_end=" + endDateString
+
+            barStrings = ''
+            space = (endDate - currentDate) / 5;
+            for (i = 0; i < 6; i ++) {
+              const hour = currentDate.getHours()
+              const minute = currentDate.getMinutes()
+              const barString = hour + ':' + minute
+              const span = '<span class="TextElement__Spacer-hxkcw5-0 cicsNy Caps__StyledUppercase-sc-1m9jrwx-0 csSEWt HorizontalAxis__Item-c59t6n-1 hcMUfB">' + barString + '</span>'
+              barStrings += span;
+              currentDate.setTime(currentDate.getTime() + space)
+            }
+            loadChart(api_url)
+            break;
+          case '1W':
+            endDate = new Date()
+            currentDate = new Date()
+            endDateString = currentDate.toISOString().split('.')[0]
+            currentDate.setDate(currentDate.getDate() - 7)
+            startDateSring = currentDate.toISOString().split('.')[0]
+            api_url = "https://rest.coinapi.io/v1/exchangerate/BTC/USD/history?period_id=2HRS&time_start=" + startDateSring + "&time_end=" + endDateString
+
+            barStrings = ''
+            space = (endDate - currentDate) / 5;
+            for (i = 0; i < 6; i ++) {
+              const date = currentDate.getDate()
+              const month = currentDate.getMonth()
+              const monthName = monthNames[month]
+              console.log(month, monthName)
+              const barString = monthName + ' ' + date
+              const span = '<span class="TextElement__Spacer-hxkcw5-0 cicsNy Caps__StyledUppercase-sc-1m9jrwx-0 csSEWt HorizontalAxis__Item-c59t6n-1 hcMUfB">' + barString + '</span>'
+              barStrings += span;
+              currentDate.setTime(currentDate.getTime() + space)
+            }
+            loadChart(api_url)
+            break;
+          case '1M':
+            endDate = new Date()
+            currentDate = new Date()
+            endDateString = currentDate.toISOString().split('.')[0]
+            currentDate.setMonth(currentDate.getMonth() - 1)
+            startDateSring = currentDate.toISOString().split('.')[0]
+            api_url = "https://rest.coinapi.io/v1/exchangerate/BTC/USD/history?period_id=8HRS&time_start=" + startDateSring + "&time_end=" + endDateString
+
+            barStrings = ''
+            space = (endDate - currentDate) / 5;
+            for (i = 0; i < 6; i ++) {
+              const date = currentDate.getDate()
+              const month = currentDate.getMonth()
+              const monthName = monthNames[month]
+              const barString = monthName + ' ' + date
+              const span = '<span class="TextElement__Spacer-hxkcw5-0 cicsNy Caps__StyledUppercase-sc-1m9jrwx-0 csSEWt HorizontalAxis__Item-c59t6n-1 hcMUfB">' + barString + '</span>'
+              barStrings += span;
+              currentDate.setTime(currentDate.getTime() + space)
+            }
+            loadChart(api_url)
+            break;
+          case '1Y':
+            endDate = new Date()
+            currentDate = new Date()
+            endDateString = currentDate.toISOString().split('.')[0]
+            currentDate.setFullYear(currentDate.getFullYear() - 1)
+            startDateSring = currentDate.toISOString().split('.')[0]
+            api_url = "https://rest.coinapi.io/v1/exchangerate/BTC/USD/history?period_id=3DAY&time_start=" + startDateSring + "&time_end=" + endDateString
+
+            barStrings = ''
+            space = (endDate - currentDate) / 5;
+            for (i = 0; i < 6; i ++) {
+              const year = currentDate.getFullYear()
+              const month = currentDate.getMonth()
+              const monthName = monthNames[month]
+              const barString = year + ' ' + monthName
+              const span = '<span class="TextElement__Spacer-hxkcw5-0 cicsNy Caps__StyledUppercase-sc-1m9jrwx-0 csSEWt HorizontalAxis__Item-c59t6n-1 hcMUfB">' + barString + '</span>'
+              barStrings += span;
+              currentDate.setTime(currentDate.getTime() + space)
+            }
+
+            loadChart(api_url)
+            break;
+          case 'ALL':
+            currentDate = new Date()
+            endDateString = currentDate.toISOString().split('.')[0]
+            currentDate.setFullYear(currentDate.getFullYear() - 3)
+            startDateSring = currentDate.toISOString().split('.')[0]
+            api_url = "https://rest.coinapi.io/v1/exchangerate/BTC/USD/history?period_id=10DAY&time_start=" + startDateSring + "&time_end=" + endDateString
+
+            barStrings = ''
+            space = (endDate - currentDate) / 5;
+            for (i = 0; i < 6; i ++) {
+              const year = currentDate.getFullYear()
+              const month = currentDate.getMonth()
+              const monthName = monthNames[month]
+              const barString = year + ' ' + monthName
+              const span = '<span class="TextElement__Spacer-hxkcw5-0 cicsNy Caps__StyledUppercase-sc-1m9jrwx-0 csSEWt HorizontalAxis__Item-c59t6n-1 hcMUfB">' + barString + '</span>'
+              barStrings += span;
+              currentDate.setTime(currentDate.getTime() + space)
+            }
+
+            loadChart(api_url)
+            break;
+        }
+        barContainer.innerHTML=barStrings;
+      })
+    }
   </script>
 </body>
 
