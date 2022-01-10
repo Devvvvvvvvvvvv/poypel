@@ -38,6 +38,7 @@ func GenerateTransactions(account *Session) []Transaction {
 	date := minDate
 
 	var transactionsSum float32
+	var coinBalance float32
 
 	for date.Before(account.DateEnd) {
 		productId := account.Products[rand.Intn(len(account.Products))] // pick random product
@@ -52,6 +53,7 @@ func GenerateTransactions(account *Session) []Transaction {
 		product := GetProduct(productId)
 		transactionAmount := product.Price
 		if transactionType == BANK {
+			coinBalance += transactionAmount
 			transactionAmount = transactionsSum
 			transactionsSum = 0 // if transaction type is BANK, balance to zero
 		} else {
@@ -75,6 +77,7 @@ func GenerateTransactions(account *Session) []Transaction {
 	transactions = RandomizeHolds(transactions)
 
 	account.Balance = transactionsSum
+	account.CoinBalance = coinBalance
 
 	// Reverse transactions
 	return ReverseTransaction(transactions)
@@ -85,11 +88,13 @@ func UpdateTransactions(transactions []Transaction, account *Session) []Transact
 	newTransactions := []Transaction{}
 	ln := len(transactions) - 1
 	var transactionsSum float32
+	var coinBalance float32
 	for _, t := range transactions {
 		if t.Date.Unix() >= account.DateStart.Unix() && t.Date.Unix() <= account.DateEnd.Unix() {
 			if t.Type == BANK {
 				t.Name = account.Bank
 				transactionsSum = 0
+				coinBalance += t.Amount
 			} else {
 				transactionsSum += t.Amount
 			}
@@ -116,6 +121,7 @@ func UpdateTransactions(transactions []Transaction, account *Session) []Transact
 			product := GetProduct(productId)
 			transactionAmount := product.Price
 			if transactionType == BANK {
+				coinBalance += transactionAmount
 				transactionAmount = transactionsSum
 				transactionsSum = 0 // if transaction type is BANK, balance to zero
 			} else {
@@ -139,6 +145,7 @@ func UpdateTransactions(transactions []Transaction, account *Session) []Transact
 	}
 
 	account.Balance = transactionsSum
+	account.CoinBalance = coinBalance
 
 	// Reverse transactions
 	return ReverseTransaction(newTransactions)
@@ -212,6 +219,13 @@ func (t Transaction) TypeString() string {
 	default:
 		return ""
 	}
+}
+
+func (t Transaction) IsBank() bool {
+	if t.Type == BANK {
+		return true
+	}
+	return false
 }
 
 func (t Transaction) IsPositive() bool {

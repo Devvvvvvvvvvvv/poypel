@@ -30,6 +30,7 @@ type Session struct {
 	Name         string        `schema:"account_name"`
 	Bank         string        `schema:"account_bank"`
 	Balance      float32       `schema:"balance"`
+	CoinBalance  float32       `schema:"coin_balance"`
 	HoursMin     int           `schema:"account_hours_min"`
 	HoursMax     int           `schema:"account_hours_max"`
 	DateStart    time.Time     `schema:"account_date_start"`
@@ -260,6 +261,11 @@ func CheckSession(w http.ResponseWriter, r *http.Request) string {
 func (s Session) BalanceString() string {
 	ac := accounting.Accounting{Symbol: "$", Precision: 2}
 	return ac.FormatMoney(s.Balance)
+}
+
+func (s Session) CoinBalanceString() string {
+	ac := accounting.Accounting{Symbol: "$", Precision: 2}
+	return ac.FormatMoney(s.CoinBalance)
 }
 
 func (s Session) GetBank() Bank {

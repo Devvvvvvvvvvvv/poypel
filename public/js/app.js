@@ -1,6 +1,7 @@
-var chart;
+
 
 function loadChart(url = null) {
+    var chart;
     var api_url = '';
     if (!url) {
         const currentDate = new Date()

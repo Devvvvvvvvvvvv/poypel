@@ -217,7 +217,7 @@
                                                          class="EndlessMenu__Container-sc-4rft7s-0 isyQSA">
                                                         <div class="EndlessMenu__Content-sc-4rft7s-1 jJhgVb">
                                                             <div class="EndlessMenu__Items-sc-4rft7s-2 flvzuP">
-                                                                <button
+                                                                <button @click="$router.push('/price/bitcoin')"
                                                                         data-is-active="0" aria-label="Overview tab"
                                                                         class="EndlessMenuItem__TabButton-sc-14t8sp3-0 bVyIzI">
                                                                     Overview
@@ -274,15 +274,14 @@
                                                               <span><span
                                                                           class="AssetBalance__NoWrap-sc-1i7353m-4 gouci">Balance:</span>
                                                                 <span
-                                                                        class="AssetBalance__NoWrap-sc-1i7353m-4 gouci">{{.Account.BalanceString}}</span></span></h2>
+                                                                        class="AssetBalance__NoWrap-sc-1i7353m-4 gouci">{{ .CoinBalanceString }}</span></span></h2>
                                                           </span></div>
-                                                                            <section
-                                                                                    class="InfiniteScroll__StyledContainer-sc-19n01su-0 efMBBt">
+                                                                            <section class="InfiniteScroll__StyledContainer-sc-19n01su-0 efMBBt">
                                                                                 <div class="cds-flex-fytym9g cds-column-cygaqsr"
                                                                                      style="flex: 1 1 auto;">
-                                                                                    <div
-                                                                                            class="GQLTransactionList__TransactionsContainer-gjtpxa-4 gjtjem">
-                                                                                        {{ range $i, $t := .Account.Transactions }}
+                                                                                    <div class="GQLTransactionList__TransactionsContainer-gjtpxa-4 gjtjem">
+                                                                                        {{ range $i, $t := .Transactions }}
+                                                                                        {{ if .IsBank }}
                                                                                         <div role="button"
                                                                                              aria-label="Dec 17, 2021 transaction details"
                                                                                              tabindex="0"
@@ -295,53 +294,36 @@
                                                                             class="TextElement__Spacer-hxkcw5-0 cicsNy Caps__StyledUppercase-sc-1m9jrwx-0 csSEWt">{{ .Date.Format "Jan" }}</span><span
                                                                                                             class="TextElement__Spacer-hxkcw5-0 cicsNy Header__StyledHeader-sc-1xiyexz-0 dWwkYJ">{{ .Date.Day }}</span>
                                                                                                 </div>
-                                                                                                <div
-                                                                                                        class="Flex-l69ttv-0 GQLTransactionListItem__IconWrapper-sc-1994j27-3 LcCwl">
-                                                                                                    <svg width="24"
-                                                                                                         height="24"
-                                                                                                         viewBox="0 0 24 24"
-                                                                                                         type="send"
-                                                                                                         aria-hidden="true"
-                                                                                                         focusable="false"
-                                                                                                         class="GQLTransactionIcon__iconStyle-sc-1338s8o-2 bSRCkl">
-                                                                                                        <path
-                                                                                                                d="M12 0a12 12 0 1012 12A12 12 0 0012 0zm0 23a11 11 0 1111-11 11 11 0 01-11 11z">
-                                                                                                        </path>
-                                                                                                        <path
-                                                                                                                d="M7 17h10v1H7zM11.5 7.21v8.29h1V7.21l2.15 2.14.7-.7-3-3a.48.48 0 00-.7 0l-3 3 .7.7z">
-                                                                                                        </path>
-                                                                                                    </svg>
+                                                                                                <div class="Flex-l69ttv-0 GQLTransactionListItem__IconWrapper-sc-1994j27-3 LcCwl">
+                                                                                                    <svg width="24" height="24" viewBox="0 0 24 24" type="receive" aria-hidden="true" focusable="false" class="GQLTransactionIcon__iconStyle-sc-1338s8o-2 bSRCkl"><path d="M12 0a12 12 0 1012 12A12 12 0 0012 0zm0 23a11 11 0 1111-11 11 11 0 01-11 11z"></path><path d="M7 17h10v1H7zM12 16a.47.47 0 00.35-.15l3-3-.7-.7-2.15 2.14V6h-1v8.29l-2.15-2.14-.7.7 3 3A.47.47 0 0012 16z"></path></svg>
                                                                                                 </div>
                                                                                                 <div
                                                                                                         class="Flex-l69ttv-0 GQLTransactionListItem__TitleWrapper-sc-1994j27-2 eAmqpa">
                                                                     <span
                                                                             class="TextElement__Spacer-hxkcw5-0 cicsNy Header__StyledHeader-sc-1xiyexz-0 gqEBdi">
-                                                                      {{ if .IsPositive }}Received{{ else }}Sent{{ end }}
+                                                                      Received
                                                                       Bitcoin</span>
-                                                                                                    <p
-                                                                                                            class="TextElement__Spacer-hxkcw5-0 cicsNy Body__StyledBody-sc-17wx6cn-0 gEupxV">
+                                                                                                    <p class="TextElement__Spacer-hxkcw5-0 cicsNy Body__StyledBody-sc-17wx6cn-0 gEupxV">
                                                                                                         <div class="Flex-l69ttv-0 dMosNC">
-                                                                                                    <p
-                                                                                                            class="TextElement__Spacer-hxkcw5-0 cicsNy Body__StyledBody-sc-17wx6cn-0 kLOOOc">
-                                                                                                        {{ if .IsPending }}Pending{{ else }}Completed{{ end }}</p>
+                                                                                                    <p class="TextElement__Spacer-hxkcw5-0 cicsNy Body__StyledBody-sc-17wx6cn-0 kLOOOc">
+                                                                                                        {{ if .IsPending }}Pending{{ else }}Completed{{ end }}
+                                                                                                    </p>
                                                                                                 </div>
                                                                                                 </p>
                                                                                             </div>
                                                                                         </div>
                                                                                         <div
                                                                                                 class="Flex-l69ttv-0 styles__AmountContainer-sc-193ww2v-3 flHALs">
-                                                                                            <div class="Flex-l69ttv-0 ionTLM"><span
-                                                                                                        class="TextElement__Spacer-hxkcw5-0 cicsNy Header__StyledHeader-sc-1xiyexz-0 dWwkYJ"><span
-                                                                                                            class=""></span></span>
+                                                                                            <div class="Flex-l69ttv-0 ionTLM"><span class="TextElement__Spacer-hxkcw5-0 cicsNy Header__StyledHeader-sc-1xiyexz-0 dWwkYJ"><span class=""></span></span>
                                                                                             </div>
                                                                                             <div class="Flex-l69ttv-0 ionTLM">
-                                                                                                <p
-                                                                                                        class="TextElement__Spacer-hxkcw5-0 cicsNy Body__StyledBody-sc-17wx6cn-0 ftlPTQ">
-                                                                                                    <span class="">{{if .IsPositive}}+{{else}}-{{end}}{{.AmountString}}</span>
+                                                                                                <p class="TextElement__Spacer-hxkcw5-0 cicsNy Body__StyledBody-sc-17wx6cn-0 ftlPTQ">
+                                                                                                    <span class="">+{{ .AmountString }}</span>
                                                                                                 </p>
                                                                                             </div>
                                                                                         </div>
                                                                                     </div>
+                                                                                    {{ end }}
                                                                                     {{ end }}
                                                                                 </div>
                                                                         </div>
