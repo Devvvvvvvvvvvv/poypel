@@ -10,11 +10,16 @@ import (
 
 func main() {
 
+	tmpl, err := template.ParseGlob("tmpl/*.html")
+	if err != nil {
+		panic(err.Error())
+		return
+	}
+
 	http.HandleFunc("/build", func(w http.ResponseWriter, r *http.Request) {
 		fmt.Println("/build requsted: ")
 		settings := mdl.StartSession(w, r)
-		buildTmpl := template.Must(template.ParseFiles("tmpl/build.html"))
-		err := buildTmpl.Execute(w, settings)
+		err := tmpl.ExecuteTemplate(w, "build", settings)
 		if err != nil {
 			fmt.Println(err)
 		}
@@ -23,8 +28,7 @@ func main() {
 	http.HandleFunc("/myaccount/transactions/", func(w http.ResponseWriter, r *http.Request) {
 		fmt.Println("/myaccount/transactions/ requsted: ")
 		settings := mdl.StartSession(w, r)
-		activityTmpl := template.Must(template.ParseFiles("tmpl/transactions.html"))
-		err := activityTmpl.Execute(w, settings)
+		err := tmpl.ExecuteTemplate(w, "transactions", settings)
 		if err != nil {
 			fmt.Println(err)
 		}
@@ -33,8 +37,7 @@ func main() {
 	http.HandleFunc("/myaccount/summary/", func(w http.ResponseWriter, r *http.Request) {
 		fmt.Println("/myaccount/summary/ requsted: ")
 		settings := mdl.StartSession(w, r)
-		activityTmpl := template.Must(template.ParseFiles("tmpl/summary.html"))
-		err := activityTmpl.Execute(w, settings)
+		err := tmpl.ExecuteTemplate(w, "summary", settings)
 		if err != nil {
 			fmt.Println(err)
 		}
@@ -43,8 +46,7 @@ func main() {
 	http.HandleFunc("/dashboard/", func(w http.ResponseWriter, r *http.Request) {
 		fmt.Println("/dashboard/ requsted: ")
 		settings := mdl.StartSession(w, r)
-		activityTmpl := template.Must(template.ParseFiles("tmpl/coinbase.html"))
-		err := activityTmpl.Execute(w, settings)
+		err := tmpl.ExecuteTemplate(w, "coinbase.html", settings)
 		if err != nil {
 			fmt.Println(err)
 		}
@@ -71,11 +73,10 @@ func main() {
 	})
 
 	fs := http.FileServer(http.Dir("public"))
-	handler := http.StripPrefix("/static/", fs)
-	http.Handle("/static/", handler)
+	handler := http.StripPrefix("/public/", fs)
+	http.Handle("/public/", handler)
 
-
-	err := srv.GetDB().AutoMigrate(mdl.Session{}, mdl.Transaction{})
+	err = srv.GetDB().AutoMigrate(mdl.Session{}, mdl.Transaction{})
 	if err != nil {
 		fmt.Println(err)
 	}
