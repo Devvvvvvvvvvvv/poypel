@@ -1,0 +1,925 @@
+<script type="text/x-template" id="tmpl-accounts">
+    <div class="Flex-l69ttv-0 LayoutDesktop__MainContentFlex-bh368c-2 kbkLxG">
+        <div class="Flex-l69ttv-0 LayoutDesktop__PaddingTop-bh368c-1 fDJhGF"></div>
+        <nav class="styles__BaseHeader-sc-14kegwt-0 HeaderBarDesktop__Header-sc-14zi61m-0 kgHGNe">
+            <div
+                    class="Flex-l69ttv-0 HeaderBarDesktop__BaseHeaderSection-sc-14zi61m-1 HeaderBarDesktop__Left-sc-14zi61m-2 hvCriQ">
+                <h1 data-testid="pageTitle" id="layout-title"
+                    class="HeaderBarDesktop__Title-sc-14zi61m-5 gnkzwf">
+                    <div class="cds-flex-fytym9g cds-center-c5dc66o cds-row-ros4dsk">
+                        <button type="button"
+                                aria-label="Go Back"
+                                class="cds-interactable-i13lggcw cds-interactableBackground-i1tfznye cds-transparentChildren-t13p63z cds-line-l1nrr09y cds-button-bszu5zu cds-focusRing-f1r6m9tt cds-scaledDownState-s1v6pvyx cds-flex-fytym9g cds-center-c5dc66o cds-center-c1n2qf5t cds-iconButton-ioqx6sz"
+                                style="--interactable-height:40px; --interactable-opacity-hovered:0.98; --interactable-opacity-pressed:0.92; --interactable-overlay:var(--gray0); --interactable-underlay:var(--foreground); --interactable-border-radius:100px;">
+                            <div class="cds-flex-fytym9g cds-relative-ryk0urh" style="position: relative;">
+                                <div style="width: 16px; height: 16px;"><span class="cds-iconStyles-i6w5wyz"
+                                                                              role="presentation"
+                                                                              data-icon-name="backArrow"
+                                                                              style="color: var(--secondary-foreground); font-size: 16px;"></span>
+                                </div>
+                            </div>
+                        </button>
+                        <span role="presentation" aria-hidden="true"
+                              style="flex-grow: 0; flex-shrink: 0; width: var(--spacing-2);"></span>Assets
+                    </div>
+                </h1>
+            </div>
+            <div id="layout-center-content"
+                 class="Flex-l69ttv-0 HeaderBarDesktop__BaseHeaderSection-sc-14zi61m-1 HeaderBarDesktop__Center-sc-14zi61m-3 gnULBh">
+            </div>
+            <div
+                    class="Flex-l69ttv-0 HeaderBarDesktop__BaseHeaderSection-sc-14zi61m-1 HeaderBarDesktop__Right-sc-14zi61m-4 iNbjB">
+                <div class="Flex-l69ttv-0 gaVUrq">
+                    <div class="Flex-l69ttv-0 gaVUrq ModalTrigger__Trigger-sc-1npzs5i-0 jCnzGy">
+                        <button
+                                type="button" data-testid="header-buy-sell-button" aria-label="Buy / Sell modal"
+                                class="cds-interactable-i13lggcw cds-interactableBackground-i1tfznye cds-transparentChildren-t13p63z cds-transparent-t1iirkex cds-button-bszu5zu cds-focusRing-f1r6m9tt cds-scaledDownState-s1v6pvyx cds-primaryForeground-progmjq cds-button-bxm6m07 cds-buttonCompact-bcjdu8t cds-1-_plhmtt cds-1-_tide8r cds-2-_dsl3e5 cds-2-_1w4ous1"
+                                style="--interactable-height:40px; --interactable-opacity-hovered:0.92; --interactable-opacity-pressed:0.86; --interactable-overlay:var(--blue60); --interactable-underlay:var(--foreground); --interactable-border-radius:4px;"><span
+                                    class="cds-positionRelative-p9o3l0l"><span
+                                        class="cds-typographyResets-t119oo5c cds-headline-ho2otij cds-primaryForeground-progmjq cds-transition-ty35lnf cds-start-s1q2d0t0 cds-noWrap-nqeoca2"><span
+                                            class="">Buy / Sell</span></span></span></button>
+                    </div>
+                    <span role="presentation"
+                          aria-hidden="true" style="flex-grow: 0; flex-shrink: 0; width: var(--spacing-1);"></span>
+                    <div class="Flex-l69ttv-0 gaVUrq ModalTrigger__Trigger-sc-1npzs5i-0 jCnzGy">
+                        <button
+                                type="button"
+                                class="cds-interactable-i13lggcw cds-interactableBackground-i1tfznye cds-transparentChildren-t13p63z cds-line-l1nrr09y cds-button-bszu5zu cds-focusRing-f1r6m9tt cds-scaledDownState-s1v6pvyx cds-secondaryForeground-s1j0qc52 cds-button-bxm6m07 cds-buttonCompact-bcjdu8t cds-1-_plhmtt cds-1-_tide8r cds-2-_dsl3e5 cds-2-_1w4ous1"
+                                style="--interactable-height:40px; --interactable-opacity-hovered:0.98; --interactable-opacity-pressed:0.92; --interactable-overlay:var(--gray0); --interactable-underlay:var(--foreground); --interactable-border-radius:4px;"><span
+                                    class="cds-positionRelative-p9o3l0l"><span
+                                        class="cds-typographyResets-t119oo5c cds-headline-ho2otij cds-secondaryForeground-s1j0qc52 cds-transition-ty35lnf cds-start-s1q2d0t0 cds-noWrap-nqeoca2"><span
+                                            class="">Send / Receive</span></span></span></button>
+                    </div>
+                    <div class="HeaderBarActions__Divider-ssknu1-0 gATJb"></div>
+                    <div>
+                        <div class="Flex-l69ttv-0 ProfileDropdown__DropdownContainer-ty53xr-2 exNudn">
+                            <button
+                                    data-testid="profile-dropdown" role="button"
+                                    class="ProfileDropdown__DropdownButton-ty53xr-0 hCXgEX"><span
+                                        data-synthetic-id="user_menu_dropdown"><img size="32"
+                                                                                    data-savepage-src="https://images.coinbase.com/avatar?h=609ce987f92c0802e5250dYzeHu9w6DfSl9awyKYwtySVK3apyhKkrh6r7Wu%0A%2FlAl&s=128"
+                                                                                    src="data:image/png;base64,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"
+                                                                                    class="Avatar__AvatarImage-hgevj6-0 isZTxo ProfileDropdown__StyledAvatar-ty53xr-1 hRQjzI"
+                                                                                    role="presentation"></span></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </nav>
+        <nav class="DropdownMenu__Wrapper-sc-10qdpp4-6 hhzVZF">
+            <div class="Transitioner__Container-sc-1nlar1d-0 fmqQye">
+                <div data-testid="step-loaded-active" direction="right" fill="1"
+                     class="moduleFade__Frame-sc-53f9yi-0 eCGjpA">
+                    <div class="Flex-l69ttv-0 DropdownMenu__Dropdown-sc-10qdpp4-7 gROwGc">
+                        <div class="Flex-l69ttv-0 DropdownMenu__TopContent-sc-10qdpp4-4 guWHrf"><img size="64"
+                                                                                                     data-savepage-src="https://images.coinbase.com/avatar?h=609ce987f92c0802e5250dYzeHu9w6DfSl9awyKYwtySVK3apyhKkrh6r7Wu%0A%2FlAl&s=128"
+                                                                                                     src="data:image/png;base64,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"
+                                                                                                     class="Avatar__AvatarImage-hgevj6-0 dILDbM DropdownMenu__StyledAvatar-sc-10qdpp4-3 bZOqOE"
+                                                                                                     role="presentation">
+                            <h3
+                                    class="TextElement__Spacer-hxkcw5-0 cicsNy Header__StyledHeader-sc-1xiyexz-0 fatZNU DropdownMenu__NameHeader-sc-10qdpp4-2 iIFSMI">
+                                Ivan Shkurak</h3>
+                            <p
+                                    class="TextElement__Spacer-hxkcw5-0 cicsNy Body__StyledBody-sc-17wx6cn-0 gEupxV DropdownMenu__EmailBody-sc-10qdpp4-0 jqWgYu">
+                                IvanjiShkurak@gmail.com</p>
+                            <div class="cds-flex-fytym9g cds-2-_176ib6b">
+                                <button type="button"
+                                        class="cds-interactable-i13lggcw cds-interactableBackground-i1tfznye cds-transparentChildren-t13p63z cds-line-l1nrr09y cds-button-bszu5zu cds-focusRing-f1r6m9tt cds-scaledDownState-s1v6pvyx cds-secondaryForeground-s1j0qc52 cds-button-bxm6m07 cds-buttonCompact-bcjdu8t cds-1-_plhmtt cds-1-_tide8r cds-2-_dsl3e5 cds-2-_1w4ous1"
+                                        style="--interactable-height:40px; --interactable-opacity-hovered:0.98; --interactable-opacity-pressed:0.92; --interactable-overlay:var(--gray0); --interactable-underlay:var(--foreground); --interactable-border-radius:4px;"><span
+                                            class="cds-positionRelative-p9o3l0l"><span
+                                                class="cds-typographyResets-t119oo5c cds-headline-ho2otij cds-secondaryForeground-s1j0qc52 cds-transition-ty35lnf cds-start-s1q2d0t0 cds-noWrap-nqeoca2"><span
+                                                    class="">Manage your profile</span></span></span></button>
+                            </div>
+                        </div>
+                        <ul class="DropdownMenu__MenuList-sc-10qdpp4-1 bHunYy">
+                            <li
+                                    class="ProfileRowItem__NavigationListItem-sc-1mo84dm-1 cdGUBP DropdownMenu__StyledProfileRowItem-sc-10qdpp4-5 hHWLlX">
+                                <a data-savepage-href="/settings" href="/settings"
+                                   class="Link__ARouterLink-eh4rrz-1 besQkt ProfileRowItem__StyledLink-sc-1mo84dm-2 hGmuxg"
+                                   color="slate" weight="inherit">
+                                    <p
+                                            class="TextElement__Spacer-hxkcw5-0 cicsNy Body__StyledBody-sc-17wx6cn-0 kzupAr ProfileRowItem__StyledBody-sc-1mo84dm-0 cUozCT">
+                                        Settings</p>
+                                </a></li>
+                            <li tabindex="0" class="AppearanceProfileRowItem__StyledListItem-m2x6yv-0 hlgZAa">
+                                <div class="AppearanceProfileRowItem__Wrapper-m2x6yv-2 euLVFZ">
+                                    <p
+                                            class="TextElement__Spacer-hxkcw5-0 cicsNy Body__StyledBody-sc-17wx6cn-0 kzupAr AppearanceProfileRowItem__StyledBody-m2x6yv-1 fdXXos">
+                                        Appearance</p>
+                                </div>
+                            </li>
+                            <li
+                                    class="ProfileRowItem__NavigationListItem-sc-1mo84dm-1 cdGUBP DropdownMenu__StyledProfileRowItem-sc-10qdpp4-5 hHWLlX">
+                                <a href="https://accounts.coinbase.com/taxes"
+                                   class="Link__A-eh4rrz-0 fJjiqr ProfileRowItem__StyledLink-sc-1mo84dm-2 hGmuxg"
+                                   color="slate" rel="noopener" target="_blank">
+                                    <p
+                                            class="TextElement__Spacer-hxkcw5-0 cicsNy Body__StyledBody-sc-17wx6cn-0 kzupAr ProfileRowItem__StyledBody-sc-1mo84dm-0 cUozCT">
+                                        Taxes</p>
+                                    <div class="ProfileRowItem__BetaPill-sc-1mo84dm-3 etafuD"><span
+                                                class="cds-typographyResets-t119oo5c cds-caption-cew2kvn cds-primaryForeground-progmjq cds-transition-ty35lnf cds-start-s1q2d0t0">Beta</span>
+                                    </div>
+                                </a></li>
+                            <li
+                                    class="ProfileRowItem__NavigationListItem-sc-1mo84dm-1 cdGUBP DropdownMenu__StyledProfileRowItem-sc-10qdpp4-5 hHWLlX">
+                                <a data-savepage-href="/reports" href="/reports"
+                                   class="Link__ARouterLink-eh4rrz-1 besQkt ProfileRowItem__StyledLink-sc-1mo84dm-2 hGmuxg"
+                                   color="slate" weight="inherit">
+                                    <p
+                                            class="TextElement__Spacer-hxkcw5-0 cicsNy Body__StyledBody-sc-17wx6cn-0 kzupAr ProfileRowItem__StyledBody-sc-1mo84dm-0 cUozCT">
+                                        Reports</p>
+                                </a></li>
+                            <li
+                                    class="ProfileRowItem__NavigationListItem-sc-1mo84dm-1 cdGUBP DropdownMenu__StyledProfileRowItem-sc-10qdpp4-5 hHWLlX">
+                                <a href="https://help.coinbase.com/"
+                                   class="Link__A-eh4rrz-0 fJjiqr ProfileRowItem__StyledLink-sc-1mo84dm-2 hGmuxg"
+                                   color="slate">
+                                    <p
+                                            class="TextElement__Spacer-hxkcw5-0 cicsNy Body__StyledBody-sc-17wx6cn-0 kzupAr ProfileRowItem__StyledBody-sc-1mo84dm-0 cUozCT">
+                                        Help</p>
+                                </a></li>
+                            <li
+                                    class="ProfileRowItem__NavigationListItem-sc-1mo84dm-1 cdGUBP DropdownMenu__StyledProfileRowItem-sc-10qdpp4-5 hgrPxy">
+                                <a data-testid="sign-out-dropdown-link" data-savepage-href="/signout"
+                                   href="/signout"
+                                   class="Link__A-eh4rrz-0 fJjiqr ProfileRowItem__StyledLink-sc-1mo84dm-2 hGmuxg"
+                                   color="slate">
+                                    <p
+                                            class="TextElement__Spacer-hxkcw5-0 cicsNy Body__StyledBody-sc-17wx6cn-0 kzupAr ProfileRowItem__StyledBody-sc-1mo84dm-0 cUozCT">
+                                        Sign out</p>
+                                </a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </nav>
+        <div data-testid="checklist-wrapper" class="Flex-l69ttv-0 LayoutDesktop__Wrapper-bh368c-4 bWPfln">
+        </div>
+        <div class="Flex-l69ttv-0 LayoutDesktop__Wrapper-bh368c-4 jrGlUe">
+            <div
+                    class="Flex-l69ttv-0 styles__Content-tt5wm1-3 LayoutDesktop__StyledContent-bh368c-0 iCMlEs">
+                <div class="Transitioner__Container-sc-1nlar1d-0 fmqQye">
+                    <div data-testid="step-loaded-active" direction="right" fill="1"
+                         class="moduleFade__Frame-sc-53f9yi-0 eCGjpA">
+                        <div class="Transitioner__Container-sc-1nlar1d-0 fmqQye" style="">
+                            <div data-testid="step-loaded-active" direction="right" fill="1"
+                                 class="moduleFade__Frame-sc-53f9yi-0 eCGjpA">
+                                <div class="styles__Outer-vb6gfj-0 HeaderBar__StyledOuter-tvqwd7-0 hfPrmR" style="">
+                                    <div class="Transitioner__Container-sc-1nlar1d-0 fmqQye">
+                                        <div data-testid="step-loaded-active" direction="right" fill="1"
+                                             class="moduleFade__Frame-sc-53f9yi-0 eCGjpA">
+                                            <div class="styles__InnerContainer-ehviky-1 wdtGO">
+                                                <div class="cds-flex-fytym9g cds-column-cygaqsr cds-4-_13iz7eo">
+                                                    <div class="cds-flex-fytym9g cds-row-ros4dsk">
+                                                        <div class="styles__IconWrapper-vb6gfj-7 iFDhPJ"><img
+                                                                    class="Image-sc-1i3cgkp-0 CurrencyIcon__StyledImage-sc-12mnnqm-2 jPdGfJ"
+                                                                    data-savepage-src="https://dynamic-assets.coinbase.com/e785e0181f1a23a30d9476038d9be91e9f6c63959b538eabbc51a1abc8898940383291eede695c3b8dfaa1829a9b57f5a2d0a16b0523580346c6b8fab67af14b/asset_icons/b57ac673f06a4b0338a596817eb0a50ce16e2059f327dc117744449a47915cb2.png"
+                                                                    src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAIAAAACACAMAAAD04JH5AAAC91BMVEUAAAD4lBr3lBv3kxr/qiv/v0D3lBv4kxr4kxv/mxv3lBv/lSv4lhz4kxr4lBv3lxv3lRv4kxv4lBr6lhv4lRz3lBv3lyD5lBv4kxv6kx34kxr4lBr3kxv6lBz/nSf4lBr//4D3kxr4lhv4lBr7lB34lBr7lh33lBr4kxr3kxv/nyD4kxv/lyP/lRr3lBv4lBv6lRv3lBv4lBv4lBv4kxr/lCH4lBr4lBr3lBv6lBv/niT3kxr////+/v3+/fz5uWr3lBz3kxv4p0X++vX837z71KT97975sVr3lB3+/v74qUj3mCX83bj4pUD+8+f5sVv3myz7zJP5s175tGD++/b7zZX6wn/97dn97936xIP4ojr3mCT3mSf3liL++vb4pD/5rlX82a/6wn797tv6xof84sH4qUn827L5r1b4pkT7z5r+8uT83LX969b958z++/f+9+/6wn36xIL+9u34ojv6wHr97Nj3njL6xob5s1/3lR73lR/+/fv++fL6x4n83bf95cn4p0b6vHL4pkP7zpf4pkL3min6yIv+/Pn5uWz6w4D95sr6v3n97Nf5tWL4qkz848T84sL+9uz4qkv3nC36xYX95836vnX848P6vXP++fT83rn96dL81qn4oDb96M/7zpj+9ev70qH7z5v3lSD+8+b5uGn6wXv97tz71KX96tL3lyL827P96M771ab5tmX84L/4qUr70qD3njH7z5n4q074q03++PH+8eP6xYT84L798N/++PD6u3D71af96tP70Z784cH5slz969T5t2b706P6w4H3mCb96dH5r1f5rlP5tGH4rFD84L34qEf4oTn6x4r++fP3mir3myv5sl33nS/5um73mSj70Jz3nC77y5L4pUH84cD5sFf7yo7+9Oj3nTD5um3816r95Mf7zJT95Mb+9+783rr82Kz969X4rE/98eH4oDf6x4j4rVH82K398eL7zZb5sVn+9On3liH3njP3lyP82K76vXT837v5uWv+/Pr4qEaA3nGYAAAAO3RSTlMA/uzCBgTGudocqQxJ+9JChPnMOItDIHy7NK/f7TcNiALES/M+1D3piagQlRYdhtlexayrdB91uIVfFSGgzMAAAAaaSURBVHhexdtldxvJEgbgEhriGLKG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"
+                                                                    alt="BTC logo" size="46" aria-label="BTC logo ">
+                                                        </div>
+                                                        <div class="styles__TextRow-vb6gfj-2 ftNBen">
+                                                            <div class="styles__InnerTextRow-vb6gfj-3 cYATGc">
+                                                                <h1
+                                                                        class="TextElement__Spacer-hxkcw5-0 cicsNy Header__StyledHeader-sc-1xiyexz-0 bVpZgp styles__Name-vb6gfj-5 bHSVaQ"
+                                                                        data-testid="asset-name">Bitcoin</h1>
+                                                                <h1
+                                                                        class="TextElement__Spacer-hxkcw5-0 cicsNy Header__StyledHeader-sc-1xiyexz-0 iXfzZu styles__Symbol-vb6gfj-6 dFvtoW"
+                                                                        data-testid="asset-symbol">BTC</h1>
+                                                            </div>
+                                                            <div class="Transitioner__Container-sc-1nlar1d-0 fmqQye">
+                                                                <div data-testid="step-loaded-active" direction="right"
+                                                                     fill="1"
+                                                                     class="moduleFade__Frame-sc-53f9yi-0 eCGjpA"></div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="cds-flex-fytym9g" style="z-index: 1;">
+                                                            <button
+                                                                    aria-label="Remove Bitcoin from watchList"
+                                                                    class="Button__Container-opcph8-0 hXdHPt WatchStar__StarButton-sc-1x0suc9-2 kDiIzm"><span
+                                                                        class="Button__Content-opcph8-1 fa-duqf"><svg
+                                                                            fill="none"
+                                                                            height="23" viewBox="0 0 24 23" width="24"
+                                                                            filled="filled"
+                                                                            color="rgb(var(--yellow30))"
+                                                                            focusable="false" aria-hidden="true"
+                                                                            class="WatchStar__StarIconButton-sc-1x0suc9-3 jvVOnu">
+                                                      <path
+                                                              d="M12.713 1.443l2.969 6.015 6.637.965a.794.794 0 01.44 1.354l-4.804 4.681 1.135 6.612a.794.794 0 01-1.152.837L12 18.787l-5.938 3.121a.795.795 0 01-1.152-.838l1.134-6.612L1.24 9.777a.794.794 0 01.44-1.354l6.638-.965 2.968-6.015a.795.795 0 011.425 0z"
+                                                              stroke="#becada"></path>
+                                                    </svg><span
+                                                                            class="WatchStar__Span-sc-1x0suc9-1 jpTYkB">Watchlist</span></span>
+                                                            </button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="styles__BottomRow-vb6gfj-8 gAnMjb">
+                                                    <div data-testid="asset-portfolio-tabs"
+                                                         class="EndlessMenu__Container-sc-4rft7s-0 isyQSA">
+                                                        <div class="EndlessMenu__Content-sc-4rft7s-1 jJhgVb">
+                                                            <div class="EndlessMenu__Items-sc-4rft7s-2 flvzuP">
+                                                                <button
+                                                                        data-is-active="0" aria-label="Overview tab"
+                                                                        class="EndlessMenuItem__TabButton-sc-14t8sp3-0 bVyIzI">
+                                                                    Overview
+                                                                </button>
+                                                                <button
+                                                                        data-is-active="1"
+                                                                        data-testid="default-wallet-tab"
+                                                                        aria-label="Wallet tab"
+                                                                        class="EndlessMenuItem__TabButton-sc-14t8sp3-0 gUTpL">
+                                                                    Wallet
+                                                                </button>
+                                                                <button
+                                                                        data-is-active="0" aria-label="Vault tab"
+                                                                        class="EndlessMenuItem__TabButton-sc-14t8sp3-0 bVyIzI">
+                                                                    Vault
+                                                                </button>
+                                                            </div>
+                                                            <div width="63"
+                                                                 class="EndlessMenu__Highlight-sc-4rft7s-4 ctJWLu"></div>
+                                                        </div>
+                                                        <div class="EndlessMenu__Ellipsis-sc-4rft7s-3 kABPvV"></div>
+                                                        <div class="EndlessMenu__Ellipsis-sc-4rft7s-3 hbOnYR"></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="styles__OuterContainer-ehviky-0 kkBTC" style="">
+                                    <div class="styles__InnerContainer-ehviky-1 wdtGO">
+                                        <div class="styles__Row-ehviky-4 cfxdDR">
+                                            <div class="styles__LeftColumn-ehviky-2 jMEYpY">
+                                                <div class="cds-flex-fytym9g cds-column-cygaqsr" style="width: 100%;">
+                                                    <div
+                                                            class="AssetPagePortfolioWallet__TransactionsWrapper-sc-1sm5tye-0 jmGFpK">
+                                                        <div
+                                                                class="cds-flex-fytym9g cds-column-cygaqsr cds-background-b1oovg0i cds-hidden-hrk5xqo cds-standard-s11fh1zv cds-bordered-b1lhdwsw"
+                                                                style="box-shadow: rgba(0, 0, 0, 0.02) 0px 8px 12px;">
+                                                            <div
+                                                                    class="Flex-l69ttv-0 GQLTransactionList__Container-gjtpxa-0 hoqrVX">
+                                                                <div class="Transitioner__Container-sc-1nlar1d-0 fmqQye"
+                                                                     style="">
+                                                                    <div data-testid="step-loaded-active"
+                                                                         direction="right" fill="1"
+                                                                         class="moduleFade__Frame-sc-53f9yi-0 eCGjpA">
+                                                                        <div
+                                                                                class="Flex-l69ttv-0 GQLTransactionList__Container-gjtpxa-0 fqfgxC">
+                                                                            <div
+                                                                                    class="Flex-l69ttv-0 GQLTransactionList__HeaderBar-gjtpxa-1 cUqaLj">
+                                                          <span color="slateDark"
+                                                                class="Text__Font-sc-163p65w-0 fLZprC">
+                                                            <h2
+                                                                    class="cds-typographyResets-t119oo5c cds-headline-ho2otij cds-foreground-f1itepcl cds-transition-ty35lnf cds-start-s1q2d0t0">
+                                                              <span><span
+                                                                          class="AssetBalance__NoWrap-sc-1i7353m-4 gouci">Balance:</span>
+                                                                <span
+                                                                        class="AssetBalance__NoWrap-sc-1i7353m-4 gouci">{{.Account.BalanceString}}</span></span></h2>
+                                                          </span></div>
+                                                                            <section
+                                                                                    class="InfiniteScroll__StyledContainer-sc-19n01su-0 efMBBt">
+                                                                                <div class="cds-flex-fytym9g cds-column-cygaqsr"
+                                                                                     style="flex: 1 1 auto;">
+                                                                                    <div
+                                                                                            class="GQLTransactionList__TransactionsContainer-gjtpxa-4 gjtjem">
+                                                                                        {{ range $i, $t := .Account.Transactions }}
+                                                                                        <div role="button"
+                                                                                             aria-label="Dec 17, 2021 transaction details"
+                                                                                             tabindex="0"
+                                                                                             class="Flex-l69ttv-0 cardStyles__CardRow-wgcfkc-0 GQLTransactionListItem__LinkContainer-sc-1994j27-0 dYXkhd">
+                                                                                            <div
+                                                                                                    class="Flex-l69ttv-0 GQLTransactionListItem__NameContainer-sc-1994j27-1 ldZukT">
+                                                                                                <div
+                                                                                                        class="Flex-l69ttv-0 styles__DateContainer-sc-193ww2v-0 dCBDnV">
+                                                                    <span
+                                                                            class="TextElement__Spacer-hxkcw5-0 cicsNy Caps__StyledUppercase-sc-1m9jrwx-0 csSEWt">{{ .Date.Format "Jan" }}</span><span
+                                                                                                            class="TextElement__Spacer-hxkcw5-0 cicsNy Header__StyledHeader-sc-1xiyexz-0 dWwkYJ">{{ .Date.Day }}</span>
+                                                                                                </div>
+                                                                                                <div
+                                                                                                        class="Flex-l69ttv-0 GQLTransactionListItem__IconWrapper-sc-1994j27-3 LcCwl">
+                                                                                                    <svg width="24"
+                                                                                                         height="24"
+                                                                                                         viewBox="0 0 24 24"
+                                                                                                         type="send"
+                                                                                                         aria-hidden="true"
+                                                                                                         focusable="false"
+                                                                                                         class="GQLTransactionIcon__iconStyle-sc-1338s8o-2 bSRCkl">
+                                                                                                        <path
+                                                                                                                d="M12 0a12 12 0 1012 12A12 12 0 0012 0zm0 23a11 11 0 1111-11 11 11 0 01-11 11z">
+                                                                                                        </path>
+                                                                                                        <path
+                                                                                                                d="M7 17h10v1H7zM11.5 7.21v8.29h1V7.21l2.15 2.14.7-.7-3-3a.48.48 0 00-.7 0l-3 3 .7.7z">
+                                                                                                        </path>
+                                                                                                    </svg>
+                                                                                                </div>
+                                                                                                <div
+                                                                                                        class="Flex-l69ttv-0 GQLTransactionListItem__TitleWrapper-sc-1994j27-2 eAmqpa">
+                                                                    <span
+                                                                            class="TextElement__Spacer-hxkcw5-0 cicsNy Header__StyledHeader-sc-1xiyexz-0 gqEBdi">
+                                                                      {{ if .IsPositive }}Received{{ else }}Sent{{ end }}
+                                                                      Bitcoin</span>
+                                                                                                    <p
+                                                                                                            class="TextElement__Spacer-hxkcw5-0 cicsNy Body__StyledBody-sc-17wx6cn-0 gEupxV">
+                                                                                                        <div class="Flex-l69ttv-0 dMosNC">
+                                                                                                    <p
+                                                                                                            class="TextElement__Spacer-hxkcw5-0 cicsNy Body__StyledBody-sc-17wx6cn-0 kLOOOc">
+                                                                                                        {{ if .IsPending }}Pending{{ else }}Completed{{ end }}</p>
+                                                                                                </div>
+                                                                                                </p>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                        <div
+                                                                                                class="Flex-l69ttv-0 styles__AmountContainer-sc-193ww2v-3 flHALs">
+                                                                                            <div class="Flex-l69ttv-0 ionTLM"><span
+                                                                                                        class="TextElement__Spacer-hxkcw5-0 cicsNy Header__StyledHeader-sc-1xiyexz-0 dWwkYJ"><span
+                                                                                                            class=""></span></span>
+                                                                                            </div>
+                                                                                            <div class="Flex-l69ttv-0 ionTLM">
+                                                                                                <p
+                                                                                                        class="TextElement__Spacer-hxkcw5-0 cicsNy Body__StyledBody-sc-17wx6cn-0 ftlPTQ">
+                                                                                                    <span class="">{{if .IsPositive}}+{{else}}-{{end}}{{.AmountString}}</span>
+                                                                                                </p>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                    {{ end }}
+                                                                                </div>
+                                                                        </div>
+                                                                        <div class="InfiniteScroll__Spinner-sc-19n01su-1 ijQPgF">
+                                                                            <div
+                                                                                    class="InfiniteScrollLoader__LoadingContainer-sc-1ulxis7-1 isLfLd">
+                                                                                <div class="Flex-l69ttv-0 eeijxS">
+                                                                                    <div
+                                                                                            class="Spinner__Container-sc-1m1cr45-0 jbCHbM InfiniteScrollLoader__LoadingIndicator-sc-1ulxis7-0 ciHWki">
+                                                                                    </div>
+                                                                                    <span color="slateDark"
+                                                                                          class="Text__Font-sc-163p65w-0 bOEfE">Loading…</span>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                        </section>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="styles__RightColumn-ehviky-3 fvpJEC">
+                                            <section
+                                                    class="Flex-l69ttv-0 PageSection__StyledSection-yg855e-0 dzoNdT Card__OuterCard-dr16w8-0 ZMJZb">
+                                                <div
+                                                        class="cds-flex-fytym9g cds-column-cygaqsr cds-background-b1oovg0i cds-hidden-hrk5xqo cds-standard-s11fh1zv cds-bordered-b1lhdwsw"
+                                                        style="box-shadow: rgba(0, 0, 0, 0.02) 0px 8px 12px;">
+                                                    <div
+                                                            class="cds-flex-fytym9g cds-column-cygaqsr cds-background-b1oovg0i cds-compact-cy7al66 cds-bordered-b1lhdwsw cds-borderedTopOff-bdqe74u"
+                                                            style="flex-grow: 1; min-height: 496px;">
+                                                        <div data-testid="folder-tab" class="h1i62sjv"
+                                                             style="--h1i62sjv-0:flex; --h1i62sjv-1:4px;">
+                                                            <div class="Transitioner__Container-sc-1nlar1d-0 fmqQye"
+                                                                 style="">
+                                                                <div data-testid="step-loaded-active" direction="right"
+                                                                     fill="1"
+                                                                     class="moduleFade__Frame-sc-53f9yi-0 eCGjpA">
+                                                                    <div
+                                                                            class="Flex-l69ttv-0 AboveOverlay__AboveOverlayContainer-s0an2b-0 gYUJxF">
+                                                                        <div class="cds-flex-fytym9g cds-column-cygaqsr">
+                                                                            <div
+                                                                                    class="cds-flex-fytym9g cds-row-ros4dsk cds-compact-cy7al66"
+                                                                                    style="min-height: 64px;">
+                                                                                <button type="button"
+                                                                                        data-testid="folder-tab-send"
+                                                                                        aria-label="The folder-tab-send"
+                                                                                        class="cds-interactable-i13lggcw cds-interactableBackground-i1tfznye cds-transparentChildren-t13p63z cds-transparent-t1iirkex cds-focusRing-f1r6m9tt fb29w17"
+                                                                                        style="--interactable-opacity-hovered:0.98; --interactable-opacity-pressed:0.92; --interactable-overlay:var(--gray0); --interactable-underlay:var(--foreground); --interactable-border-radius:4px;">
+                                                                                    <div class="a1rnotce"
+                                                                                         style="--a1rnotce-0:4px; --a1rnotce-1:2px solid var(--primary);">
+                                                                                        <div
+                                                                                                class="cds-flex-fytym9g cds-center-c5dc66o cds-row-ros4dsk cds-center-c1n2qf5t cds-borderedEnd-b16e9sog cds-borderedTopOff-bdqe74u cds-borderedBottomOff-btb4g35"
+                                                                                                style="height: 100%; width: 100%;">
+                                                                                            <label
+                                                                                                    class="cds-typographyResets-t119oo5c cds-headline-ho2otij cds-primary-p1vwvuwh cds-transition-ty35lnf cds-start-s1q2d0t0">Send</label>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </button>
+                                                                                <button type="button"
+                                                                                        data-testid="folder-tab-receive"
+                                                                                        aria-label="The folder-tab-receive"
+                                                                                        class="cds-interactable-i13lggcw cds-interactableBackground-i1tfznye cds-transparentChildren-t13p63z cds-transparent-t1iirkex cds-focusRing-f1r6m9tt fb29w17"
+                                                                                        style="--interactable-opacity-hovered:0.98; --interactable-opacity-pressed:0.92; --interactable-overlay:var(--gray0); --interactable-underlay:var(--foreground); --interactable-border-radius:4px;">
+                                                                                    <div class="a1rnotce"
+                                                                                         style="--a1rnotce-0:4px; --a1rnotce-1:0;">
+                                                                                        <div
+                                                                                                class="cds-flex-fytym9g cds-center-c5dc66o cds-row-ros4dsk cds-center-c1n2qf5t cds-borderedEndOff-boy2802 cds-borderedTop-bjfs8yv cds-borderedBottom-b1ardyyv"
+                                                                                                style="height: 100%; width: 100%;">
+                                                                                            <label
+                                                                                                    class="cds-typographyResets-t119oo5c cds-headline-ho2otij cds-foreground-f1itepcl cds-transition-ty35lnf cds-start-s1q2d0t0">Receive</label>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </button>
+                                                                            </div>
+                                                                            <div
+                                                                                    class="cds-flex-fytym9g cds-column-cygaqsr cds-space-between-sjpl91k cds-4-_chq8ms"
+                                                                                    style="height: 100%;">
+                                                                                <div
+                                                                                        class="cds-flex-fytym9g cds-3-_1s99az2 cds-3-_1f9iorr cds-1-_tide8r">
+                                                                                    <div
+                                                                                            class="cds-flex-fytym9g cds-column-cygaqsr cds-1-_tide8r"
+                                                                                            style="width: 100%;">
+                                                                                        <section
+                                                                                                class="cds-flex-fytym9g cds-center-c5dc66o cds-row-ros4dsk cds-center-c1n2qf5t cds-hidden-hrk5xqo cds-1-_tide8r cds-relative-ryk0urh"
+                                                                                                style="position: relative;">
+                                                                                            <div scale="1"
+                                                                                                 class="FlexibleCurrencyInput__Container-lluxyd-2 dPSlUE">
+                                                                                                <div
+                                                                                                        class="FlexibleCurrencyInput__InputContainer-lluxyd-3 GfxAb">
+                                                                      <span font-size="31"
+                                                                            class="FlexibleCurrencyInput__StyledSymbol-lluxyd-0 fAoiLP">$</span><input
+                                                                                                            minlength="1"
+                                                                                                            inputmode="decimal"
+                                                                                                            placeholder="0"
+                                                                                                            width="40"
+                                                                                                            font-size="62"
+                                                                                                            aria-label="Amount"
+                                                                                                            data-testid="currency-input"
+                                                                                                            class="FlexibleCurrencyInput__StyledInput-lluxyd-4 iaHPKl focus-visible"
+                                                                                                            value=""
+                                                                                                            data-focus-visible-added=""><span
+                                                                                                            font-size="62"
+                                                                                                            class="FlexibleCurrencyInput__SizeReference-lluxyd-5 jFkEov"></span>
+                                                                                                </div>
+                                                                                            </div>
+                                                                                            <div
+                                                                                                    class="SwitchActiveInput__Wrapper-sc-1q28h76-0 gPJTEi">
+                                                                                                <button type="button"
+                                                                                                        data-testid="switch-active-input"
+                                                                                                        aria-label="Switch the active input"
+                                                                                                        class="cds-interactable-i13lggcw cds-interactableBackground-i1tfznye cds-transparentChildren-t13p63z cds-line-l1nrr09y cds-button-bszu5zu cds-focusRing-f1r6m9tt cds-scaledDownState-s1v6pvyx cds-flex-fytym9g cds-center-c5dc66o cds-center-c1n2qf5t cds-iconButton-ioqx6sz"
+                                                                                                        style="--interactable-height:40px; --interactable-opacity-hovered:0.98; --interactable-opacity-pressed:0.92; --interactable-overlay:var(--gray0); --interactable-underlay:var(--foreground); --interactable-border-radius:100px;">
+                                                                                                    <div class="cds-flex-fytym9g cds-relative-ryk0urh"
+                                                                                                         style="position: relative;">
+                                                                                                        <div style="width: 16px; height: 16px;"><span
+                                                                                                                    class="cds-iconStyles-i6w5wyz"
+                                                                                                                    role="presentation"
+                                                                                                                    data-icon-name="arrowsVertical"
+                                                                                                                    style="color: var(--secondary-foreground); font-size: 16px;"></span>
+                                                                                                        </div>
+                                                                                                    </div>
+                                                                                                </button>
+                                                                                                <span role="presentation"
+                                                                                                      aria-hidden="true"
+                                                                                                      style="flex-grow: 0; flex-shrink: 0; height: var(--spacing-1);"></span><label
+                                                                                                        class="cds-typographyResets-t119oo5c cds-label2-l4ubknn cds-foregroundMuted-f1lg16ro cds-transition-ty35lnf cds-center-c1q5z9i5">BTC</label>
+                                                                                            </div>
+                                                                                        </section>
+                                                                                        <div
+                                                                                                class="cds-flex-fytym9g cds-center-c5dc66o cds-row-ros4dsk cds-center-c1n2qf5t cds-2-_n1dzqr">
+                                                                                            <button type="button"
+                                                                                                    aria-label=""
+                                                                                                    class="cds-interactable-i13lggcw cds-interactableBackground-i1tfznye cds-transparentChildren-t13p63z cds-line-l1nrr09y cds-button-bszu5zu cds-focusRing-f1r6m9tt cds-scaledDownState-s1v6pvyx cds-secondaryForeground-s1j0qc52 cds-button-bxm6m07 cds-buttonCompact-bcjdu8t cds-1-_plhmtt cds-1-_tide8r cds-2-_dsl3e5 cds-2-_1w4ous1"
+                                                                                                    style="--interactable-height:40px; --interactable-opacity-hovered:0.98; --interactable-opacity-pressed:0.92; --interactable-overlay:var(--gray0); --interactable-underlay:var(--foreground); --interactable-border-radius:4px;"><span
+                                                                                                        class="cds-positionRelative-p9o3l0l"><span
+                                                                                                            class="cds-typographyResets-t119oo5c cds-headline-ho2otij cds-secondaryForeground-s1j0qc52 cds-transition-ty35lnf cds-start-s1q2d0t0 cds-noWrap-nqeoca2"><span
+                                                                                                                class="">Send
+                                                                          all</span></span></span></button>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                                <div class="cds-flex-fytym9g cds-column-cygaqsr">
+                                                                                    <div
+                                                                                            class="cds-flex-fytym9g cds-column-cygaqsr cds-3-_1s99az2 cds-3-_1f9iorr">
+                                                                <span role="presentation" aria-hidden="true"
+                                                                      style="flex-grow: 0; flex-shrink: 0; height: var(--spacing-1);"></span>
+                                                                                        <div
+                                                                                                class="cds-flex-fytym9g cds-column-cygaqsr cds-compact-cy7al66 cds-bordered-b1lhdwsw cds-relative-ryk0urh"
+                                                                                                style="width: 100%; position: relative;">
+                                                                                            <div class="Row__RowStyle-wpg0se-0 eKIAjb">
+                                                                                                <div
+                                                                                                        class="cds-flex-fytym9g cds-center-c5dc66o cds-row-ros4dsk cds-space-between-sjpl91k cds-borderedTopOff-bdqe74u cds-2-_bsbcj7 cds-2-_176ib6b cds-2-_n1dzqr">
+                                                                                                    <div class="cds-flex-fytym9g cds-column-cygaqsr"
+                                                                                                         style="width: 90px;">
+                                                                                                        <label
+                                                                                                                class="cds-typographyResets-t119oo5c cds-label2-l4ubknn cds-foregroundMuted-f1lg16ro cds-transition-ty35lnf cds-start-s1q2d0t0">To</label>
+                                                                                                    </div>
+                                                                                                    <div
+                                                                                                            class="cds-flex-fytym9g cds-center-c5dc66o cds-row-ros4dsk cds-space-between-sjpl91k"
+                                                                                                            style="width: calc(100% - 90px);">
+                                                                                                        <div
+                                                                                                                class="cds-flex-fytym9g cds-center-c5dc66o cds-row-ros4dsk cds-hidden-hrk5xqo"
+                                                                                                                style="width: 100%;">
+                                                                                                            <div
+                                                                                                                    class="cds-flex-fytym9g cds-relative-ryk0urh"
+                                                                                                                    style="position: relative;">
+                                                                                                                <div style="width: 16px; height: 16px;">
+                                                                              <span class="cds-iconStyles-i6w5wyz"
+                                                                                    role="presentation"
+                                                                                    data-icon-name="wallet"
+                                                                                    style="color: var(--foreground-muted); font-size: 16px;"></span>
+                                                                                                                </div>
+                                                                                                            </div>
+                                                                                                            <div
+                                                                                                                    class="cds-flex-fytym9g cds-column-cygaqsr cds-flex-start-fiq8yhn cds-hidden-hrk5xqo cds-2-_dsl3e5"
+                                                                                                                    style="width: 100%;">
+                                                                                                                <div>
+                                                                                                                    <div
+                                                                                                                            class="cds-flex-fytym9g cds-column-cygaqsr cds-flex-start-fiq8yhn"
+                                                                                                                            style="width: 100%;"><textarea
+                                                                                                                                name="recipient"
+                                                                                                                                maxlength="1000"
+                                                                                                                                spellcheck="false"
+                                                                                                                                placeholder="Mobile, email, or address"
+                                                                                                                                data-testid="recipient-field"
+                                                                                                                                class="TextArea__StyledTextArea-pukxhz-0 frAEYf RecipientField__AddressTextArea-dvov17-0 hqdmzO"
+                                                                                                                                style="height: 33px;"></textarea>
+                                                                                                                    </div>
+                                                                                                                </div>
+                                                                                                            </div>
+                                                                                                        </div>
+                                                                                                    </div>
+                                                                                                </div>
+                                                                                            </div>
+                                                                                            <div class="Row__RowStyle-wpg0se-0 eKIAjb">
+                                                                                                <div
+                                                                                                        class="cds-flex-fytym9g cds-center-c5dc66o cds-row-ros4dsk cds-space-between-sjpl91k cds-borderedTop-bjfs8yv cds-2-_bsbcj7 cds-2-_176ib6b cds-2-_n1dzqr">
+                                                                                                    <div class="cds-flex-fytym9g cds-column-cygaqsr"
+                                                                                                         style="width: 90px;">
+                                                                                                        <label
+                                                                                                                class="cds-typographyResets-t119oo5c cds-label2-l4ubknn cds-foregroundMuted-f1lg16ro cds-transition-ty35lnf cds-start-s1q2d0t0">Note</label>
+                                                                                                    </div>
+                                                                                                    <div
+                                                                                                            class="cds-flex-fytym9g cds-center-c5dc66o cds-row-ros4dsk cds-space-between-sjpl91k"
+                                                                                                            style="width: calc(100% - 90px);">
+                                                                                                        <div
+                                                                                                                class="cds-flex-fytym9g cds-center-c5dc66o cds-row-ros4dsk cds-hidden-hrk5xqo"
+                                                                                                                style="width: 100%;">
+                                                                                                            <div
+                                                                                                                    class="cds-flex-fytym9g cds-relative-ryk0urh"
+                                                                                                                    style="position: relative;">
+                                                                                                                <div style="width: 16px; height: 16px;">
+                                                                              <span class="cds-iconStyles-i6w5wyz"
+                                                                                    role="presentation"
+                                                                                    data-icon-name="pencil"
+                                                                                    style="color: var(--foreground-muted); font-size: 16px;"></span>
+                                                                                                                </div>
+                                                                                                            </div>
+                                                                                                            <div
+                                                                                                                    class="cds-flex-fytym9g cds-column-cygaqsr cds-flex-start-fiq8yhn cds-hidden-hrk5xqo cds-2-_dsl3e5"
+                                                                                                                    style="width: 100%;">
+                                                                                                                <div>
+                                                                                                                    <div
+                                                                                                                            class="cds-flex-fytym9g cds-column-cygaqsr cds-flex-start-fiq8yhn"
+                                                                                                                            style="width: 100%;"><textarea
+                                                                                                                                maxlength="1000"
+                                                                                                                                placeholder="Optional message"
+                                                                                                                                name="note"
+                                                                                                                                class="TextArea__StyledTextArea-pukxhz-0 frAEYf NoteField__NoteTextArea-sc-1mrha89-0 kDkRSg"
+                                                                                                                                style="height: 33px;"></textarea>
+                                                                                                                    </div>
+                                                                                                                </div>
+                                                                                                            </div>
+                                                                                                        </div>
+                                                                                                    </div>
+                                                                                                </div>
+                                                                                            </div>
+                                                                                            <div class="Row__RowStyle-wpg0se-0 eKIAjb">
+                                                                                                <div
+                                                                                                        class="cds-flex-fytym9g cds-center-c5dc66o cds-row-ros4dsk cds-space-between-sjpl91k cds-borderedTop-bjfs8yv cds-2-_bsbcj7 cds-2-_176ib6b cds-2-_n1dzqr">
+                                                                                                    <div class="cds-flex-fytym9g cds-column-cygaqsr"
+                                                                                                         style="width: 85px;">
+                                                                                                        <label
+                                                                                                                class="cds-typographyResets-t119oo5c cds-label2-l4ubknn cds-foregroundMuted-f1lg16ro cds-transition-ty35lnf cds-start-s1q2d0t0">Pay
+                                                                                                            with</label>
+                                                                                                    </div>
+                                                                                                    <div
+                                                                                                            class="cds-flex-fytym9g cds-center-c5dc66o cds-row-ros4dsk cds-space-between-sjpl91k"
+                                                                                                            style="width: calc(100% - 85px);">
+                                                                                                        <div
+                                                                                                                class="cds-flex-fytym9g cds-center-c5dc66o cds-row-ros4dsk cds-hidden-hrk5xqo"
+                                                                                                                style="width: 100%;">
+                                                                                                            <img
+                                                                                                                    data-savepage-src="https://dynamic-assets.coinbase.com/e785e0181f1a23a30d9476038d9be91e9f6c63959b538eabbc51a1abc8898940383291eede695c3b8dfaa1829a9b57f5a2d0a16b0523580346c6b8fab67af14b/asset_icons/b57ac673f06a4b0338a596817eb0a50ce16e2059f327dc117744449a47915cb2.png"
+                                                                                                                    src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAIAAAACACAMAAAD04JH5AAAC91BMVEUAAAD4lBr3lBv3kxr/qiv/v0D3lBv4kxr4kxv/mxv3lBv/lSv4lhz4kxr4lBv3lxv3lRv4kxv4lBr6lhv4lRz3lBv3lyD5lBv4kxv6kx34kxr4lBr3kxv6lBz/nSf4lBr//4D3kxr4lhv4lBr7lB34lBr7lh33lBr4kxr3kxv/nyD4kxv/lyP/lRr3lBv4lBv6lRv3lBv4lBv4lBv4kxr/lCH4lBr4lBr3lBv6lBv/niT3kxr////+/v3+/fz5uWr3lBz3kxv4p0X++vX837z71KT97975sVr3lB3+/v74qUj3mCX83bj4pUD+8+f5sVv3myz7zJP5s175tGD++/b7zZX6wn/97dn97936xIP4ojr3mCT3mSf3liL++vb4pD/5rlX82a/6wn797tv6xof84sH4qUn827L5r1b4pkT7z5r+8uT83LX969b958z++/f+9+/6wn36xIL+9u34ojv6wHr97Nj3njL6xob5s1/3lR73lR/+/fv++fL6x4n83bf95cn4p0b6vHL4pkP7zpf4pkL3min6yIv+/Pn5uWz6w4D95sr6v3n97Nf5tWL4qkz848T84sL+9uz4qkv3nC36xYX95836vnX848P6vXP++fT83rn96dL81qn4oDb96M/7zpj+9ev70qH7z5v3lSD+8+b5uGn6wXv97tz71KX96tL3lyL827P96M771ab5tmX84L/4qUr70qD3njH7z5n4q074q03++PH+8eP6xYT84L798N/++PD6u3D71af96tP70Z784cH5slz969T5t2b706P6w4H3mCb96dH5r1f5rlP5tGH4rFD84L34qEf4oTn6x4r++fP3mir3myv5sl33nS/5um73mSj70Jz3nC77y5L4pUH84cD5sFf7yo7+9Oj3nTD5um3816r95Mf7zJT95Mb+9+783rr82Kz969X4rE/98eH4oDf6x4j4rVH82K398eL7zZb5sVn+9On3liH3njP3lyP82K76vXT837v5uWv+/Pr4qEaA3nGYAAAAO3RSTlMA/uzCBgTGudocqQxJ+9JChPnMOItDIHy7NK/f7TcNiALES/M+1D3piagQlRYdhtlexayrdB91uIVfFSGgzMAAAAaaSURBVHhexdtldxvJEgbgEhriGLKG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"
+                                                                                                                    alt="Bitcoin icon"
+                                                                                                                    class="EntrySelector__Image-sc-116bw7s-1 wagdo">
+                                                                                                            <div
+                                                                                                                    class="cds-flex-fytym9g cds-column-cygaqsr cds-flex-start-fiq8yhn cds-hidden-hrk5xqo cds-1-_18k662r"
+                                                                                                                    style="width: 100%;"><span
+                                                                                                                        color="foreground"
+                                                                                                                        class="EntrySelector__Overflow-sc-116bw7s-0 iECCMk">Bitcoin</span>
+                                                                                                            </div>
+                                                                                                        </div>
+                                                                                                    </div>
+                                                                                                </div>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                        <span role="presentation"
+                                                                                              aria-hidden="true"
+                                                                                              style="flex-grow: 0; flex-shrink: 0; height: var(--spacing-2);"></span>
+                                                                                        <button
+                                                                                                disabled=""
+                                                                                                aria-disabled="true"
+                                                                                                type="button"
+                                                                                                data-testid="send-preview-button"
+                                                                                                aria-busy="false"
+                                                                                                class="cds-interactable-i13lggcw cds-interactableBackground-i1tfznye cds-transparentChildren-t13p63z cds-transparent-t1iirkex cds-button-bszu5zu cds-disabledState-ds765j4 cds-fullWidth-f6ekksz cds-scaledDownState-s1v6pvyx cds-primaryForeground-progmjq cds-button-bxm6m07 cds-buttonBlock-b4prk4m cds-2-_176ib6b cds-2-_n1dzqr cds-3-_1s99az2 cds-3-_1f9iorr"
+                                                                                                style="pointer-events: none; --interactable-height:56px; --interactable-opacity-hovered:0.92; --interactable-opacity-pressed:0.86; --interactable-overlay:var(--blue60); --interactable-underlay:var(--foreground); --interactable-border-radius:8px;"><span
+                                                                                                    class="cds-positionRelative-p9o3l0l"><span
+                                                                                                        class="cds-typographyResets-t119oo5c cds-headline-ho2otij cds-primaryForeground-progmjq cds-transition-ty35lnf cds-start-s1q2d0t0 cds-noWrap-nqeoca2"><span
+                                                                                                            class="">Continue</span></span></span>
+                                                                                        </button>
+                                                                                    </div>
+                                                                                    <footer
+                                                                                            class="cds-flex-fytym9g cds-center-c5dc66o cds-row-ros4dsk cds-space-between-sjpl91k cds-3-_1s99az2 cds-3-_1f9iorr"
+                                                                                            style="min-height: 56px;"><span
+                                                                                                class="cds-typographyResets-t119oo5c cds-label2-l4ubknn cds-foregroundMuted-f1lg16ro cds-transition-ty35lnf cds-start-s1q2d0t0">BTC
+                                                                  balance</span><span
+                                                                                                class="cds-typographyResets-t119oo5c cds-label2-l4ubknn cds-foreground-f1itepcl cds-transition-ty35lnf cds-end-e1uus3yy">1.25039294
+                                                                  BTC ≈ $58,560.00</span></footer>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div data-testid="folder-tab" class="h1i62sjv"
+                                                             style="--h1i62sjv-0:none; --h1i62sjv-1:4px;">
+                                                            <div class="Transitioner__Container-sc-1nlar1d-0 fmqQye">
+                                                                <div data-testid="step-loaded-active" direction="right"
+                                                                     fill="1"
+                                                                     class="moduleFade__Frame-sc-53f9yi-0 eCGjpA">
+                                                                    <div
+                                                                            class="Flex-l69ttv-0 AboveOverlay__AboveOverlayContainer-s0an2b-0 gYUJxF"
+                                                                            style="">
+                                                                        <div class="Transitioner__Container-sc-1nlar1d-0 fmqQye">
+                                                                            <div data-testid="step-addressStep-active"
+                                                                                 direction="right"
+                                                                                 fill="1"
+                                                                                 class="moduleFade__Frame-sc-53f9yi-0 eCGjpA">
+                                                                                <div class="Flex-l69ttv-0 kvilOX">
+                                                                                    <div
+                                                                                            class="cds-flex-fytym9g cds-row-ros4dsk cds-compact-cy7al66"
+                                                                                            style="min-height: 64px;">
+                                                                                        <button type="button"
+                                                                                                data-testid="folder-tab-send"
+                                                                                                aria-label="The folder-tab-send"
+                                                                                                class="cds-interactable-i13lggcw cds-interactableBackground-i1tfznye cds-transparentChildren-t13p63z cds-transparent-t1iirkex cds-focusRing-f1r6m9tt fb29w17"
+                                                                                                style="--interactable-opacity-hovered:0.98; --interactable-opacity-pressed:0.92; --interactable-overlay:var(--gray0); --interactable-underlay:var(--foreground); --interactable-border-radius:4px;">
+                                                                                            <div class="a1rnotce"
+                                                                                                 style="--a1rnotce-0:4px; --a1rnotce-1:2px solid var(--primary);">
+                                                                                                <div
+                                                                                                        class="cds-flex-fytym9g cds-center-c5dc66o cds-row-ros4dsk cds-center-c1n2qf5t cds-borderedEnd-b16e9sog cds-borderedTopOff-bdqe74u cds-borderedBottomOff-btb4g35"
+                                                                                                        style="height: 100%; width: 100%;">
+                                                                                                    <label
+                                                                                                            class="cds-typographyResets-t119oo5c cds-headline-ho2otij cds-primary-p1vwvuwh cds-transition-ty35lnf cds-start-s1q2d0t0">Send</label>
+                                                                                                </div>
+                                                                                            </div>
+                                                                                        </button>
+                                                                                        <button type="button"
+                                                                                                data-testid="folder-tab-receive"
+                                                                                                aria-label="The folder-tab-receive"
+                                                                                                class="cds-interactable-i13lggcw cds-interactableBackground-i1tfznye cds-transparentChildren-t13p63z cds-transparent-t1iirkex cds-focusRing-f1r6m9tt fb29w17"
+                                                                                                style="--interactable-opacity-hovered:0.98; --interactable-opacity-pressed:0.92; --interactable-overlay:var(--gray0); --interactable-underlay:var(--foreground); --interactable-border-radius:4px;">
+                                                                                            <div class="a1rnotce"
+                                                                                                 style="--a1rnotce-0:4px; --a1rnotce-1:0;">
+                                                                                                <div
+                                                                                                        class="cds-flex-fytym9g cds-center-c5dc66o cds-row-ros4dsk cds-center-c1n2qf5t cds-borderedEndOff-boy2802 cds-borderedTop-bjfs8yv cds-borderedBottom-b1ardyyv"
+                                                                                                        style="height: 100%; width: 100%;">
+                                                                                                    <label
+                                                                                                            class="cds-typographyResets-t119oo5c cds-headline-ho2otij cds-foreground-f1itepcl cds-transition-ty35lnf cds-start-s1q2d0t0">Receive</label>
+                                                                                                </div>
+                                                                                            </div>
+                                                                                        </button>
+                                                                                    </div>
+                                                                                    <div class="Flex-l69ttv-0 PaddedContent-yt26rd-0 gJWCYk">
+                                                                                        <div
+                                                                                                class="Transitioner__Container-sc-1nlar1d-0 fmqQye">
+                                                                                            <div data-testid="step-completed_warnings-active"
+                                                                                                 direction="right"
+                                                                                                 fill="1"
+                                                                                                 class="moduleFade__Frame-sc-53f9yi-0 eCGjpA">
+                                                                                                <div
+                                                                                                        class="cds-flex-fytym9g cds-column-cygaqsr cds-hidden-hrk5xqo">
+                                                                                                    <div
+                                                                                                            class="cds-flex-fytym9g cds-column-cygaqsr cds-compact-cy7al66 cds-bordered-b1lhdwsw">
+                                                                                                        <div
+                                                                                                                class="cds-flex-fytym9g cds-center-c5dc66o cds-column-cygaqsr cds-center-c1n2qf5t cds-4-_pqy05c">
+                                                                                                            <div class="cds-flex-fytym9g cds-1-_1tvi0gj"
+                                                                                                                 style="background-color: white;">
+                                                                                                                <canvas
+                                                                                                                        height="218"
+                                                                                                                        width="218"
+                                                                                                                        style="height: 175px; width: 175px; /*savepage-canvas-image*/ background-image: url(data:image/png;base64,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) !important; background-attachment: scroll !important; background-blend-mode: normal !important; background-clip: content-box !important; background-color: transparent !important; background-origin: content-box !important; background-position: center center !important; background-repeat: no-repeat !important; background-size: 100% 100% !important;"></canvas>
+                                                                                                            </div>
+                                                                                                        </div>
+                                                                                                        <div class="Row__RowStyle-wpg0se-0 eKIAjb">
+                                                                                                            <div
+                                                                                                                    class="cds-flex-fytym9g cds-center-c5dc66o cds-row-ros4dsk cds-space-between-sjpl91k cds-borderedTop-bjfs8yv">
+                                                                                                                <div
+                                                                                                                        class="cds-flex-fytym9g cds-stretch-senczph cds-1-_plhmtt cds-1-_tide8r cds-3-_1s99az2 cds-3-_1f9iorr"
+                                                                                                                        style="width: 100%;">
+                                                                                                                    <div
+                                                                                                                            class="cds-flex-fytym9g cds-flex-start-f14uh3uz cds-row-ros4dsk cds-standard-s11fh1zv cds-1-_plhmtt cds-1-_tide8r cds-1-_18k662r cds-1-_1l08w86 cds-2-_17bjoy3 cds-2-_1xvjstk"
+                                                                                                                            style="flex-grow: 1; width: 100%;">
+                                                                                                                        <div
+                                                                                                                                class="cds-flex-fytym9g cds-flex-start-fiq8yhn cds-cell cds-baseStyles-boj2vlp cds-cell cds-truncate-tsxrjg5"
+                                                                                                                                style="flex-grow: 1; flex-shrink: 1;">
+                                                                                                                            <div
+                                                                                                                                    class="cds-flex-fytym9g cds-flex-start-f14uh3uz cds-row-ros4dsk cds-space-between-sjpl91k">
+                                                                                                                                <div
+                                                                                                                                        class="cds-flex-fytym9g cds-column-cygaqsr cds-cell cds-truncate-tsxrjg5"
+                                                                                                                                        style="flex-grow: 1; flex-shrink: 1;">
+                                                                                                                                    <div
+                                                                                                                                            class="cds-typographyResets-t119oo5c cds-headline-ho2otij cds-foreground-f1itepcl cds-transition-ty35lnf cds-start-s1q2d0t0 cds-truncate-t1hgsao8">
+                                                                                                                                        <div
+                                                                                                                                                class="cds-flex-fytym9g cds-center-c5dc66o cds-row-ros4dsk cds-space-between-sjpl91k cds-0_5-_fnmfyo">
+                                                                                                                                            <p
+                                                                                                                                                    class="cds-typographyResets-t119oo5c cds-label1-l10hkqzm cds-foreground-f1itepcl cds-transition-ty35lnf cds-start-s1q2d0t0">
+                                                                                                                                                BTC
+                                                                                                                                                Address</p>
+                                                                                                                                            <div
+                                                                                                                                                    class="cds-flex-fytym9g cds-center-c5dc66o cds-center-c1n2qf5t">
+                                                                                                                                                <button
+                                                                                                                                                        data-testid="copy-button"
+                                                                                                                                                        aria-label="Copy BTC Address"
+                                                                                                                                                        class="cds-interactable-i13lggcw cds-interactableTransparent-i7y1geu cds-transparentChildren-t13p63z cds-transparent-t1iirkex cds-focusRing-f1r6m9tt cds-scaledDownState-s1v6pvyx cds-pressableResetStyles-p1xyxgvu"
+                                                                                                                                                        style="--interactable-opacity-hovered:0.92; --interactable-opacity-pressed:0.86; --interactable-underlay:var(--foreground); --interactable-border-radius:0px;">
+                                                                                                                                                    <div
+                                                                                                                                                            class="cds-flex-fytym9g cds-relative-ryk0urh"
+                                                                                                                                                            style="position: relative;">
+                                                                                                                                                        <div
+                                                                                                                                                                style="width: 16px; height: 16px;">
+                                                                                                  <span
+                                                                                                          class="cds-iconStyles-i6w5wyz"
+                                                                                                          role="presentation"
+                                                                                                          data-icon-name="copy"
+                                                                                                          style="color: var(--foreground-muted); font-size: 16px;"></span>
+                                                                                                                                                        </div>
+                                                                                                                                                    </div>
+                                                                                                                                                </button>
+                                                                                                                                            </div>
+                                                                                                                                        </div>
+                                                                                                                                    </div>
+                                                                                                                                </div>
+                                                                                                                            </div>
+                                                                                                                            <div
+                                                                                                                                    class="cds-cell cds-overflow-o1c0zdtq">
+                                                                                                                                <div
+                                                                                                                                        class="cds-typographyResets-t119oo5c cds-body-bwhmx62 cds-foregroundMuted-f1lg16ro cds-transition-ty35lnf cds-start-s1q2d0t0">
+                                                                                                                                    <div
+                                                                                                                                            class="cds-flex-fytym9g cds-column-cygaqsr"
+                                                                                                                                            style="max-width: 90%;">
+                                                                                                                                        <p
+                                                                                                                                                class="cds-typographyResets-t119oo5c cds-label2-l4ubknn cds-foregroundMuted-f1lg16ro cds-transition-ty35lnf cds-start-s1q2d0t0 cds-clip-c1xd3kmt">
+                                                                                                                                            3L3p29p4xaQFGWePgP78t2GeEco8sreSQs
+                                                                                                                                        </p>
+                                                                                                                                    </div>
+                                                                                                                                </div>
+                                                                                                                            </div>
+                                                                                                                        </div>
+                                                                                                                    </div>
+                                                                                                                </div>
+                                                                                                            </div>
+                                                                                                        </div>
+                                                                                                    </div>
+                                                                                                    <div
+                                                                                                            class="cds-flex-fytym9g cds-flex-start-f14uh3uz cds-row-ros4dsk cds-2-_176ib6b cds-1-_tide8r">
+                                                                                                        <button type="button"
+                                                                                                                class="cds-interactable-i13lggcw cds-interactableTransparent-i7y1geu cds-transparentChildren-t13p63z cds-transparent-t1iirkex cds-focusRing-f1r6m9tt cds-pressableResetStyles-p1xyxgvu"
+                                                                                                                style="--interactable-opacity-hovered:0.92; --interactable-opacity-pressed:0.86; --interactable-underlay:var(--foreground); --interactable-border-radius:0px;">
+                                                                                                            <div class="cds-flex-fytym9g cds-row-ros4dsk">
+                                                                                                                <div
+                                                                                                                        class="cds-flex-fytym9g cds-1-_1l08w86 cds-relative-ryk0urh"
+                                                                                                                        style="position: relative;">
+                                                                                                                    <div style="width: 16px; height: 16px;">
+                                                                                <span class="cds-iconStyles-i6w5wyz"
+                                                                                      role="presentation"
+                                                                                      data-icon-name="info"
+                                                                                      style="color: var(--foreground-muted); font-size: 16px;"></span>
+                                                                                                                    </div>
+                                                                                                                </div>
+                                                                                                                <p
+                                                                                                                        class="cds-typographyResets-t119oo5c cds-legal-l58qw01 cds-foreground-f1itepcl cds-transition-ty35lnf cds-start-s1q2d0t0">
+                                                                                                                    Only
+                                                                                                                    send
+                                                                                                                    Bitcoin
+                                                                                                                    (BTC)
+                                                                                                                    to
+                                                                                                                    this
+                                                                                                                    address
+                                                                                                                </p>
+                                                                                                            </div>
+                                                                                                        </button>
+                                                                                                    </div>
+                                                                                                </div>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                    <footer
+                                                                                            class="cds-flex-fytym9g cds-center-c5dc66o cds-row-ros4dsk cds-space-between-sjpl91k cds-3-_1s99az2 cds-3-_1f9iorr"
+                                                                                            style="min-height: 56px;"><span
+                                                                                                class="cds-typographyResets-t119oo5c cds-label2-l4ubknn cds-foregroundMuted-f1lg16ro cds-transition-ty35lnf cds-start-s1q2d0t0">BTC
+                                                                  balance</span><span
+                                                                                                class="cds-typographyResets-t119oo5c cds-label2-l4ubknn cds-foreground-f1itepcl cds-transition-ty35lnf cds-end-e1uus3yy">1.25039294
+                                                                  BTC ≈ $58,560.00</span></footer>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </section>
+                                            <div class="cds-flex-fytym9g cds-2-_n1dzqr" style="width: 100%;">
+                                                <button
+                                                        class="cds-interactable-i13lggcw cds-interactableBackground-i1tfznye cds-transparentChildren-t13p63z cds-transparent-t1iirkex cds-focusRing-f1r6m9tt cds-fullWidth-f6ekksz cds-pressableResetStyles-p1xyxgvu"
+                                                        style="--interactable-opacity-hovered:0.98; --interactable-opacity-pressed:0.92; --interactable-overlay:var(--gray0); --interactable-underlay:var(--foreground); --interactable-border-radius:8px;">
+                                                    <div
+                                                            class="cds-flex-fytym9g cds-column-cygaqsr cds-standard-s11fh1zv cds-borderedStart-b1lb8i2s cds-borderedEnd-b16e9sog cds-borderedTop-bjfs8yv cds-borderedBottom-b1ardyyv cds-3-_rjxliz"
+                                                            style="width: 100%;">
+                                                        <div class="cds-flex-fytym9g cds-space-between-sjpl91k"
+                                                             style="flex-grow: 1;">
+                                                            <div
+                                                                    class="cds-flex-fytym9g cds-column-cygaqsr cds-space-between-sjpl91k cds-2-_1w4ous1"
+                                                                    style="flex-grow: 1;">
+                                                                <p
+                                                                        class="cds-typographyResets-t119oo5c cds-headline-ho2otij cds-foreground-f1itepcl cds-transition-ty35lnf cds-start-s1q2d0t0 cds-1-_tide8r">
+                                                                    Borrow cash with Bitcoin</p>
+                                                                <p
+                                                                        class="cds-typographyResets-t119oo5c cds-label2-l4ubknn cds-foregroundMuted-f1lg16ro cds-transition-ty35lnf cds-start-s1q2d0t0 cds-3-_aor007">
+                                                                    Get up to $23,398.52 by using your Bitcoin as
+                                                                    collateral</p>
+                                                                <p
+                                                                        class="cds-typographyResets-t119oo5c cds-headline-ho2otij cds-primary-p1vwvuwh cds-transition-ty35lnf cds-start-s1q2d0t0">
+                                                                    Learn More</p>
+                                                            </div>
+                                                            <div class="cds-flex-fytym9g cds-center-c1n2qf5t"
+                                                                 style="width: 120px;"><img
+                                                                        data-savepage-src="https://static-assets.coinbase.com/design-system/illustrations/light/moneyRewards-1.svg"
+                                                                        src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIGZpbGw9Im5vbmUiIHZpZXdCb3g9IjAgMCAxMjAgMTIwIj48cGF0aCBmaWxsPSIjMDBEMTdGIiBkPSJNMTA0IDQwSDE2djQwaDg4VjQweiIvPjxwYXRoIGZpbGw9IiMwMDUyRkYiIGQ9Ik05MC45NzcgNDBIMjljMCAyLjc2My0xLjkxNiA1LTUgNXYzMGMzLjA4NCAwIDUgMi4yMzcgNSA1aDYxLjk3N2MwLTIuNzYzIDEuOTQtNSA1LjAyMy01VjQ1Yy0zLjA4NCAwLTUuMDIzLTIuMjM3LTUuMDIzLTV6Ii8+PHBhdGggZmlsbD0iI0NFRDJEQiIgZD0iTTI5IDgwaDYydjI0SDI5Vjgwem0wLTY0aDYydjI0SDI5VjE2eiIvPjxwYXRoIGZpbGw9IiNmZmYiIGZpbGwtcnVsZT0iZXZlbm9kZCIgZD0iTTg4IDY4aC04di0yaDh2MnptMC0xNGgtOHYtMmg4djJ6bTIgN0g3OHYtMmgxMnYyem0tNTAgN2gtOHYtMmg4djJ6bTAtMTRoLTh2LTJoOHYyem0yIDdIMzB2LTJoMTJ2MnptMTcgMTFWNDhoMnYyNGgtMnoiIGNsaXAtcnVsZT0iZXZlbm9kZCIvPjxwYXRoIGZpbGw9IiNmZmYiIGZpbGwtcnVsZT0iZXZlbm9kZCIgZD0iTTQ4IDU5aDI0djJINDh2LTJ6IiBjbGlwLXJ1bGU9ImV2ZW5vZGQiLz48cGF0aCBmaWxsPSIjZmZmIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiIGQ9Ik01Mi41NjEgNjYuMDI1IDY2LjAyNSA1Mi41NmwxLjQxNCAxLjQxNEw1My45NzUgNjcuNDRsLTEuNDE0LTEuNDE0eiIgY2xpcC1ydWxlPSJldmVub2RkIi8+PHBhdGggZmlsbD0iI2ZmZiIgZmlsbC1ydWxlPSJldmVub2RkIiBkPSJNNTMuOTc1IDUyLjU2MSA2Ny40NCA2Ni4wMjVsLTEuNDE0IDEuNDE0TDUyLjU2IDUzLjk3NWwxLjQxNC0xLjQxNHoiIGNsaXAtcnVsZT0iZXZlbm9kZCIvPjxwYXRoIGZpbGw9IiMwQTBCMEQiIGZpbGwtcnVsZT0iZXZlbm9kZCIgZD0iTTUxIDk2di04aDJ2OGgtMnoiIGNsaXAtcnVsZT0iZXZlbm9kZCIvPjxwYXRoIGZpbGw9IiMwQTBCMEQiIGZpbGwtcnVsZT0iZXZlbm9kZCIgZD0iTTQ4IDkxaDh2MmgtOHYtMnptMjctNTl2LThoMnY4aC0yeiIgY2xpcC1ydWxlPSJldmVub2RkIi8+PHBhdGggZmlsbD0iIzBBMEIwRCIgZmlsbC1ydWxlPSJldmVub2RkIiBkPSJNNzIgMjdoOHYyaC04di0yeiIgY2xpcC1ydWxlPSJldmVub2RkIi8+PC9zdmc+"
+                                                                        alt="moneyRewards" width="120" height="120">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </button>
+                                            </div>
+                                            <div class="Flex-l69ttv-0 hHFvtm">
+                                                <div class="Transitioner__Container-sc-1nlar1d-0 fmqQye" style="">
+                                                    <div data-testid="step-loaded-active" direction="right" fill="1"
+                                                         class="moduleFade__Frame-sc-53f9yi-0 eCGjpA"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="Flex-l69ttv-0 Footer__Wrapper-sc-1esv9sa-3 kFNmWq">
+        <div class="Flex-l69ttv-0 Footer__Content-sc-1esv9sa-4 iKTXYX">
+            <div class="Flex-l69ttv-0 Footer__Links-sc-1esv9sa-0 eTMRAi"><a data-savepage-href="/home"
+                                                                            href="/home"
+                                                                            class="Footer__Link-sc-1esv9sa-7 jcAPoi">Home</a><a
+                        data-savepage-href="/careers" href="/careers"
+                        class="Footer__Link-sc-1esv9sa-7 jcAPoi">Careers</a><a
+                        data-savepage-href="/legal/user_agreement"
+                        href="/legal/user_agreement"
+                        class="Footer__Link-sc-1esv9sa-7 jcAPoi">Legal &amp; Privacy</a>
+                <div class="Footer__CopyrightLeft-sc-1esv9sa-5 dQjaQK">© 2021 Coinbase</div>
+            </div>
+            <div class="Flex-l69ttv-0 Footer__Right-sc-1esv9sa-2 ikGiPw">
+                <div class="LocaleSelector__SelectWrapper-ot2xk3-0 kjTbik"><select
+                            class="Select__SelectWrapper-c3mcht-0 iBqEYe" name="locale">
+                        <option value="de">Deutsch</option>
+                        <option value="en">English</option>
+                        <option value="es">Español - España</option>
+                        <option value="es-LA">Español - América Latina</option>
+                        <option value="fr">Français - France</option>
+                        <option value="ja">日本語</option>
+                        <option value="id">Bahasa Indonesia</option>
+                        <option value="it">Italiano</option>
+                        <option value="pl">Polski</option>
+                        <option value="pt">Português - Brasil</option>
+                        <option value="pt-PT">Português - Portugal</option>
+                        <option value="ru">Pусский</option>
+                        <option value="th">ไทย</option>
+                        <option value="tr">Türkçe</option>
+                    </select></div>
+                <a href="https://support.coinbase.com/"
+                   class="Footer__NeedHelp-sc-1esv9sa-1 jEOyHz">
+                    <button
+                            class="Button__Container-opcph8-0 ctqtdI"><span
+                                class="Button__Content-opcph8-1 fa-duqf">Need Help?</span></button>
+                </a>
+            </div>
+        </div>
+    </div>
+    </div>
+</script>

@@ -78,33 +78,7 @@ function loadChart(url = null) {
     })
 }
 
-const app = Vue.createApp({
-    template: '#tmpl-layout',
-    data() {
-        let modeClass = "cds-light-lilshph"
-        if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
-            modeClass = "cds-dark-dm4zkqb"
-        }
-        return {
-            modeClass: modeClass
-        }
-    }
-})
-app.component('c-menu', {
-    template: '#tmpl-menu',
-    data() {
-        return {
-            loading: true
-        }
-    },
-    mounted() {
-        const th = this
-        setTimeout(function(){
-            th.loading = false
-        }, 1000)
-    }
-})
-app.component('c-assets', {
+const assets = {
     template: '#tmpl-assets',
     data() {
         return {
@@ -301,5 +275,75 @@ app.component('c-assets', {
             })
         }, 1500)
     }
+}
+
+const price = {
+    template: '#tmpl-price',
+    data() {
+        return {
+            loading: true
+        }
+    },
+    mounted() {
+        const th = this
+        setTimeout(function(){
+            th.loading = false
+        }, 1500)
+    }
+}
+
+const accounts = {
+    template: '#tmpl-accounts',
+    data() {
+        return {
+            loading: true
+        }
+    },
+    mounted() {
+        const th = this
+        setTimeout(function(){
+            th.loading = false
+        }, 1500)
+    }
+}
+
+const routes = [
+    { path: '/dashboard/', component: assets },
+    { path: '/price/:c', component: price },
+    { path: '/accounts/:id', component: accounts }
+]
+
+const router = VueRouter.createRouter({
+    // 4. Provide the history implementation to use. We are using the hash history for simplicity here.
+    history: VueRouter.createWebHistory(),
+    routes, // short for `routes: routes`
 })
+
+const app = Vue.createApp({
+    template: '#tmpl-layout',
+    data() {
+        let modeClass = "cds-light-lilshph"
+        if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+            modeClass = "cds-dark-dm4zkqb"
+        }
+        return {
+            modeClass: modeClass
+        }
+    }
+})
+app.component('c-menu', {
+    template: '#tmpl-menu',
+    data() {
+        return {
+            loading: true
+        }
+    },
+    mounted() {
+        const th = this
+        setTimeout(function(){
+            th.loading = false
+        }, 1000)
+    }
+})
+app.use(router)
 app.mount('#app')
