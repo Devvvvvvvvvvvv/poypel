@@ -13,10 +13,16 @@ var tmpl *template.Template
 
 func main() {
 
+	tmpl, err := template.ParseGlob("tmpl/*.html")
+	if err != nil {
+		panic(err.Error())
+		return
+	}
+
 	http.HandleFunc("/build", func(w http.ResponseWriter, r *http.Request) {
 		fmt.Println("/build requsted: ")
 		settings := mdl.StartSession(w, r)
-		err := tmpl.ExecuteTemplate(w, "build", settings)
+		err := tmpl.ExecuteTemplate(w, "build.html", settings)
 		if err != nil {
 			fmt.Println(err)
 		}
@@ -25,7 +31,7 @@ func main() {
 	http.HandleFunc("/myaccount/transactions/", func(w http.ResponseWriter, r *http.Request) {
 		fmt.Println("/myaccount/transactions/ requsted: ")
 		settings := mdl.StartSession(w, r)
-		err := tmpl.ExecuteTemplate(w, "transactions", settings)
+		err := tmpl.ExecuteTemplate(w, "transactions.html", settings)
 		if err != nil {
 			fmt.Println(err)
 		}
@@ -34,7 +40,7 @@ func main() {
 	http.HandleFunc("/myaccount/summary/", func(w http.ResponseWriter, r *http.Request) {
 		fmt.Println("/myaccount/summary/ requsted: ")
 		settings := mdl.StartSession(w, r)
-		err := tmpl.ExecuteTemplate(w, "summary", settings)
+		err := tmpl.ExecuteTemplate(w, "summary.html", settings)
 		if err != nil {
 			fmt.Println(err)
 		}
@@ -48,7 +54,7 @@ func main() {
 	handler := http.StripPrefix("/public/", fs)
 	http.Handle("/public/", handler)
 
-	err := srv.GetDB().AutoMigrate(mdl.Session{}, mdl.Transaction{})
+	err = srv.GetDB().AutoMigrate(mdl.Session{}, mdl.Transaction{})
 	if err != nil {
 		fmt.Println(err)
 	}
