@@ -328,11 +328,13 @@ const price = {
     mounted() {
         this.odInt = new Odometer({
             el: this.$el.querySelector('#trade_value_int'),
-            format: '(,ddd)'
+            format: '(,ddd)',
+            value: 42156
         })
         this.odDec = new Odometer({
             el: this.$el.querySelector('#trade_value_decimal'),
-            format: '.dd'
+            format: '.dd',
+            value: 98
         })
         // this.ws = new WebSocket("wss://ws.coinbase.com/app/dbb4773efe0876e515990b8701d147?protocol=7&client=js&version=4.2.1&flash=false")
         // this.ws.onopen = (e) => {
