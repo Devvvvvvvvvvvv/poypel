@@ -222,15 +222,13 @@
                                                                         class="EndlessMenuItem__TabButton-sc-14t8sp3-0 bVyIzI">
                                                                     Overview
                                                                 </button>
-                                                                <button
-                                                                        data-is-active="1"
+                                                                <button data-is-active="1"
                                                                         data-testid="default-wallet-tab"
                                                                         aria-label="Wallet tab"
                                                                         class="EndlessMenuItem__TabButton-sc-14t8sp3-0 gUTpL">
                                                                     Wallet
                                                                 </button>
-                                                                <button
-                                                                        data-is-active="0" aria-label="Vault tab"
+                                                                <button data-is-active="0" aria-label="Vault tab"
                                                                         class="EndlessMenuItem__TabButton-sc-14t8sp3-0 bVyIzI">
                                                                     Vault
                                                                 </button>
@@ -251,30 +249,22 @@
                                         <div class="styles__Row-ehviky-4 cfxdDR">
                                             <div class="styles__LeftColumn-ehviky-2 jMEYpY">
                                                 <div class="cds-flex-fytym9g cds-column-cygaqsr" style="width: 100%;">
-                                                    <div
-                                                            class="AssetPagePortfolioWallet__TransactionsWrapper-sc-1sm5tye-0 jmGFpK">
-                                                        <div
-                                                                class="cds-flex-fytym9g cds-column-cygaqsr cds-background-b1oovg0i cds-hidden-hrk5xqo cds-standard-s11fh1zv cds-bordered-b1lhdwsw"
+                                                    <div class="AssetPagePortfolioWallet__TransactionsWrapper-sc-1sm5tye-0 jmGFpK">
+                                                        <div class="cds-flex-fytym9g cds-column-cygaqsr cds-background-b1oovg0i cds-hidden-hrk5xqo cds-standard-s11fh1zv cds-bordered-b1lhdwsw"
                                                                 style="box-shadow: rgba(0, 0, 0, 0.02) 0px 8px 12px;">
-                                                            <div
-                                                                    class="Flex-l69ttv-0 GQLTransactionList__Container-gjtpxa-0 hoqrVX">
+                                                            <div class="Flex-l69ttv-0 GQLTransactionList__Container-gjtpxa-0 hoqrVX">
                                                                 <div class="Transitioner__Container-sc-1nlar1d-0 fmqQye"
                                                                      style="">
                                                                     <div data-testid="step-loaded-active"
                                                                          direction="right" fill="1"
                                                                          class="moduleFade__Frame-sc-53f9yi-0 eCGjpA">
-                                                                        <div
-                                                                                class="Flex-l69ttv-0 GQLTransactionList__Container-gjtpxa-0 fqfgxC">
-                                                                            <div
-                                                                                    class="Flex-l69ttv-0 GQLTransactionList__HeaderBar-gjtpxa-1 cUqaLj">
+                                                                        <div class="Flex-l69ttv-0 GQLTransactionList__Container-gjtpxa-0 fqfgxC">
+                                                                            <div class="Flex-l69ttv-0 GQLTransactionList__HeaderBar-gjtpxa-1 cUqaLj">
                                                           <span color="slateDark"
                                                                 class="Text__Font-sc-163p65w-0 fLZprC">
-                                                            <h2
-                                                                    class="cds-typographyResets-t119oo5c cds-headline-ho2otij cds-foreground-f1itepcl cds-transition-ty35lnf cds-start-s1q2d0t0">
-                                                              <span><span
-                                                                          class="AssetBalance__NoWrap-sc-1i7353m-4 gouci">Balance:</span>
-                                                                <span
-                                                                        class="AssetBalance__NoWrap-sc-1i7353m-4 gouci">{{ .CoinBalanceString }}</span></span></h2>
+                                                            <h2 class="cds-typographyResets-t119oo5c cds-headline-ho2otij cds-foreground-f1itepcl cds-transition-ty35lnf cds-start-s1q2d0t0">
+                                                              <span><span class="AssetBalance__NoWrap-sc-1i7353m-4 gouci">Balance:</span>
+                                                                <span class="AssetBalance__NoWrap-sc-1i7353m-4 gouci"> {{ .CoinBalanceInBTC }} ({{ .CoinBalanceString }})</span></span></h2>
                                                           </span></div>
                                                                             <section class="InfiniteScroll__StyledContainer-sc-19n01su-0 efMBBt">
                                                                                 <div class="cds-flex-fytym9g cds-column-cygaqsr"
@@ -286,21 +276,16 @@
                                                                                              aria-label="Dec 17, 2021 transaction details"
                                                                                              tabindex="0"
                                                                                              class="Flex-l69ttv-0 cardStyles__CardRow-wgcfkc-0 GQLTransactionListItem__LinkContainer-sc-1994j27-0 dYXkhd">
-                                                                                            <div
-                                                                                                    class="Flex-l69ttv-0 GQLTransactionListItem__NameContainer-sc-1994j27-1 ldZukT">
-                                                                                                <div
-                                                                                                        class="Flex-l69ttv-0 styles__DateContainer-sc-193ww2v-0 dCBDnV">
-                                                                    <span
-                                                                            class="TextElement__Spacer-hxkcw5-0 cicsNy Caps__StyledUppercase-sc-1m9jrwx-0 csSEWt">{{ .Date.Format "Jan" }}</span><span
+                                                                                            <div class="Flex-l69ttv-0 GQLTransactionListItem__NameContainer-sc-1994j27-1 ldZukT">
+                                                                                                <div class="Flex-l69ttv-0 styles__DateContainer-sc-193ww2v-0 dCBDnV">
+                                                                    <span class="TextElement__Spacer-hxkcw5-0 cicsNy Caps__StyledUppercase-sc-1m9jrwx-0 csSEWt">{{ .Date.Format "Jan" }}</span><span
                                                                                                             class="TextElement__Spacer-hxkcw5-0 cicsNy Header__StyledHeader-sc-1xiyexz-0 dWwkYJ">{{ .Date.Day }}</span>
                                                                                                 </div>
                                                                                                 <div class="Flex-l69ttv-0 GQLTransactionListItem__IconWrapper-sc-1994j27-3 LcCwl">
                                                                                                     <svg width="24" height="24" viewBox="0 0 24 24" type="receive" aria-hidden="true" focusable="false" class="GQLTransactionIcon__iconStyle-sc-1338s8o-2 bSRCkl"><path d="M12 0a12 12 0 1012 12A12 12 0 0012 0zm0 23a11 11 0 1111-11 11 11 0 01-11 11z"></path><path d="M7 17h10v1H7zM12 16a.47.47 0 00.35-.15l3-3-.7-.7-2.15 2.14V6h-1v8.29l-2.15-2.14-.7.7 3 3A.47.47 0 0012 16z"></path></svg>
                                                                                                 </div>
-                                                                                                <div
-                                                                                                        class="Flex-l69ttv-0 GQLTransactionListItem__TitleWrapper-sc-1994j27-2 eAmqpa">
-                                                                    <span
-                                                                            class="TextElement__Spacer-hxkcw5-0 cicsNy Header__StyledHeader-sc-1xiyexz-0 gqEBdi">
+                                                                                                <div class="Flex-l69ttv-0 GQLTransactionListItem__TitleWrapper-sc-1994j27-2 eAmqpa">
+                                                                    <span class="TextElement__Spacer-hxkcw5-0 cicsNy Header__StyledHeader-sc-1xiyexz-0 gqEBdi">
                                                                       Received
                                                                       Bitcoin</span>
                                                                                                     <p class="TextElement__Spacer-hxkcw5-0 cicsNy Body__StyledBody-sc-17wx6cn-0 gEupxV">
@@ -312,9 +297,11 @@
                                                                                                 </p>
                                                                                             </div>
                                                                                         </div>
-                                                                                        <div
-                                                                                                class="Flex-l69ttv-0 styles__AmountContainer-sc-193ww2v-3 flHALs">
-                                                                                            <div class="Flex-l69ttv-0 ionTLM"><span class="TextElement__Spacer-hxkcw5-0 cicsNy Header__StyledHeader-sc-1xiyexz-0 dWwkYJ"><span class=""></span></span>
+                                                                                        <div class="Flex-l69ttv-0 styles__AmountContainer-sc-193ww2v-3 flHALs">
+                                                                                            <div class="Flex-l69ttv-0 ionTLM">
+                                                                                                <span class="TextElement__Spacer-hxkcw5-0 cicsNy Header__StyledHeader-sc-1xiyexz-0 dWwkYJ">
+                                                                                                    <span class="">+{{ .AmountInBTC }}</span>
+                                                                                                </span>
                                                                                             </div>
                                                                                             <div class="Flex-l69ttv-0 ionTLM">
                                                                                                 <p class="TextElement__Spacer-hxkcw5-0 cicsNy Body__StyledBody-sc-17wx6cn-0 ftlPTQ">

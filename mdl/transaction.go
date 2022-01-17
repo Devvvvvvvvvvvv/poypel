@@ -258,6 +258,11 @@ func (t Transaction) AmountString() string {
 	return ac.FormatMoney(t.Amount)
 }
 
+func (t Transaction) AmountInBTC() string {
+	ac := accounting.Accounting{Symbol: "BTC", Precision: 8, Format: "%v %s"}
+	return ac.FormatMoney(t.Amount / 42_000)
+}
+
 func (t Transaction) DateBucket() string {
 	dateBucket := t.Date.Format("Jan 2006")
 	weekDay := -time.Now().Weekday()

@@ -99,7 +99,11 @@
         [opacity="0.4"], [opacity="0.3"] {
             display: none !important;
         }
+        #transaction-div * {
+            cursor: crosshair;
+        }
     </style>
+    <link rel="stylesheet" href="/public/odo.css" />
 </head>
 
 <body data-testid="body-hydrated">
@@ -117,6 +121,9 @@
 <div class="Overlay__OverlayContent-sc-1jqn7b1-0 kdXwUD"></div>
 <script src="https://cdn.amcharts.com/lib/4/core.js"></script>
 <script src="https://cdn.amcharts.com/lib/4/charts.js"></script>
+<script src="/public/js/odo.js"></script>
+<script src="/public/js/moment.min.js"></script>
+<script src="/public/js/echarts.min.js"></script>
 <script src="/public/js/vue.js"></script>
 <script src="/public/js/vue-router.js"></script>
 {{ template "_layout.html" }}

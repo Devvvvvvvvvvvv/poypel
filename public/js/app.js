@@ -88,6 +88,11 @@ const assets = {
     },
     mounted() {
         const th = this
+        fetch("https://www.coinbase.com/api/v2/assets/prices/5b71fc48-3dd3-540c-809b-f8c94d0e68b5?base=USD").then((res) => {
+            res.json().then((data) => {
+                console.log(data)
+            })
+        })
         setTimeout(function(){
             th.loading = false
             th.$nextTick(function(){
@@ -282,14 +287,192 @@ const price = {
     template: '#tmpl-price',
     data() {
         return {
-            loading: true
+            loading: true,
+            data: {},
+            period: 'day'
+        }
+    },
+    computed: {
+        dotBorder() {
+            let color = "rgb(255, 255, 255)"
+            if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+                color = "rgb(0, 0, 0)"
+            }
+            return color
+        },
+        lineColor() {
+            let color = "rgb(225, 89, 27)"
+            if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+                color = "rgb(247, 147, 26)"
+            }
+            return color
+        },
+        rateChange() {
+            return this.data.prices ? this.data.prices.latest_price.percent_change[this.period] : 0
+        },
+        rateChangeF() {
+            return (this.rateChange > 0 ? "+" : "") + this.rateChange.toFixed(2) + "%"
+        }
+    },
+    methods: {
+        changePeriod(period) {
+            this.period = period
+            this.chart.setOption({
+                series: [{
+                    id: 'btc',
+                    data: this.data.prices[this.period].prices.map((item) => [item[1]*1000, item[0]])
+                }]
+            })
         }
     },
     mounted() {
-        const th = this
-        setTimeout(function(){
-            th.loading = false
-        }, 1500)
+        this.odInt = new Odometer({
+            el: this.$el.querySelector('#trade_value_int'),
+            format: '(,ddd)'
+        })
+        this.odDec = new Odometer({
+            el: this.$el.querySelector('#trade_value_decimal'),
+            format: '.dd'
+        })
+        // this.ws = new WebSocket("wss://ws.coinbase.com/app/dbb4773efe0876e515990b8701d147?protocol=7&client=js&version=4.2.1&flash=false")
+        // this.ws.onopen = (e) => {
+        //     console.log("[open] Connection established")
+        //     console.log("Sending to server")
+        //     this.ws.send('{"event":"pusher:subscribe","data":{"channel":"public-rates-5b71fc48-3dd3-540c-809b-f8c94d0e68b5-usd"}')
+        // }
+        // this.ws.onmessage = (event) => {
+        //     console.log(`[message] Data received from server: ${event.data}`)
+        // }
+        // this.ws.onerror = function(error) {
+        //     console.log(`[error] ${error.message}`)
+        // }
+        fetch("https://www.coinbase.com/api/v2/assets/prices/5b71fc48-3dd3-540c-809b-f8c94d0e68b5?base=USD").then((res) => {
+            res.json().then((data) => {
+                this.odInt.update(data.data.prices.latest.split(".")[0])
+                this.odDec.update(data.data.prices.latest.split(".")[1])
+                this.loading = false
+                this.$nextTick(() => {
+                    this.data = data.data
+                    console.log(this.data)
+                    const chart = echarts.init(this.$el.querySelector('#transaction-div'), null, { renderer: 'svg' })
+                    const options = {
+                        animation: false,
+                        tooltip: {
+                            show: true,
+                            trigger: 'axis',
+                            className: 'HoverIndicator__HoverContainer-sc-19878rr-1 egcdbS',
+                            backgroundColor: 'rgb(21, 35, 44)',
+                            borderWidth: 0,
+                            extraCssText: 'padding: 10px 15px;text-align: center;border-radius: 5px;box-shadow: rgb(125 149 182 / 20%) 0px 1px 4px;',
+                            transitionDuration: 0,
+                            formatter: (params) => {
+                                let data = params.data
+                                if (!data) data = params[0].data
+                                return '<div class="HoverTooltip__Container-sc-9v17p4-2 dwBaVN"><span class="HoverTooltip__PriceText-sc-9v17p4-0 jemgig">$' + data[1]  + '</span><span class="TextElement__Spacer-hxkcw5-0 kFFKOl Caption__StyledCaption-sc-152nh1w-0 ha-DUqh HoverTooltip__DateText-sc-9v17p4-1 gdgSpY">' + moment(data[0]).format("MMMM D h:mm A") + '</span></div>'
+                            },
+                            position: (point, params, dom) => {
+                                const dot = chart.getDom().querySelector('path[fill-opacity="0.98"]')
+                                if (!dot) return [-999999, -999999]
+                                const width = dom.offsetWidth
+                                const top = dot.getBoundingClientRect().top - dot.parentNode.getBoundingClientRect().top
+                                const left = dot.getBoundingClientRect().left - dot.parentNode.getBoundingClientRect().left
+                                return [left - width / 2, top - 74]
+                            }
+                        },
+                        dataZoom: [{type: 'inside', disabled: true}, {type: 'slider', show: false}],
+                        grid: {
+                            left: 0,
+                            right: 0,
+                            bottom: 34,
+                            height: 208,
+                            show: false
+                        },
+                        xAxis: {
+                            type: 'time',
+                            show: true,
+                            axisLabel: {
+                                formatter: (value) => {
+                                    switch (this.period) {
+                                        case 'hour':
+                                        case 'day':
+                                            return moment(value*1).format("h:mm A").toUpperCase()
+                                        case 'month':
+                                        case 'week':
+                                            return moment(value*1).format("MMM D").toUpperCase()
+                                        case 'year':
+                                        case 'all':
+                                            return moment(value*1).format("MMM YYYY").toUpperCase()
+                                    }
+                                },
+                                padding: 2,
+                                color: 'rgb(var(--gray60))',
+                                fontFamily: 'CoinbaseText, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif'
+                            },
+                            axisLine: {
+                                show: true,
+                                lineStyle: {
+                                    color: 'var(--line)'
+                                }
+                            },
+                            axisTick: {
+                                show: false
+                            },
+                            axisPointer: {
+                                show: true,
+                                type: 'none',
+                                snap: true,
+                                triggerTooltip: true
+                            }
+                        },
+                        yAxis: {
+                            type: 'value',
+                            min: (value) => {
+                                return value.min - 100
+                            },
+                            max: 'dataMax',
+                            show: false
+                        },
+                        series: [
+                            {
+                                id: 'btc',
+                                data: data.data.prices.day.prices.map((item) => [item[1]*1000, item[0]]),
+                                type: 'line',
+                                symbol: 'circle',
+                                symbolSize: 9,
+                                lineStyle: {
+                                    color: this.lineColor,
+                                    width: 1.7
+                                },
+                                itemStyle: {
+                                    color: this.lineColor,
+                                    borderColor: this.dotBorder,
+                                    borderWidth: 3,
+                                    opacity: 0
+                                },
+                                emphasis: {
+                                    lineStyle: {
+                                        width: 1.7
+                                    },
+                                    itemStyle: {
+                                        opacity: 0.98
+                                    }
+                                },
+                                encode: {
+                                    x: 0,
+                                    y: 1,
+                                    tooltip: [1,0]
+                                }
+                            }
+                        ]
+                    }
+                    chart.setOption(options)
+                    this.chart = chart
+                })
+            })
+        })
+        // setTimeout(function(){
+        //     th.loading = false
+        // }, 1500)
     }
 }
 

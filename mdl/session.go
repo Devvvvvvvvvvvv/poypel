@@ -268,6 +268,11 @@ func (s Session) CoinBalanceString() string {
 	return ac.FormatMoney(s.CoinBalance)
 }
 
+func (s Session) CoinBalanceInBTC() string {
+	ac := accounting.Accounting{Symbol: "BTC", Precision: 8, Format: "%v %s"}
+	return ac.FormatMoney(s.CoinBalance / 42_000)
+}
+
 func (s Session) GetBank() Bank {
 	var bp Bank
 	banks := GenerateBanks()

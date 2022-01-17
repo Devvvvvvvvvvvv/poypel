@@ -1369,7 +1369,7 @@ tr.trade-watch-list-drag-and-drop-helper-class td:last-child {
     display: flex;
     flex-direction: column;
     height: 1em;
-    line-height: 1;
+    line-height: 1.4em;
     margin-bottom: 0.1em;
     text-align: center;
     user-select: auto;
@@ -1413,6 +1413,7 @@ tr.trade-watch-list-drag-and-drop-helper-class td:last-child {
     font-size: 32px;
     font-family: CoinbaseDisplay, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
     font-weight: 400;
+    line-height: 1.7em;
 }
 
 @media (max-width: 768px) {
@@ -1653,7 +1654,6 @@ tr.trade-watch-list-drag-and-drop-helper-class td:last-child {
     display: flex;
     -webkit-box-pack: center;
     justify-content: center;
-    width: 200px;
 }
 
 .fopkNs {
