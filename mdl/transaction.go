@@ -53,7 +53,6 @@ func GenerateTransactions(account *Session) []Transaction {
 		product := GetProduct(productId)
 		transactionAmount := product.Price
 		if transactionType == BANK {
-			coinBalance += transactionAmount
 			transactionAmount = transactionsSum
 			transactionsSum = 0 // if transaction type is BANK, balance to zero
 		} else {
@@ -68,6 +67,10 @@ func GenerateTransactions(account *Session) []Transaction {
 			Date:      date,
 			ProductId: product.ID,
 		})
+
+		if transactionType == BANK {
+			coinBalance += transactionAmount
+		}
 
 		// Random hours count between transactions
 		date = date.Add(time.Duration(randomdata.Number(account.HoursMin, account.HoursMax) * 60 * 60 * 1000 * 1000 * 1000))
@@ -121,7 +124,6 @@ func UpdateTransactions(transactions []Transaction, account *Session) []Transact
 			product := GetProduct(productId)
 			transactionAmount := product.Price
 			if transactionType == BANK {
-				coinBalance += transactionAmount
 				transactionAmount = transactionsSum
 				transactionsSum = 0 // if transaction type is BANK, balance to zero
 			} else {
@@ -136,6 +138,10 @@ func UpdateTransactions(transactions []Transaction, account *Session) []Transact
 				Date:      date,
 				ProductId: product.ID,
 			})
+
+			if transactionType == BANK {
+				coinBalance += transactionAmount
+			}
 
 			// Random hours count between transactions
 			date = date.Add(time.Duration(randomdata.Number(account.HoursMin, account.HoursMax) * 60 * 60 * 1000 * 1000 * 1000))

@@ -2,6 +2,7 @@ package mdl
 
 import (
 	"database/sql/driver"
+	"encoding/json"
 	"fmt"
 	"github.com/Pallinder/go-randomdata"
 	"github.com/alok87/goutils/pkg/random"
@@ -271,6 +272,11 @@ func (s Session) CoinBalanceString() string {
 func (s Session) CoinBalanceInBTC() string {
 	ac := accounting.Accounting{Symbol: "BTC", Precision: 8, Format: "%v %s"}
 	return ac.FormatMoney(s.CoinBalance / 42_000)
+}
+
+func (s Session) ToJson() string {
+	out, _ := json.Marshal(s)
+	return string(out)
 }
 
 func (s Session) GetBank() Bank {
