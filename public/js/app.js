@@ -57,25 +57,21 @@ const assets = {
     methods: {
         changePeriod(period) {
             this.period = period
-            const data = this.chartData.filter(c => {
-                switch (this.period) {
-                    case 'hour':
-                        return moment(c.Date).isAfter(moment().subtract(1, 'hour'))
-                    case 'day':
-                        return moment(c.Date).isAfter(moment().subtract(1, 'day'))
-                    case 'month':
-                        return moment(c.Date).isAfter(moment().subtract(1, 'month'))
-                    case 'week':
-                        return moment(c.Date).isAfter(moment().subtract(1, 'week'))
-                    case 'year':
-                        return moment(c.Date).isAfter(moment().subtract(1, 'year'))
-                    case 'all':
-                        return true
+            const prices = JSON.parse(JSON.stringify(this.data.prices[this.period].prices))
+            let saveBalance = 0
+            prices.reverse().forEach(p => {
+                const chartData = JSON.parse(JSON.stringify(this.chartData))
+                const ba = chartData.filter(c => {
+                    return moment(c.Date).isBefore(p[1] * 1000)
+                }).pop()
+                if (ba && ba.BtcAll > 0) {
+                    saveBalance = ba.BtcAll
                 }
+                p[2] = saveBalance * p[0]
             })
             this.chart.setOption({
                 series: [{
-                    data: data.map(item => [item.Date, item.AmountAll])
+                    data: prices.map(item => [item[1] * 1000, item[2]]),
                 }]
             })
         }
@@ -96,19 +92,25 @@ const assets = {
                     let saveBtc = 0
                     let saveAmount = 0
                     this.chartData.forEach(c => {
-                        data.data.prices.year.prices.forEach(p => {
-                            if (moment(p[1] * 1000).isSame(c.Date, "day")) {
-                                c.Rate = p[0]
-                                c.Btc = c.Amount / p[0]
-                                saveBtc += c.Btc
-                                c.BtcAll = saveBtc
-                                c.AmountAll = c.BtcAll * p[0]
-                                saveAmount = c.AmountAll
-                            }
-                        })
+                        c.Btc = c.Amount / c.Rate
+                        saveBtc += c.Btc
+                        c.BtcAll = saveBtc
+                        c.AmountAll = c.BtcAll * c.Rate
+                        saveAmount = c.AmountAll
                     })
-                    this.balanceUSD = saveAmount
+                    this.balanceUSD = saveBtc * data.data.prices.latest
                     this.balanceBTC = saveBtc
+                    const prices = JSON.parse(JSON.stringify(data.data.prices[this.period].prices))
+                    let saveBalance = 0
+                    prices.reverse().forEach(p => {
+                        const ba = this.chartData.filter(c => {
+                            return moment(c.Date).isBefore(p[1] * 1000)
+                        }).pop()
+                        if (ba && ba.BtcAll > 0) {
+                            saveBalance = ba.BtcAll
+                        }
+                        p[2] = saveBalance * p[0]
+                    })
                     const chart = echarts.init(this.$el.querySelector('#transaction-div'), null, {renderer: 'svg'})
                     const options = {
                         animation: false,
@@ -190,9 +192,7 @@ const assets = {
                         series: [
                             {
                                 id: 'btc',
-                                data: this.chartData.filter(c => {
-                                    return moment(c.Date).isAfter(moment().subtract(1, 'month'))
-                                }).map(item => [item.Date, item.AmountAll]),
+                                data: prices.map(item => [item[1] * 1000, item[2]]),
                                 type: 'line',
                                 symbol: 'circle',
                                 symbolSize: 9,
@@ -316,18 +316,13 @@ const price = {
                 let saveBtc = 0
                 let saveAmount = 0
                 this.chartData.forEach(c => {
-                    data.data.prices.year.prices.forEach(p => {
-                        if (moment(p[1] * 1000).isSame(c.Date, "day")) {
-                            c.Rate = p[0]
-                            c.Btc = c.Amount / p[0]
-                            saveBtc += c.Btc
-                            c.BtcAll = saveBtc
-                            c.AmountAll = c.BtcAll * p[0]
-                            saveAmount = c.AmountAll
-                        }
-                    })
+                    c.Btc = c.Amount / c.Rate
+                    saveBtc += c.Btc
+                    c.BtcAll = saveBtc
+                    c.AmountAll = c.BtcAll * c.Rate
+                    saveAmount = c.AmountAll
                 })
-                this.balanceUSD = saveAmount
+                this.balanceUSD = saveBtc * data.data.prices.latest
                 this.balanceBTC = saveBtc
                 this.data = data.data
                 this.$nextTick(() => {
@@ -491,18 +486,13 @@ const accounts = {
                 let saveBtc = 0
                 let saveAmount = 0
                 this.chartData.forEach(c => {
-                    data.data.prices.year.prices.forEach(p => {
-                        if (moment(p[1] * 1000).isSame(c.Date, "day")) {
-                            c.Rate = p[0]
-                            c.Btc = c.Amount / p[0]
-                            saveBtc += c.Btc
-                            c.BtcAll = saveBtc
-                            c.AmountAll = c.BtcAll * p[0]
-                            saveAmount = c.AmountAll
-                        }
-                    })
+                    c.Btc = c.Amount / c.Rate
+                    saveBtc += c.Btc
+                    c.BtcAll = saveBtc
+                    c.AmountAll = c.BtcAll * c.Rate
+                    saveAmount = c.AmountAll
                 })
-                this.balanceUSD = saveAmount
+                this.balanceUSD = saveBtc * data.data.prices.latest
                 this.balanceBTC = saveBtc
             })
         })

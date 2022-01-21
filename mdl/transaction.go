@@ -1,10 +1,13 @@
 package mdl
 
 import (
+	"encoding/json"
 	"github.com/Pallinder/go-randomdata"
 	"github.com/leekchan/accounting"
 	"github.com/lithammer/shortuuid/v3"
+	"io/ioutil"
 	"math/rand"
+	"net/http"
 	"poypel/srv"
 	"time"
 )
@@ -17,9 +20,20 @@ type Transaction struct {
 	Amount    float32         `schema:"amount"`
 	Date      time.Time       `schema:"date"`
 	ProductId int             `schema:"product_id"`
+	Rate      string          `gorm:"rate"`
 }
 
 type TransactionType int
+
+type ApiPrice struct {
+	Base     string
+	Currency string
+	Amount   string
+}
+
+type ApiResp struct {
+	Data ApiPrice
+}
 
 const (
 	COMPLETED TransactionType = iota
@@ -52,9 +66,11 @@ func GenerateTransactions(account *Session) []Transaction {
 		}
 		product := GetProduct(productId)
 		transactionAmount := product.Price
+		rate := ""
 		if transactionType == BANK {
 			transactionAmount = transactionsSum
 			transactionsSum = 0 // if transaction type is BANK, balance to zero
+			rate, _ = GetRate(date)
 		} else {
 			transactionsSum += transactionAmount
 		}
@@ -66,6 +82,7 @@ func GenerateTransactions(account *Session) []Transaction {
 			Amount:    transactionAmount,
 			Date:      date,
 			ProductId: product.ID,
+			Rate:      rate,
 		})
 
 		if transactionType == BANK {
@@ -123,12 +140,15 @@ func UpdateTransactions(transactions []Transaction, account *Session) []Transact
 			}
 			product := GetProduct(productId)
 			transactionAmount := product.Price
+			rate := ""
 			if transactionType == BANK {
 				transactionAmount = transactionsSum
 				transactionsSum = 0 // if transaction type is BANK, balance to zero
+				rate, _ = GetRate(date)
 			} else {
 				transactionsSum += transactionAmount
 			}
+
 			newTransactions = append(newTransactions, Transaction{
 				ID:        shortuuid.New(),
 				Type:      transactionType,
@@ -137,6 +157,7 @@ func UpdateTransactions(transactions []Transaction, account *Session) []Transact
 				Amount:    transactionAmount,
 				Date:      date,
 				ProductId: product.ID,
+				Rate:      rate,
 			})
 
 			if transactionType == BANK {
@@ -284,4 +305,21 @@ func (t Transaction) DateBucket() string {
 		}
 	}
 	return dateBucket
+}
+
+func GetRate(date time.Time) (string, error) {
+	resp, err := http.Get("https://api.coinbase.com/v2/prices/BTC-USD/spot?date=" + date.Format("2006-01-02"))
+	if err != nil {
+		return "", err
+	}
+	body, err := ioutil.ReadAll(resp.Body)
+	if err != nil {
+		return "", err
+	}
+	var rate ApiResp
+	err = json.Unmarshal(body, &rate)
+	if err != nil {
+		return "", err
+	}
+	return rate.Data.Amount, nil
 }

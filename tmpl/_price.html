@@ -1242,26 +1242,25 @@
                                                                                                         </div>
                                                                                                     </button>
                                                                                                 </div>
-                                                                                                <div class="Flex-l69ttv-0 PaddedContent-yt26rd-0 dncuVM">
-                                                                                                    <div class="cds-flex-fytym9g cds-column-cygaqsr cds-1-_tide8r"
-                                                                                                         style="width: 100%;">
-                                                                                                        <section
-                                                                                                                class="cds-flex-fytym9g cds-center-c5dc66o cds-row-ros4dsk cds-center-c1n2qf5t cds-hidden-hrk5xqo cds-1-_tide8r cds-relative-ryk0urh"
-                                                                                                                style="position: relative;">
-                                                                                                            <div scale="1"
-                                                                                                                 class="FlexibleCurrencyInput__Container-lluxyd-2 dPSlUE">
+
+                                                                                                <div v-if="loading" class="Flex-l69ttv-0 LoadingContainer__Container-x1r22k-0 gqsgzi LoadingFallback__StyledLoadingContainer-dhv37u-0 gUokWM">
+                                                                                                    <div class="Spinner__Container-sc-1m1cr45-0 hjMqsJ"></div>
+                                                                                                </div>
+
+                                                                                                <div v-if="!loading" class="Flex-l69ttv-0 PaddedContent-yt26rd-0 dncuVM">
+                                                                                                    <div class="cds-flex-fytym9g cds-column-cygaqsr cds-1-_tide8r" style="width: 100%;">
+                                                                                                        <section class="cds-flex-fytym9g cds-center-c5dc66o cds-row-ros4dsk cds-center-c1n2qf5t cds-hidden-hrk5xqo cds-1-_tide8r cds-relative-ryk0urh" style="position: relative;">
+                                                                                                            <div scale="1" class="FlexibleCurrencyInput__Container-lluxyd-2 dPSlUE">
                                                                                                                 <div class="FlexibleCurrencyInput__InputContainer-lluxyd-3 GfxAb">
-                                                                                                                    <span font-size="31"
-                                                                                                                          class="FlexibleCurrencyInput__StyledSymbol-lluxyd-0 fAoiLP">$</span><input
-                                                                                                                            minlength="1"
-                                                                                                                            inputmode="decimal"
-                                                                                                                            placeholder="0"
-                                                                                                                            width="40"
-                                                                                                                            font-size="62"
-                                                                                                                            aria-label="Amount"
-                                                                                                                            data-testid="currency-input"
-                                                                                                                            class="FlexibleCurrencyInput__StyledInput-lluxyd-4 iaHPKl"
-                                                                                                                            value=""><span
+                                                                                                                    <span font-size="31" class="FlexibleCurrencyInput__StyledSymbol-lluxyd-0 fAoiLP">$</span><input minlength="1"
+                                                                                                                                                                                                                    inputmode="decimal"
+                                                                                                                                                                                                                    placeholder="0"
+                                                                                                                                                                                                                    width="40"
+                                                                                                                                                                                                                    font-size="62"
+                                                                                                                                                                                                                    aria-label="Amount"
+                                                                                                                                                                                                                    data-testid="currency-input"
+                                                                                                                                                                                                                    class="FlexibleCurrencyInput__StyledInput-lluxyd-4 iaHPKl"
+                                                                                                                                                                                                                    value=""><span
                                                                                                                             font-size="62"
                                                                                                                             class="FlexibleCurrencyInput__SizeReference-lluxyd-5 jFkEov"></span>
                                                                                                                 </div>
@@ -1385,7 +1384,8 @@
                                                                                                                                 <div class="cds-flex-fytym9g cds-column-cygaqsr cds-flex-start-fiq8yhn cds-hidden-hrk5xqo cds-1-_18k662r"
                                                                                                                                      style="width: 100%;"><span
                                                                                                                                             color="foreground"
-                                                                                                                                            class="EntrySelector__Overflow-sc-116bw7s-0 iECCMk" v-text="account.Bank"></span></div>
+                                                                                                                                            class="EntrySelector__Overflow-sc-116bw7s-0 iECCMk" v-text="account.Bank"></span>
+                                                                                                                                </div>
                                                                                                                             </div>
                                                                                                                             <div class="cds-flex-fytym9g cds-1-_18k662r cds-relative-ryk0urh"
                                                                                                                                  style="position: relative;">
@@ -1419,9 +1419,10 @@
                                                                                                         </div>
                                                                                                     </div>
                                                                                                 </div>
-                                                                                                <footer class="cds-flex-fytym9g cds-center-c5dc66o cds-row-ros4dsk cds-space-between-sjpl91k cds-3-_1s99az2 cds-3-_1f9iorr"
-                                                                                                        style="min-height: 56px;"><span
-                                                                                                            class="cds-typographyResets-t119oo5c cds-label2-l4ubknn cds-foregroundMuted-f1lg16ro cds-transition-ty35lnf cds-start-s1q2d0t0">BTC balance</span><span class="cds-typographyResets-t119oo5c cds-label2-l4ubknn cds-foreground-f1itepcl cds-transition-ty35lnf cds-end-e1uus3yy" v-text="coinBalanceAll"></span></footer>
+                                                                                                <footer v-if="!loading" class="cds-flex-fytym9g cds-center-c5dc66o cds-row-ros4dsk cds-space-between-sjpl91k cds-3-_1s99az2 cds-3-_1f9iorr" style="min-height: 56px;">
+                                                                                                    <span class="cds-typographyResets-t119oo5c cds-label2-l4ubknn cds-foregroundMuted-f1lg16ro cds-transition-ty35lnf cds-start-s1q2d0t0">BTC balance</span>
+                                                                                                    <span class="cds-typographyResets-t119oo5c cds-label2-l4ubknn cds-foreground-f1itepcl cds-transition-ty35lnf cds-end-e1uus3yy" v-text="coinBalanceAll"></span>
+                                                                                                </footer>
                                                                                             </div>
                                                                                         </div>
                                                                                     </div>
@@ -1478,7 +1479,13 @@
                                                                                                         </div>
                                                                                                     </button>
                                                                                                 </div>
-                                                                                                <div class="Flex-l69ttv-0 PaddedContent-yt26rd-0 dncuVM">
+
+
+                                                                                                <div v-if="!loading" class="Flex-l69ttv-0 LoadingContainer__Container-x1r22k-0 gqsgzi LoadingFallback__StyledLoadingContainer-dhv37u-0 gUokWM">
+                                                                                                    <div class="Spinner__Container-sc-1m1cr45-0 hjMqsJ"></div>
+                                                                                                </div>
+
+                                                                                                <div v-if="loading" class="Flex-l69ttv-0 PaddedContent-yt26rd-0 dncuVM">
                                                                                                     <div class="cds-flex-fytym9g cds-column-cygaqsr cds-1-_tide8r"
                                                                                                          style="width: 100%;">
                                                                                                         <section
@@ -2413,7 +2420,7 @@
                     <div class="LocaleSelector__SelectWrapper-ot2xk3-0 kjTbik"><select
                                 class="Select__SelectWrapper-c3mcht-0 iBqEYe" name="locale">
                             <option value="de">Deutsch</option>
-                            <option value="en">English</option>
+                            <option value="en" selected>English</option>
                             <option value="es">Español - España</option>
                             <option value="es-LA">Español - América Latina</option>
                             <option value="fr">Français - France</option>
