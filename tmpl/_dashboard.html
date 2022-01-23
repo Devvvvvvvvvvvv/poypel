@@ -356,7 +356,7 @@
                                                                                                class="cds-typographyResets-t119oo5c cds-body-bwhmx62 cds-foreground-f1itepcl cds-transition-ty35lnf cds-start-s1q2d0t0">
                                                                                                 [[ $formatter.format(ethRate) ]]
                                                                                             </p>
-                                                                                            <span class="cds-typographyResets-t119oo5c cds-label2-l4ubknn cds-transition-ty35lnf cds-start-s1q2d0t0" :class="ethChange >= 0 ? 'cds-positive-p1jgmvu0' : 'cds-negative-ndtwd8g'">[[ ethChange.toFixed(2) ]]%</span>
+                                                                                            <span class="cds-typographyResets-t119oo5c cds-label2-l4ubknn cds-transition-ty35lnf cds-start-s1q2d0t0" :class="ethChange > 0 ? 'cds-positive-p1jgmvu0' : 'cds-negative-ndtwd8g'">[[ ethChange.toFixed(2) ]]%</span>
                                                                                         </div>
                                                                                     </td>
                                                                                     <td class="styles__Column-sc-4x2924-1 createTableColumn__StyledBaseAssetTableColumn-sc-1hrmcc-0 cRaFLH">
@@ -401,7 +401,7 @@
                                                                                                class="cds-typographyResets-t119oo5c cds-body-bwhmx62 cds-foreground-f1itepcl cds-transition-ty35lnf cds-start-s1q2d0t0">
                                                                                                 [[ $formatter.format(daiRate) ]]
                                                                                             </p>
-                                                                                            <span class="cds-typographyResets-t119oo5c cds-label2-l4ubknn cds-transition-ty35lnf cds-start-s1q2d0t0" :class="ethChange >= 0 ? 'cds-positive-p1jgmvu0' : 'cds-negative-ndtwd8g'">[[ daiChange.toFixed(2) ]]%</span>
+                                                                                            <span class="cds-typographyResets-t119oo5c cds-label2-l4ubknn cds-transition-ty35lnf cds-start-s1q2d0t0" :class="ethChange > 0 ? 'cds-positive-p1jgmvu0' : 'cds-negative-ndtwd8g'">[[ (daiChange>0 ? "+" : "") + daiChange.toFixed(2) ]]%</span>
                                                                                         </div>
                                                                                     </td>
                                                                                     <td class="styles__Column-sc-4x2924-1 createTableColumn__StyledBaseAssetTableColumn-sc-1hrmcc-0 cRaFLH">

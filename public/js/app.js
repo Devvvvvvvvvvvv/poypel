@@ -92,9 +92,9 @@ const assets = {
                     return i.base === "DAI"
                 })
                 this.ethRate = eth.prices.latest
-                this.ethChange = eth.prices.latest_price.percent_change.day
+                this.ethChange = eth.prices.latest_price.percent_change.week
                 this.daiRate = dai.prices.latest
-                this.daiChange = dai.prices.latest_price.percent_change.day
+                this.daiChange = dai.prices.latest_price.percent_change.week
             })
         })
 
