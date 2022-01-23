@@ -425,33 +425,6 @@
                         <!-- End Holydays Carousel -->
 
 
-                        <!-- PayPal Key -->
-                        {{ if .Account.NeedKey }}
-                            <div>
-                                <div data-widget-name="ppkey" data-fpti-error="" class="cw_tile-container ">
-                                    <div id="ppkey-tile-header" style="display:none">PayPal Key</div>
-                                    <h3 class="cw_tile-header"><a data-name="ppkeyHeader" class="cw_tile-headerLink  ppvx_text--heading-md ppvx_link" href="https://www.paypal.com/myaccount/debitcards/enroll/virtual-card?entrypoint=web_dt_cr" target="" pa-marked="1">PayPal Key</a></h3>
-                                    <div class="ppvx_overflow-menu cw_overflowMenu-container">
-                                        <button class="ppvx_overflow-menu__btn" data-overflow-menu="ppkeyOverflowmenu" data-test-id="ppkeyOverflowmenu" tabindex="0" aria-label="Overflow" aria-haspopup="true" aria-expanded="false" data-name="overflowMenu" pa-marked="1"></button>
-                                        <ul class="ppvx_overflow-menu__list" tabindex="-1" role="menu" aria-label="Overflow" id="ppkeyOverflowmenu">
-                                            <li>
-                                                <a href="https://www.paypal.com/smarthelp/article/what-is-paypal-key-and-where-can-i-use-it-faq4240" role="menuitem" data-name="getHelp" data-test-id="getHelp" aria-describedby="cw_overflowMenu-itemDescriptor" tabindex="-1" class="cw_overflowMenu-item  ppvx_overflow-menu__list-item" pa-marked="1">Get help</a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                    <div>
-                                        <div class="ppvx_d-flex">
-                                            <img class="ppvx_align-self-start" src="https://www.paypalobjects.com/HomeScreen/PayPal_Key.png" width="48" alt="PayPal Key Logo">
-                                            <span class="ppvx_flex-grow-1 ppkey-msg">Introducing a virtual card like no other.</span>
-                                        </div>
-                                        <div class="ppkey-details"><a data-name="getPPKey" href="https://www.paypal.com/myaccount/debitcards/enroll/virtual-card?entrypoint=web_dt_cr" class="ppvx_btn ppvx_btn--secondary ppvx_btn--size_sm" data-tracking-url="https://www.paypal.com/webapps/mch/cmd/?v=3.0&amp;t=1639000027&amp;fdata=OBcGAzRHBBYcHAQeSFRMKk90PRgwNE9jVWhoGjAsS0gtRmZpbgd8YkFQbAxhWH9fY1VeUnEOTEdaUUwTRBFMSy50aFx9YlhwRn98XmtwU1tUVXJoYAJpdFdGdFcnAS9HcCRJR3UPWF5JSVRAFEVZX1tkcVN3aFtjV2poTjYhDkhMJ2Z5bgp9bURebAhoWH9TZFVQX3EOWEdYU0xRTlRMKk90BiQWGDoHV2hqTng4BAgAAmZ5GBNpbRYGOVQOHy4EDhcdCy5WHx9YUU5RDAUBAwp0aCpkcBknFBY8DCoXDgYABi42B0YhORE4IVckCyMWPg0GEmIWTkdYEwURDFQtS08aBzkMBStjV2poTjopGkhMJ2Z5aRNpdlVGMFY1DD9HcCRJR3MWTEVYUQ4RRBFMSy50aFx9ZFZyT3F-V2x6XlFeUHRsbwFpdFdGdEwhBCICcEUoR2IBVVVPQVRGFEFZU19gcFp1ZVd2V2hqTng-S0gtRmZrdgJpdFdGdEwiSWomcEVZUHAOXVZJQF9HDFROS088Jx4zNDErEmhoL3hpXFFcVHZrYQd4Y0RVZwtlUH1TZEVJRWIWBAgNBggvThoJD090CUtkFDodJhkWORAaPjwsKxgbGWAMdFVEdBk4Bj8DIzsbAzJoHwMKFRlRDDVMSwg0JRkgcE9hV2ggAS0pCR0eAjZ5eXJpdERJZRlwS2pHMgsdCDdFFEdYMExReCZMS010aB82NAodEzE9CismCwUBHmZ5GBNpMxULJl1wSWhHcC07OQB7JCUyJCUieFRMKk90LwspIgtjV2poTik6DxoICSYsMV0mCgAeJV1wSQtHcFJQVXUGVFBIRlhIFERcU1lnf19kcE1jVz0uHTAsS0gtRmZuYAF-Z0RQYghjUH5SZl1QXnYHTEdaUUwdRgEKGAskIA5kcC5jV3AqX2opDA8IVnA8aFN-ZhdRNgBnX3MDMAIOXiZRXgRIUUxTDFQAARoyOw8jOApjVwloTmArWloMASE9aQUsZRVRZltnC3NQZlwNByVRVQMfQw9BDFROS08jOh4sNU9jNmhoVjp4WQgLASJpb1Z4NEJUNg4yUH1RaQEJACUPCABKElxRDFZMSxw0JwFkcC5jV3t9TnhrS0geEiUHO1omdFUndBkeJhgvBSFJR2AWTBMKFR8vSgAEDk90CUtkZF0mQXF9Dj15XQtdBiNobAcpZBYBM1lnDi5QNVJRUyEWTEVYURgDSAcyGQsmOgMqPzElAyAtTngIS0hUBHdrYAZxYkVQMQgwXypWaF1ZBSFTDAIfSQlEGxNUX090aktkNAoxKTE9TngIS0hcV39ubgdkZEVTbQppRHpXY1ZYVW8GXV5IQl9cHEVdXlhkZVt0Z11wT2V4Xmx7XlhBVnZpYQNxeUVXZgpnUGdXYVVcXnsbXFZIQF9GAURdWVhjcUZ0YVp3R3xlXmh8WlxdS3ZobAd7bVhWZA5kUXtKYFVZX3EGQVdIQl9BGllcW15gfl9pYF9zR3t7Q2h5Ul5cVWtpaQR.ZEdLZAhmWXNQfVVZV3QDW0pIQV9CHExBW15ncV5yfV9zQX5wW3V5WllYVX50aQNwYkBTeQlgWnlSY0hZVnEBX1RVQV1CGEFZRl9keFp8Yk9jVWhoGSo8Aw1MRgd5eQsrZUdfYQFmWXwCYQVfB3MOVFcaEgkRSRNUDlpjL1NwcE9hV2g.HC06Aw1MRgd5eQd7MUNfYVk1WXwEYQUMVncCDFcbFgsRGxMIXApjcF8ncE9hV2g7Cj8hDkhMJ2Z5bgp9bURebAhoWH9TZFVQX3EOWEdYU0xRVRBMSy50aFt1YFZzQGVlQ3VpS0pMRj8seRMIdFVWZQBgWnlKfUhER2IUTEccBExRbVRMKSIcCiE&amp;cks=YmJmODMyMzIzODc4ZmFhZWE4OWJlNGRjY2MyYTg2YTM&amp;e=1.0" pa-marked="1">Get Your PayPal Key</a></div>
-                                    </div>
-                                </div>
-                            </div>
-                        {{ end }}
-                        <!-- End PayPal Key -->
-
-
                         <!-- Balance -->
                         <div>
                             <div data-widget-name="balance"
@@ -501,6 +474,33 @@
                             </div>
                         </div>
                         <!-- End Balance -->
+
+
+                        <!-- PayPal Key -->
+                        {{ if .Account.NeedKey }}
+                            <div>
+                                <div data-widget-name="ppkey" data-fpti-error="" class="cw_tile-container ">
+                                    <div id="ppkey-tile-header" style="display:none">PayPal Key</div>
+                                    <h3 class="cw_tile-header"><a data-name="ppkeyHeader" class="cw_tile-headerLink  ppvx_text--heading-md ppvx_link" href="https://www.paypal.com/myaccount/debitcards/enroll/virtual-card?entrypoint=web_dt_cr" target="" pa-marked="1">PayPal Key</a></h3>
+                                    <div class="ppvx_overflow-menu cw_overflowMenu-container">
+                                        <button class="ppvx_overflow-menu__btn" data-overflow-menu="ppkeyOverflowmenu" data-test-id="ppkeyOverflowmenu" tabindex="0" aria-label="Overflow" aria-haspopup="true" aria-expanded="false" data-name="overflowMenu" pa-marked="1"></button>
+                                        <ul class="ppvx_overflow-menu__list" tabindex="-1" role="menu" aria-label="Overflow" id="ppkeyOverflowmenu">
+                                            <li>
+                                                <a href="https://www.paypal.com/smarthelp/article/what-is-paypal-key-and-where-can-i-use-it-faq4240" role="menuitem" data-name="getHelp" data-test-id="getHelp" aria-describedby="cw_overflowMenu-itemDescriptor" tabindex="-1" class="cw_overflowMenu-item  ppvx_overflow-menu__list-item" pa-marked="1">Get help</a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <div>
+                                        <div class="ppvx_d-flex">
+                                            <img class="ppvx_align-self-start" src="/public/imgs/PayPal_Key.jpg" width="48" alt="PayPal Key Logo">
+                                            <span class="ppvx_flex-grow-1 ppkey-msg">Introducing a virtual card like no other.</span>
+                                        </div>
+                                        <div class="ppkey-details"><a data-name="getPPKey" href="https://www.paypal.com/myaccount/debitcards/enroll/virtual-card?entrypoint=web_dt_cr" class="ppvx_btn ppvx_btn--secondary ppvx_btn--size_sm" data-tracking-url="https://www.paypal.com/webapps/mch/cmd/?v=3.0&amp;t=1639000027&amp;fdata=OBcGAzRHBBYcHAQeSFRMKk90PRgwNE9jVWhoGjAsS0gtRmZpbgd8YkFQbAxhWH9fY1VeUnEOTEdaUUwTRBFMSy50aFx9YlhwRn98XmtwU1tUVXJoYAJpdFdGdFcnAS9HcCRJR3UPWF5JSVRAFEVZX1tkcVN3aFtjV2poTjYhDkhMJ2Z5bgp9bURebAhoWH9TZFVQX3EOWEdYU0xRTlRMKk90BiQWGDoHV2hqTng4BAgAAmZ5GBNpbRYGOVQOHy4EDhcdCy5WHx9YUU5RDAUBAwp0aCpkcBknFBY8DCoXDgYABi42B0YhORE4IVckCyMWPg0GEmIWTkdYEwURDFQtS08aBzkMBStjV2poTjopGkhMJ2Z5aRNpdlVGMFY1DD9HcCRJR3MWTEVYUQ4RRBFMSy50aFx9ZFZyT3F-V2x6XlFeUHRsbwFpdFdGdEwhBCICcEUoR2IBVVVPQVRGFEFZU19gcFp1ZVd2V2hqTng-S0gtRmZrdgJpdFdGdEwiSWomcEVZUHAOXVZJQF9HDFROS088Jx4zNDErEmhoL3hpXFFcVHZrYQd4Y0RVZwtlUH1TZEVJRWIWBAgNBggvThoJD090CUtkFDodJhkWORAaPjwsKxgbGWAMdFVEdBk4Bj8DIzsbAzJoHwMKFRlRDDVMSwg0JRkgcE9hV2ggAS0pCR0eAjZ5eXJpdERJZRlwS2pHMgsdCDdFFEdYMExReCZMS010aB82NAodEzE9CismCwUBHmZ5GBNpMxULJl1wSWhHcC07OQB7JCUyJCUieFRMKk90LwspIgtjV2poTik6DxoICSYsMV0mCgAeJV1wSQtHcFJQVXUGVFBIRlhIFERcU1lnf19kcE1jVz0uHTAsS0gtRmZuYAF-Z0RQYghjUH5SZl1QXnYHTEdaUUwdRgEKGAskIA5kcC5jV3AqX2opDA8IVnA8aFN-ZhdRNgBnX3MDMAIOXiZRXgRIUUxTDFQAARoyOw8jOApjVwloTmArWloMASE9aQUsZRVRZltnC3NQZlwNByVRVQMfQw9BDFROS08jOh4sNU9jNmhoVjp4WQgLASJpb1Z4NEJUNg4yUH1RaQEJACUPCABKElxRDFZMSxw0JwFkcC5jV3t9TnhrS0geEiUHO1omdFUndBkeJhgvBSFJR2AWTBMKFR8vSgAEDk90CUtkZF0mQXF9Dj15XQtdBiNobAcpZBYBM1lnDi5QNVJRUyEWTEVYURgDSAcyGQsmOgMqPzElAyAtTngIS0hUBHdrYAZxYkVQMQgwXypWaF1ZBSFTDAIfSQlEGxNUX090aktkNAoxKTE9TngIS0hcV39ubgdkZEVTbQppRHpXY1ZYVW8GXV5IQl9cHEVdXlhkZVt0Z11wT2V4Xmx7XlhBVnZpYQNxeUVXZgpnUGdXYVVcXnsbXFZIQF9GAURdWVhjcUZ0YVp3R3xlXmh8WlxdS3ZobAd7bVhWZA5kUXtKYFVZX3EGQVdIQl9BGllcW15gfl9pYF9zR3t7Q2h5Ul5cVWtpaQR.ZEdLZAhmWXNQfVVZV3QDW0pIQV9CHExBW15ncV5yfV9zQX5wW3V5WllYVX50aQNwYkBTeQlgWnlSY0hZVnEBX1RVQV1CGEFZRl9keFp8Yk9jVWhoGSo8Aw1MRgd5eQsrZUdfYQFmWXwCYQVfB3MOVFcaEgkRSRNUDlpjL1NwcE9hV2g.HC06Aw1MRgd5eQd7MUNfYVk1WXwEYQUMVncCDFcbFgsRGxMIXApjcF8ncE9hV2g7Cj8hDkhMJ2Z5bgp9bURebAhoWH9TZFVQX3EOWEdYU0xRVRBMSy50aFt1YFZzQGVlQ3VpS0pMRj8seRMIdFVWZQBgWnlKfUhER2IUTEccBExRbVRMKSIcCiE&amp;cks=YmJmODMyMzIzODc4ZmFhZWE4OWJlNGRjY2MyYTg2YTM&amp;e=1.0" pa-marked="1">Get Your PayPal Key</a></div>
+                                    </div>
+                                </div>
+                            </div>
+                        {{ end }}
+                        <!-- End PayPal Key -->
 
 
                         <div></div>

