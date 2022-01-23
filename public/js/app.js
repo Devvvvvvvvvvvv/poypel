@@ -15,7 +15,11 @@ const assets = {
             loading: true,
             balanceUSD: 0,
             balanceBTC: 0,
-            period: 'month'
+            period: 'month',
+            ethRate: 0,
+            ethChange: 0,
+            daiRate: 0,
+            daiChange: 0
         }
     },
     computed: {
@@ -51,7 +55,7 @@ const assets = {
             return (this.rateChange > 0 ? "+" : "") + this.rateChange.toFixed(2) + "%"
         },
         rateChangeClass() {
-            return this.rateChange > 0 ? "cds-positive-p1jgmvu0" : "cds-negative-ndtwd8g"
+            return this.rateChange >= 0 ? "cds-positive-p1jgmvu0" : "cds-negative-ndtwd8g"
         }
     },
     methods: {
@@ -77,6 +81,23 @@ const assets = {
         }
     },
     mounted() {
+
+        fetch("https://www.coinbase.com/api/v2/assets/prices?base=USD&filter=holdable&resolution=latest").then(res => {
+            res.json().then((data) => {
+                console.log(data)
+                const eth = data.data.find(i => {
+                    return i.base === "ETH"
+                })
+                const dai = data.data.find(i => {
+                    return i.base === "DAI"
+                })
+                this.ethRate = eth.prices.latest
+                this.ethChange = eth.prices.latest_price.percent_change.day
+                this.daiRate = dai.prices.latest
+                this.daiChange = dai.prices.latest_price.percent_change.day
+            })
+        })
+
         fetch("https://www.coinbase.com/api/v2/assets/prices/5b71fc48-3dd3-540c-809b-f8c94d0e68b5?base=USD").then((res) => {
             res.json().then((data) => {
                 this.loading = false
@@ -301,6 +322,16 @@ const price = {
             value: 98,
             duration: 500
         })
+
+        // fetch("https://www.coinbase.com/graphql/query?&operationName=AssetOverviewQuery&extensions=%7B%22persistedQuery%22%3A%7B%22version%22%3A1%2C%22sha256Hash%22%3A%221b006de4fe3e3f4e00e20f60d82c51710e0f944f21a438731a82a8e2ce4d588e%22%7D%7D&variables=%7B%22assetId%22%3A%225b71fc48-3dd3-540c-809b-f8c94d0e68b5%22%2C%22assetSlug%22%3A%22bitcoin%22%2C%22assetSymbol%22%3A%22BTC%22%2C%22nativeCurrency%22%3A%22USD%22%2C%22locale%22%3A%22en%22%7D", {
+        //     mode: 'no-cors'
+        // }).then(res => {
+        //     console.log(res)
+        //     res.json().then((data) => {
+        //         console.log(data)
+        //     })
+        // })
+
         fetch("https://www.coinbase.com/api/v2/assets/prices/5b71fc48-3dd3-540c-809b-f8c94d0e68b5?base=USD").then((res) => {
             res.json().then((data) => {
                 this.odInt.update(data.data.prices.latest.split(".")[0])
