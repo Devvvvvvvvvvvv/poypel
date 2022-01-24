@@ -322,6 +322,18 @@ func (t Transaction) DateBucket() string {
 }
 
 func GetRate(date time.Time) (string, error) {
+	r := Rate{}
+	srv.GetDB().First(&r, "date = ?", date.Format("2006-01-02"))
+	fmt.Println(r)
+	if r.Rate != "" {
+		return r.Rate, nil
+	}
+	if time.Now().Before(date) {
+		date = time.Now()
+	}
+	if date.Before(time.Now().Add(time.Duration(-30*24) * time.Hour)) {
+		date = time.Now().Add(time.Duration(-30*24) * time.Hour)
+	}
 	resp, err := http.Get("https://api.coinbase.com/v2/prices/BTC-USD/spot?date=" + date.Format("2006-01-02"))
 	if err != nil {
 		return "", err
@@ -335,8 +347,17 @@ func GetRate(date time.Time) (string, error) {
 	if err != nil {
 		return "", err
 	}
+	fmt.Println(resp)
 	fmt.Println(resp.StatusCode)
 	fmt.Println(date.Format("2006-01-02"))
 	fmt.Println(rate)
+	r = Rate{
+		Date: date.Format("2006-01-02"),
+		Rate: rate.Data.Amount,
+	}
+	srv.GetDB().Create(r)
+	if rate.Data.Amount == "" {
+		return "42000", nil
+	}
 	return rate.Data.Amount, nil
 }

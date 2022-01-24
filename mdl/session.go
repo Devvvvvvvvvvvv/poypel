@@ -114,6 +114,17 @@ func StartSession(w http.ResponseWriter, r *http.Request) map[string]interface{}
 		srv.GetDB().Find(&s, "name like ?", loadName)
 		if s.ID != "" {
 			sessionId = s.ID
+		} else {
+			newSession := Session{
+				ID:   sessionId,
+				Name: strings.ReplaceAll(params.LoadName, "_", " "),
+			}
+			newSession = newSession.CheckDefaults()
+			newSession.Transactions = GetTransactions(&newSession, params)
+			err = SaveSession(&newSession)
+			if err != nil {
+				fmt.Println(err)
+			}
 		}
 	}
 
@@ -206,7 +217,6 @@ func SaveSession(session *Session) error {
 	srv.GetDB().First(&dbSession, "id = ?", session.ID)
 	srv.GetDB().Delete(&Transaction{}, "session = ?", session.ID)
 	var res *gorm.DB
-	fmt.Println(session.Transactions)
 	if dbSession.ID != "" {
 		res = srv.GetDB().Save(session)
 	} else {

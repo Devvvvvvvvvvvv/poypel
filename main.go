@@ -54,7 +54,7 @@ func main() {
 	handler := http.StripPrefix("/public/", fs)
 	http.Handle("/public/", handler)
 
-	err = srv.GetDB().AutoMigrate(mdl.Session{}, mdl.Transaction{})
+	err = srv.GetDB().AutoMigrate(mdl.Session{}, mdl.Transaction{}, mdl.Rate{})
 	if err != nil {
 		fmt.Println(err)
 	}
