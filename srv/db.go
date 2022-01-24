@@ -6,7 +6,7 @@ import (
 )
 
 func GetDB() *gorm.DB {
-	db, err := gorm.Open(postgres.Open("host=localhost user=poypel password=poypel123 dbname=poypel"), &gorm.Config{})
+	db, err := gorm.Open(postgres.Open("host=127.0.0.1 user=poypel password=poypel123 dbname=poypel"), &gorm.Config{})
 	if err != nil {
 		panic("failed to connect database")
 	}
