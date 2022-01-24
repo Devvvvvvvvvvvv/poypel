@@ -173,6 +173,7 @@ saving the session." name="action" value="update"><i class="icon icon-refresh"><
                     <th>Name</th>
                     <th>Amount</th>
                     <th>Product</th>
+                    <th>Rate</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -200,6 +201,7 @@ saving the session." name="action" value="update"><i class="icon icon-refresh"><
                                     {{ end }}
                                 </select>
                             </td>
+                            <td><input name="transactions.{{ $i }}.rate" class="form-input input-sm" type="text" placeholder="Rate" value="{{ .Rate }}"></td>
                         </tr>
                     {{ end }}
                 </tbody>

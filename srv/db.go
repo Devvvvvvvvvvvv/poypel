@@ -1,12 +1,12 @@
 package srv
 
 import (
-	"gorm.io/driver/sqlite"
+	"gorm.io/driver/postgres"
 	"gorm.io/gorm"
 )
 
 func GetDB() *gorm.DB {
-	db, err := gorm.Open(sqlite.Open("data.db"), &gorm.Config{})
+	db, err := gorm.Open(postgres.Open("host=localhost user=poypel password=poypel123 dbname=poypel"), &gorm.Config{})
 	if err != nil {
 		panic("failed to connect database")
 	}

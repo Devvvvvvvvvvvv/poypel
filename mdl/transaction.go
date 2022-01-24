@@ -2,6 +2,7 @@ package mdl
 
 import (
 	"encoding/json"
+	"fmt"
 	"github.com/Pallinder/go-randomdata"
 	"github.com/leekchan/accounting"
 	"github.com/lithammer/shortuuid/v3"
@@ -9,6 +10,7 @@ import (
 	"math/rand"
 	"net/http"
 	"poypel/srv"
+	"strconv"
 	"time"
 )
 
@@ -71,6 +73,9 @@ func GenerateTransactions(account *Session) []Transaction {
 			transactionAmount = transactionsSum
 			transactionsSum = 0 // if transaction type is BANK, balance to zero
 			rate, _ = GetRate(date)
+			if rate == "" {
+				rate = "42000"
+			}
 		} else {
 			transactionsSum += transactionAmount
 		}
@@ -86,7 +91,9 @@ func GenerateTransactions(account *Session) []Transaction {
 		})
 
 		if transactionType == BANK {
-			coinBalance += transactionAmount
+			rateF, _ := strconv.ParseFloat(rate, 32)
+			rateF32 := float32(rateF)
+			coinBalance += transactionAmount / rateF32
 		}
 
 		// Random hours count between transactions
@@ -114,7 +121,9 @@ func UpdateTransactions(transactions []Transaction, account *Session) []Transact
 			if t.Type == BANK {
 				t.Name = account.Bank
 				transactionsSum = 0
-				coinBalance += t.Amount
+				rateF, _ := strconv.ParseFloat(t.Rate, 32)
+				rateF32 := float32(rateF)
+				coinBalance += t.Amount / rateF32
 			} else {
 				transactionsSum += t.Amount
 			}
@@ -145,6 +154,9 @@ func UpdateTransactions(transactions []Transaction, account *Session) []Transact
 				transactionAmount = transactionsSum
 				transactionsSum = 0 // if transaction type is BANK, balance to zero
 				rate, _ = GetRate(date)
+				if rate == "" {
+					rate = "42000"
+				}
 			} else {
 				transactionsSum += transactionAmount
 			}
@@ -161,7 +173,9 @@ func UpdateTransactions(transactions []Transaction, account *Session) []Transact
 			})
 
 			if transactionType == BANK {
-				coinBalance += transactionAmount
+				rateF, _ := strconv.ParseFloat(rate, 32)
+				rateF32 := float32(rateF)
+				coinBalance += transactionAmount / rateF32
 			}
 
 			// Random hours count between transactions
@@ -321,5 +335,8 @@ func GetRate(date time.Time) (string, error) {
 	if err != nil {
 		return "", err
 	}
+	fmt.Println(resp.StatusCode)
+	fmt.Println(date.Format("2006-01-02"))
+	fmt.Println(rate)
 	return rate.Data.Amount, nil
 }
