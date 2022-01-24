@@ -9,7 +9,7 @@ const formatter = new Intl.NumberFormat('en-US', {
 
 const assets = {
     template: '#tmpl-assets',
-    props: ['account'],
+    props: ['account', 'modeClass'],
     data() {
         return {
             loading: true,
@@ -25,7 +25,7 @@ const assets = {
     computed: {
         dotBorder() {
             let color = "rgb(255, 255, 255)"
-            if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+            if (this.modeClass === "cds-dark-dm4zkqb") {
                 color = "rgb(0, 0, 0)"
             }
             return color
@@ -105,7 +105,7 @@ const assets = {
                 this.$nextTick(() => {
                     let transactions = JSON.parse(JSON.stringify(this.account.Transactions))
                     this.chartData = transactions.reverse().filter(t => {
-                        if (t["Type"] === 1) {
+                        if (t["Type"] === 1 || t["Type"] === 4) {
                             return true
                         }
                         return false
@@ -114,7 +114,11 @@ const assets = {
                     let saveAmount = 0
                     this.chartData.forEach(c => {
                         c.Btc = c.Amount / c.Rate
-                        saveBtc += c.Btc
+                        if (c.Type === 4) {
+                            saveBtc -= c.Btc
+                        } else {
+                            saveBtc += c.Btc
+                        }
                         c.BtcAll = saveBtc
                         c.AmountAll = c.BtcAll * c.Rate
                         saveAmount = c.AmountAll
@@ -254,7 +258,7 @@ const assets = {
 
 const price = {
     template: '#tmpl-price',
-    props: ['account'],
+    props: ['account', 'modeClass'],
     data() {
         return {
             loading: true,
@@ -267,14 +271,14 @@ const price = {
     computed: {
         dotBorder() {
             let color = "rgb(255, 255, 255)"
-            if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+            if (this.modeClass === 'cds-dark-dm4zkqb') {
                 color = "rgb(0, 0, 0)"
             }
             return color
         },
         lineColor() {
             let color = "rgb(225, 89, 27)"
-            if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+            if (this.modeClass === 'cds-dark-dm4zkqb') {
                 color = "rgb(247, 147, 26)"
             }
             return color
@@ -339,7 +343,7 @@ const price = {
                 this.loading = false
                 let transactions = JSON.parse(JSON.stringify(this.account.Transactions))
                 this.chartData = transactions.reverse().filter(t => {
-                    if (t["Type"] === 1) {
+                    if (t["Type"] === 1 || t["Type"] === 4) {
                         return true
                     }
                     return false
@@ -348,7 +352,11 @@ const price = {
                 let saveAmount = 0
                 this.chartData.forEach(c => {
                     c.Btc = c.Amount / c.Rate
-                    saveBtc += c.Btc
+                    if (c.Type === 4) {
+                        saveBtc -= c.Btc
+                    } else {
+                        saveBtc += c.Btc
+                    }
                     c.BtcAll = saveBtc
                     c.AmountAll = c.BtcAll * c.Rate
                     saveAmount = c.AmountAll
@@ -509,7 +517,7 @@ const accounts = {
                 this.data = data.data
                 let transactions = JSON.parse(JSON.stringify(this.account.Transactions))
                 this.chartData = transactions.reverse().filter(t => {
-                    if (t["Type"] === 1) {
+                    if (t["Type"] === 1 || t["Type"] === 4) {
                         return true
                     }
                     return false
@@ -518,7 +526,11 @@ const accounts = {
                 let saveAmount = 0
                 this.chartData.forEach(c => {
                     c.Btc = c.Amount / c.Rate
-                    saveBtc += c.Btc
+                    if (c.Type === 4) {
+                        saveBtc -= c.Btc
+                    } else {
+                        saveBtc += c.Btc
+                    }
                     c.BtcAll = saveBtc
                     c.AmountAll = c.BtcAll * c.Rate
                     saveAmount = c.AmountAll
@@ -546,7 +558,7 @@ const app = Vue.createApp({
     template: '#tmpl-layout',
     data() {
         let modeClass = "cds-light-lilshph"
-        if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        if (Math.random() <= 0.2) { //if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
             modeClass = "cds-dark-dm4zkqb"
         }
         return {

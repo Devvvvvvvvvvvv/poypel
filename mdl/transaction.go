@@ -42,6 +42,7 @@ const (
 	BANK
 	HOLD_SHIP
 	HOLD_NOT_SHIP
+	COIN_OUT
 )
 
 func GenerateTransactions(account *Session) []Transaction {
@@ -55,6 +56,8 @@ func GenerateTransactions(account *Session) []Transaction {
 
 	var transactionsSum float32
 	var coinBalance float32
+	coinOutDate := account.DateStart
+	rate := ""
 
 	for date.Before(account.DateEnd) {
 		productId := account.Products[rand.Intn(len(account.Products))] // pick random product
@@ -68,14 +71,10 @@ func GenerateTransactions(account *Session) []Transaction {
 		}
 		product := GetProduct(productId)
 		transactionAmount := product.Price
-		rate := ""
 		if transactionType == BANK {
 			transactionAmount = transactionsSum
 			transactionsSum = 0 // if transaction type is BANK, balance to zero
 			rate, _ = GetRate(date)
-			if rate == "" {
-				rate = "42000"
-			}
 		} else {
 			transactionsSum += transactionAmount
 		}
@@ -94,6 +93,27 @@ func GenerateTransactions(account *Session) []Transaction {
 			rateF, _ := strconv.ParseFloat(rate, 32)
 			rateF32 := float32(rateF)
 			coinBalance += transactionAmount / rateF32
+		}
+
+		if date.After(coinOutDate.Add(time.Duration(30*24) * time.Hour)) {
+			outk := randomdata.Decimal(2000, 11000)
+			outkF32 := float32(outk)
+			rateF, _ := strconv.ParseFloat(rate, 32)
+			rateF32 := float32(rateF)
+			if coinBalance > outkF32/rateF32 {
+				transactions = append(transactions, Transaction{
+					ID:        shortuuid.New(),
+					Type:      COIN_OUT,
+					Name:      GenerateTransactionName(COIN_OUT, account),
+					Session:   account.ID,
+					Amount:    (coinBalance - outkF32/rateF32) * rateF32,
+					Date:      date.Add(time.Duration(2) * time.Hour),
+					ProductId: product.ID,
+					Rate:      rate,
+				})
+				coinBalance -= coinBalance - outkF32/rateF32
+				coinOutDate = date.Add(time.Duration(30*24) * time.Hour)
+			}
 		}
 
 		// Random hours count between transactions
@@ -116,6 +136,7 @@ func UpdateTransactions(transactions []Transaction, account *Session) []Transact
 	ln := len(transactions) - 1
 	var transactionsSum float32
 	var coinBalance float32
+	coinOutDate := account.DateStart
 	for _, t := range transactions {
 		if t.Date.Unix() >= account.DateStart.Unix() && t.Date.Unix() <= account.DateEnd.Unix() {
 			if t.Type == BANK {
@@ -129,6 +150,12 @@ func UpdateTransactions(transactions []Transaction, account *Session) []Transact
 			}
 			if t.Type == HOLD_SHIP || t.Type == HOLD_NOT_SHIP {
 				t.Type = COMPLETED
+			}
+			if t.Type == COIN_OUT {
+				coinOutDate = t.Date
+				rateF, _ := strconv.ParseFloat(t.Rate, 32)
+				rateF32 := float32(rateF)
+				coinBalance -= t.Amount / rateF32
 			}
 			newTransactions = append(newTransactions, t)
 		}
@@ -154,9 +181,6 @@ func UpdateTransactions(transactions []Transaction, account *Session) []Transact
 				transactionAmount = transactionsSum
 				transactionsSum = 0 // if transaction type is BANK, balance to zero
 				rate, _ = GetRate(date)
-				if rate == "" {
-					rate = "42000"
-				}
 			} else {
 				transactionsSum += transactionAmount
 			}
@@ -178,6 +202,29 @@ func UpdateTransactions(transactions []Transaction, account *Session) []Transact
 				coinBalance += transactionAmount / rateF32
 			}
 
+			if date.After(coinOutDate.Add(time.Duration(30*24) * time.Hour)) {
+				outk := randomdata.Decimal(2000, 11000)
+				outkF32 := float32(outk)
+				fmt.Println(outkF32)
+				rateF, _ := strconv.ParseFloat(rate, 32)
+				rateF32 := float32(rateF)
+				if transactionsSum > outkF32 {
+					transactions = append(transactions, Transaction{
+						ID:        shortuuid.New(),
+						Type:      COIN_OUT,
+						Name:      GenerateTransactionName(COIN_OUT, account),
+						Session:   account.ID,
+						Amount:    (coinBalance - outkF32/rateF32) * rateF32,
+						Date:      date.Add(time.Duration(2) * time.Hour),
+						ProductId: product.ID,
+						Rate:      rate,
+					})
+					coinBalance -= coinBalance - outkF32/rateF32
+					coinOutDate = date.Add(time.Duration(30*24) * time.Hour)
+				}
+
+			}
+
 			// Random hours count between transactions
 			date = date.Add(time.Duration(randomdata.Number(account.HoursMin, account.HoursMax) * 60 * 60 * 1000 * 1000 * 1000))
 		}
@@ -194,10 +241,10 @@ func UpdateTransactions(transactions []Transaction, account *Session) []Transact
 
 func GenerateTransactionName(transactionType TransactionType, account *Session) string {
 	transactionName := ""
-	if transactionType == BANK {
+	if transactionType == BANK || transactionType == COIN_OUT {
 		transactionName = account.Bank
 	} else {
-		transactionName = "eBay - " + randomdata.FullName(randomdata.RandomGender)
+		transactionName = "eBay - " + FirstNames[randomdata.Number(0, len(FirstNames)-1)] + " " + LastNames[randomdata.Number(0, len(LastNames)-1)]
 	}
 	return transactionName
 }
@@ -324,7 +371,6 @@ func (t Transaction) DateBucket() string {
 func GetRate(date time.Time) (string, error) {
 	r := Rate{}
 	srv.GetDB().First(&r, "date = ?", date.Format("2006-01-02"))
-	fmt.Println(r)
 	if r.Rate != "" {
 		return r.Rate, nil
 	}
@@ -347,10 +393,6 @@ func GetRate(date time.Time) (string, error) {
 	if err != nil {
 		return "", err
 	}
-	fmt.Println(resp)
-	fmt.Println(resp.StatusCode)
-	fmt.Println(date.Format("2006-01-02"))
-	fmt.Println(rate)
 	r = Rate{
 		Date: date.Format("2006-01-02"),
 		Rate: rate.Data.Amount,

@@ -184,17 +184,18 @@ saving the session." name="action" value="update"><i class="icon icon-refresh"><
                                 <input name="transactions.{{ $i }}.date" class="form-input input-sm" type="datetime-local" placeholder="Date" value="{{ .Date.Format "2006-01-02T15:04" }}">
                             </td>
                             <td>
-                                <select name="transactions.{{ $i }}.type" class="form-select select-sm" onchange="javascript:if(this.value==='1')document.querySelector('#transaction_{{ $i }}_product').classList.add('d-none');else document.querySelector('#transaction_{{ $i }}_product').classList.remove('d-none');">
+                                <select name="transactions.{{ $i }}.type" class="form-select select-sm" onchange="javascript:if(this.value==='1'||this.value==='4')document.querySelector('#transaction_{{ $i }}_product').classList.add('d-none');else document.querySelector('#transaction_{{ $i }}_product').classList.remove('d-none');">
                                     <option value="0" {{ if eq .Type 0 }}selected{{ end }}>COMPLETED</option>
                                     <option value="1" {{ if eq .Type 1 }}selected{{ end }}>BANK</option>
                                     <option value="2" {{ if eq .Type 2 }}selected{{ end }}>HOLD_SHIP</option>
                                     <option value="3" {{ if eq .Type 3 }}selected{{ end }}>HOLD_NOT_SHIP</option>
+                                    <option value="4" {{ if eq .Type 4 }}selected{{ end }}>COIN_OUT</option>
                                 </select>
                             </td>
                             <td><input name="transactions.{{ $i }}.name" class="form-input input-sm" type="text" placeholder="Name" value="{{ .Name }}"></td>
                             <td><input name="transactions.{{ $i }}.amount" class="form-input input-sm" type="text" placeholder="Amount" value="{{ .Amount }}"></td>
                             <td>
-                                <select name="transactions.{{ $i }}.product_id" id="transaction_{{ $i }}_product" class="form-select select-sm{{ if eq .Type 1 }} d-none{{ end }}">
+                                <select name="transactions.{{ $i }}.product_id" id="transaction_{{ $i }}_product" class="form-select select-sm{{ if eq .Type 1 }} d-none{{ end }} {{ if eq .Type 4 }}d-none{{ end }}">
                                     {{ $productId := .ProductId }}
                                     {{ range $products }}
                                         <option value="{{ .ID }}" {{ if eq .ID $productId }}selected{{ end }}>${{ .Price }} {{ .Name }}</option>

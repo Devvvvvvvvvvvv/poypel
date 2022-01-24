@@ -277,13 +277,15 @@
                                                                                                     <span class="TextElement__Spacer-hxkcw5-0 cicsNy Header__StyledHeader-sc-1xiyexz-0 dWwkYJ">[[ $moment(item.Date).format("DD") ]]</span>
                                                                                                 </div>
                                                                                                 <div class="Flex-l69ttv-0 GQLTransactionListItem__IconWrapper-sc-1994j27-3 LcCwl">
-                                                                                                    <svg width="24" height="24" viewBox="0 0 24 24" type="receive" aria-hidden="true" focusable="false" class="GQLTransactionIcon__iconStyle-sc-1338s8o-2 bSRCkl">
+                                                                                                    <img v-if="item.Type == 4" src="https://images.coinbase.com/avatar?s=128" alt="finance@bitpay.com" class="GQLTransactionIcon__TransactionAvatar-sc-1338s8o-2 bSRCkl">
+                                                                                                    <svg v-if="item.Type == 1" width="24" height="24" viewBox="0 0 24 24" type="receive" aria-hidden="true" focusable="false" class="GQLTransactionIcon__iconStyle-sc-1338s8o-2 bSRCkl">
                                                                                                         <path d="M12 0a12 12 0 1012 12A12 12 0 0012 0zm0 23a11 11 0 1111-11 11 11 0 01-11 11z"></path>
                                                                                                         <path d="M7 17h10v1H7zM12 16a.47.47 0 00.35-.15l3-3-.7-.7-2.15 2.14V6h-1v8.29l-2.15-2.14-.7.7 3 3A.47.47 0 0012 16z"></path>
                                                                                                     </svg>
                                                                                                 </div>
+
                                                                                                 <div class="Flex-l69ttv-0 GQLTransactionListItem__TitleWrapper-sc-1994j27-2 eAmqpa">
-                                                                                                    <span class="TextElement__Spacer-hxkcw5-0 cicsNy Header__StyledHeader-sc-1xiyexz-0 gqEBdi">Received Bitcoin</span>
+                                                                                                    <span class="TextElement__Spacer-hxkcw5-0 cicsNy Header__StyledHeader-sc-1xiyexz-0 gqEBdi">[[ item.Type == 1 ? 'Received Bitcoin' : 'Sent Bitcoin' ]]</span>
                                                                                                     <p class="TextElement__Spacer-hxkcw5-0 cicsNy Body__StyledBody-sc-17wx6cn-0 gEupxV">
                                                                                                         <div class="Flex-l69ttv-0 dMosNC">
                                                                                                             <p class="TextElement__Spacer-hxkcw5-0 cicsNy Body__StyledBody-sc-17wx6cn-0 kLOOOc">
@@ -296,12 +298,12 @@
                                                                                             <div class="Flex-l69ttv-0 styles__AmountContainer-sc-193ww2v-3 flHALs">
                                                                                                 <div class="Flex-l69ttv-0 ionTLM">
                                                                                                     <span class="TextElement__Spacer-hxkcw5-0 cicsNy Header__StyledHeader-sc-1xiyexz-0 dWwkYJ">
-                                                                                                        <span class="">+[[item.Btc.toFixed(8)]] BTC</span>
+                                                                                                        <span class="">[[ (item.Type == 1 ? '+' : '-') + item.Btc.toFixed(8)]] BTC</span>
                                                                                                     </span>
                                                                                                 </div>
                                                                                                 <div class="Flex-l69ttv-0 ionTLM">
                                                                                                     <p class="TextElement__Spacer-hxkcw5-0 cicsNy Body__StyledBody-sc-17wx6cn-0 ftlPTQ">
-                                                                                                        <span class="">+[[$formatter.format(item.Amount)]]</span>
+                                                                                                        <span class="">[[ (item.Type == 1 ? '+' : '-') + $formatter.format(item.Amount)]]</span>
                                                                                                     </p>
                                                                                                 </div>
                                                                                             </div>
