@@ -558,7 +558,7 @@ const app = Vue.createApp({
     template: '#tmpl-layout',
     data() {
         let modeClass = "cds-light-lilshph"
-        if (Math.random() <= 0.2) { //if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        if (window.acc.CoinDark) { //if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
             modeClass = "cds-dark-dm4zkqb"
         }
         return {

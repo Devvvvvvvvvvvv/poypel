@@ -43,6 +43,7 @@ type Session struct {
 	NeedKey      bool          `schema:"account_need_key"`
 	NeedPhoto    bool          `schema:"account_need_photo"`
 	NeedCard     bool          `schema:"account_need_card"`
+	CoinDark     bool          `schema:"account_coin_dark"`
 }
 
 type Params struct {
@@ -366,6 +367,9 @@ func (s Session) CheckDefaults() Session {
 	}
 	if !s.Carousel {
 		s.Carousel = randomdata.Boolean()
+	}
+	if !s.CoinDark {
+		s.CoinDark = randomdata.Boolean()
 	}
 	return s
 }
