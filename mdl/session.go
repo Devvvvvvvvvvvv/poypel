@@ -209,6 +209,10 @@ func StartSession(w http.ResponseWriter, r *http.Request) map[string]interface{}
 		return nil
 	}
 
+	if dbSession.ID == "" && params.Action != "delete" {
+		err = SaveSession(&storedSession)
+	}
+
 	return data
 }
 
