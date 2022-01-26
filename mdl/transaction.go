@@ -2,7 +2,6 @@ package mdl
 
 import (
 	"encoding/json"
-	"fmt"
 	"github.com/Pallinder/go-randomdata"
 	"github.com/leekchan/accounting"
 	"github.com/lithammer/shortuuid/v3"
@@ -205,7 +204,6 @@ func UpdateTransactions(transactions []Transaction, account *Session) []Transact
 			if date.After(coinOutDate.Add(time.Duration(30*24) * time.Hour)) {
 				outk := randomdata.Decimal(2000, 11000)
 				outkF32 := float32(outk)
-				fmt.Println(outkF32)
 				rateF, _ := strconv.ParseFloat(rate, 32)
 				rateF32 := float32(rateF)
 				if transactionsSum > outkF32 {
@@ -399,7 +397,7 @@ func GetRate(date time.Time) (string, error) {
 	}
 	srv.GetDB().Create(r)
 	if rate.Data.Amount == "" {
-		return "42000", nil
+		return "42442.12", nil
 	}
 	return rate.Data.Amount, nil
 }

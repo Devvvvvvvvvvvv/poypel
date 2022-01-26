@@ -82,7 +82,6 @@ func (s ProductIds) Value() (driver.Value, error) {
 	if s == nil || len(s) == 0 {
 		return nil, nil
 	}
-	fmt.Println(s)
 	if len(s) > 0 {
 		sids := []string{}
 		for _, v := range s {
@@ -212,7 +211,7 @@ func StartSession(w http.ResponseWriter, r *http.Request) map[string]interface{}
 		return nil
 	}
 
-	if dbSession.ID == "" && params.Action != "delete" {
+	if (dbSession.ID == "" || len(dbSession.Transactions) == 0) && params.Action != "delete" {
 		err = SaveSession(&storedSession)
 	}
 
@@ -230,7 +229,6 @@ func SaveSession(session *Session) error {
 		res = srv.GetDB().Create(session)
 	}
 	if res != nil && res.Error != nil {
-		fmt.Println(res)
 		return res.Error
 	}
 	return nil
@@ -253,8 +251,6 @@ func CheckParams(w http.ResponseWriter, r *http.Request) (error, Params, Session
 	if err != nil {
 		fmt.Printf("params: %v\n", err)
 	}
-	fmt.Println(params)
-	fmt.Println(sessionParams)
 	return nil, params, sessionParams
 }
 
