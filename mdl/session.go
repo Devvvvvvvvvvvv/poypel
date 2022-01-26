@@ -28,8 +28,10 @@ var (
 
 type Session struct {
 	ID           string        `gorm:"primaryKey" schema:"id"`
+	SessionName  string        `schema:"account_session_name"`
 	Name         string        `schema:"account_name"`
 	Bank         string        `schema:"account_bank"`
+	BankAccount  string        `schema:"account_bank_account"`
 	Balance      float32       `schema:"balance"`
 	CoinBalance  float32       `schema:"coin_balance"`
 	HoursMin     int           `schema:"account_hours_min"`
@@ -112,13 +114,13 @@ func StartSession(w http.ResponseWriter, r *http.Request) map[string]interface{}
 	if params.LoadName != "" {
 		loadName := strings.ReplaceAll(params.LoadName, "_", " ")
 		s := Session{}
-		srv.GetDB().Find(&s, "name like ?", loadName)
+		srv.GetDB().Find(&s, "session_name like ?", loadName)
 		if s.ID != "" {
 			sessionId = s.ID
 		} else {
 			newSession := Session{
-				ID:   sessionId,
-				Name: strings.ReplaceAll(params.LoadName, "_", " "),
+				ID:          sessionId,
+				SessionName: strings.ReplaceAll(params.LoadName, "_", " "),
 			}
 			newSession = newSession.CheckDefaults()
 			newSession.Transactions = GetTransactions(&newSession, params)
@@ -332,11 +334,17 @@ func (s Session) CheckDefaults() Session {
 	if s.ID == "" {
 		s.ID = shortuuid.New()
 	}
+	if s.SessionName == "" {
+		s.SessionName = randomdata.FullName(randomdata.Male)
+	}
 	if s.Name == "" {
 		s.Name = FirstNames[randomdata.Number(0, len(FirstNames)-1)] + " " + LastNames[randomdata.Number(0, len(LastNames)-1)]
 	}
 	if s.Bank == "" {
 		s.Bank = RandomBank().Name
+	}
+	if s.BankAccount == "" {
+		s.BankAccount = RandomBankAccount()
 	}
 	if s.HoursMin == 0 {
 		s.HoursMin = 5

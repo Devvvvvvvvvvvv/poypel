@@ -62,6 +62,11 @@ func GetBank(name string) Bank {
 	return bank
 }
 
+func RandomBankAccount() string {
+	lastNum := randomdata.Number(1000, 9999)
+	return strconv.Itoa(lastNum)
+}
+
 func (b Bank) Number() string {
 	lastNum := randomdata.Number(1000, 9999)
 	return "••••" + strconv.Itoa(lastNum)

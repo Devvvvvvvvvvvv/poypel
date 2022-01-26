@@ -19,7 +19,7 @@
                     </div>
                     <div class="col-9 col-sm-12">
                         <div class="input-group">
-                            <input class="form-input" type="text" id="input-session-id" disabled="disabled" placeholder="Current session ID" value="{{ .Account.Name }} ({{ .Account.ID }})">
+                            <input class="form-input" type="text" id="input-session-id" disabled="disabled" placeholder="Current session ID" value="{{ .Account.SessionName }} ({{ .Account.ID }})">
                             <button class="ml-1 btn btn-success input-group-btn" type="submit" name="action" value="save"><i class="icon icon-download"></i> Save session</button>
                             <button class="ml-1 btn input-group-btn" type="submit" name="action" value="create"><i class="icon icon-plus"></i> Create session</button>
                         </div>
@@ -33,7 +33,7 @@
                         <div class="input-group">
                             <select name="session_selected" class="form-select">
                                 {{ range .Sessions }}
-                                    <option value="{{ .ID }}">{{ .Name }} ({{ .ID }})</option>
+                                    <option value="{{ .ID }}">{{ .SessionName }} ({{ .ID }})</option>
                                 {{ end }}
                             </select>
                             <button type="submit" name="action" value="load" class="ml-1 btn btn-primary"><i class="icon icon-upload"></i> Load session</button>
@@ -44,6 +44,16 @@
             </div>
             <div class="divider text-center" data-content="Settings"></div>
             <div class="form-horizontal">
+                <div class="form-group">
+                    <div class="col-3 col-sm-12">
+                        <label class="form-label" for="input-account-name">Session Name</label>
+                    </div>
+                    <div class="col-9 col-sm-12">
+                        <div class="input-group">
+                            <input class="form-input" type="text" name="session_name" id="input-account-name" placeholder="Session Name" value="{{ .Account.SessionName }}">
+                        </div>
+                    </div>
+                </div>
                 <div class="form-group">
                     <div class="col-3 col-sm-12">
                         <label class="form-label" for="input-account-name">Account Name</label>
@@ -66,6 +76,16 @@
                                     <option value="{{ .Name }}" {{ if eq .Name $bank }}selected{{ end }}>{{ .Name }}</option>
                                 {{ end }}
                             </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-3 col-sm-12">
+                        <label class="form-label" for="input-account-name">Bank Account (last 4 digits)</label>
+                    </div>
+                    <div class="col-9 col-sm-12">
+                        <div class="input-group">
+                            <input class="form-input" type="text" name="account_bank_account" id="input-account-name" placeholder="First name Last name" value="{{ .Account.BankAccount }}">
                         </div>
                     </div>
                 </div>

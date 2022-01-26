@@ -493,7 +493,9 @@ const accounts = {
             data: undefined,
             chartData: undefined,
             balanceUSD: 0,
-            balanceBTC: 0
+            balanceBTC: 0,
+            transactionOpen: undefined,
+            modalOpened: false
         }
     },
     computed: {
@@ -508,6 +510,27 @@ const accounts = {
         },
         coinBalanceAll() {
             return this.coinBalanceBTC + " BTC ≈ " + this.coinBalance
+        },
+        revChartData() {
+            return this.chartData.reverse()
+        }
+    },
+    methods: {
+        open(item) {
+            this.transactionOpen = item
+            this.$nextTick(() => {
+                setTimeout(() => {
+                    this.modalOpened = true
+                })
+            })
+        },
+        close() {
+            this.transactionOpen = undefined
+            this.$nextTick(() => {
+                setTimeout(() => {
+                    this.modalOpened = false
+                })
+            })
         }
     },
     mounted() {
