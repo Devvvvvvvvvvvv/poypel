@@ -1366,13 +1366,13 @@ tr.trade-watch-list-drag-and-drop-helper-class td:last-child {
 }
 
 .WBuZA {
-    display: flex;
-    flex-direction: column;
-    height: 1em;
-    line-height: 1.4em;
-    margin-bottom: 0.1em;
-    text-align: center;
-    user-select: auto;
+    /*display: flex;*/
+    /*flex-direction: column;*/
+    /*height: 1em;*/
+    /*line-height: 1.4em;*/
+    /*margin-bottom: 0.1em;*/
+    /*text-align: center;*/
+    /*user-select: auto;*/
 }
 
 .iIKIld {

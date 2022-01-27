@@ -265,7 +265,9 @@ const price = {
             data: undefined,
             period: 'day',
             balanceUSD: 0,
-            balanceBTC: 0
+            balanceBTC: 0,
+            odoInt: undefined,
+            odoDec: undefined
         }
     },
     computed: {
@@ -314,18 +316,10 @@ const price = {
         }
     },
     mounted() {
-        this.odInt = new Odometer({
-            el: this.$el.querySelector('#trade_value_int'),
-            format: '(,ddd)',
-            value: 42156,
-            duration: 500
-        })
-        this.odDec = new Odometer({
-            el: this.$el.querySelector('#trade_value_decimal'),
-            format: '.dd',
-            value: 98,
-            duration: 500
-        })
+        this.odoInt = $("#trade_value_int").rotateNumber({digits: 5, separator: ',', rotateDuration: 0.3})
+        this.odoInt.setNumber(36124)
+        this.odoDec = $("#trade_value_decimal").rotateNumber({digits: 2, digitSize: 32, rotateDuration: 0.3})
+        this.odoDec.setNumber(99)
 
         // fetch("https://www.coinbase.com/graphql/query?&operationName=AssetOverviewQuery&extensions=%7B%22persistedQuery%22%3A%7B%22version%22%3A1%2C%22sha256Hash%22%3A%221b006de4fe3e3f4e00e20f60d82c51710e0f944f21a438731a82a8e2ce4d588e%22%7D%7D&variables=%7B%22assetId%22%3A%225b71fc48-3dd3-540c-809b-f8c94d0e68b5%22%2C%22assetSlug%22%3A%22bitcoin%22%2C%22assetSymbol%22%3A%22BTC%22%2C%22nativeCurrency%22%3A%22USD%22%2C%22locale%22%3A%22en%22%7D", {
         //     mode: 'no-cors'
@@ -338,8 +332,9 @@ const price = {
 
         fetch("https://www.coinbase.com/api/v2/assets/prices/5b71fc48-3dd3-540c-809b-f8c94d0e68b5?base=USD").then((res) => {
             res.json().then((data) => {
-                this.odInt.update(data.data.prices.latest.split(".")[0])
-                this.odDec.update("0." + data.data.prices.latest.split(".")[1])
+                console.log(data.data.prices.latest)
+                this.odoInt.setNumber(data.data.prices.latest.split(".")[0])
+                this.odoDec.setNumber(data.data.prices.latest.split(".")[1])
                 this.loading = false
                 let transactions = JSON.parse(JSON.stringify(this.account.Transactions))
                 this.chartData = transactions.reverse().filter(t => {

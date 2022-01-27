@@ -275,3 +275,20 @@
     color: var(--positive);
     background-color: rgb(var(--gray0));
 }
+
+#trade_value_int, #trade_value_decimal {
+    font-family: CoinbaseDisplay, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;;
+}
+
+#trade_value_int .digit {
+    width: 28px;
+}
+
+#trade_value_decimal .digit {
+    width: 18px;
+}
+
+#trade_value_decimal:before {
+    content: '.';
+    float: left;
+}
