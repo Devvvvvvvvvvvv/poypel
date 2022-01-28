@@ -276,6 +276,8 @@
     background-color: rgb(var(--gray0));
 }
 
+
+
 #trade_value_int, #trade_value_decimal {
     font-family: CoinbaseDisplay, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;;
 }

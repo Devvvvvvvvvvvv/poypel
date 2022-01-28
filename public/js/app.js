@@ -481,7 +481,7 @@ const price = {
 
 const accounts = {
     template: '#tmpl-accounts',
-    props: ['account'],
+    props: ['account', 'modeClass'],
     data() {
         return {
             loading: true,
