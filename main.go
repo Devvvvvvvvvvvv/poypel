@@ -46,6 +46,24 @@ func main() {
 		}
 	})
 
+	http.HandleFunc("/gp/your-account/order-history", func(w http.ResponseWriter, r *http.Request) {
+		fmt.Println("/gp/your-account/order-history requsted: ")
+		settings := mdl.StartSession(w, r)
+		err := tmpl.ExecuteTemplate(w, "am_orders.html", settings)
+		if err != nil {
+			fmt.Println(err)
+		}
+	})
+
+	http.HandleFunc("/progress-tracker/package/", func(w http.ResponseWriter, r *http.Request) {
+		fmt.Println("/progress-tracker/package/ requsted: ")
+		settings := mdl.StartSession(w, r)
+		err := tmpl.ExecuteTemplate(w, "am_track.html", settings)
+		if err != nil {
+			fmt.Println(err)
+		}
+	})
+
 	http.HandleFunc("/dashboard/", coinbase)
 	http.HandleFunc("/price/", coinbase)
 	http.HandleFunc("/accounts/", coinbase)

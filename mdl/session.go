@@ -387,6 +387,17 @@ func (s Session) HasPending() bool {
 	return false
 }
 
+func (s Session) CompletedCount() int {
+	c := 0
+	for _, t := range s.Transactions {
+		if t.Type == COMPLETED {
+			c++
+		}
+	}
+	fmt.Println(c)
+	return c
+}
+
 var timeConverter = func(value string) reflect.Value {
 	if v, err := time.Parse("2006-01-02T15:04", value); err == nil {
 		return reflect.ValueOf(v)
