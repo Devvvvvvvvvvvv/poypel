@@ -183,7 +183,7 @@ func UpdateTransactions(transactions []Transaction, account *Session) []Transact
 		minDate := transactions[ln].Date
 		date := minDate
 
-		return GenerateTransactions(account, &date, &coinOutDate)
+		return append(newTransactions, GenerateTransactions(account, &date, &coinOutDate)...)
 	}
 
 	account.Balance = transactionsSum
