@@ -11,6 +11,7 @@ import (
 	"net/http"
 	"poypel/srv"
 	"strconv"
+	"strings"
 	"time"
 )
 
@@ -337,6 +338,14 @@ func (t Transaction) ReturnCloseDate() time.Time {
 
 func (t Transaction) MaxDeliveryDate() time.Time {
 	return t.DeliveryDate.Add(24 * time.Hour)
+}
+
+func (t Transaction) ShippedDate() time.Time {
+	return t.Date.Add(24 * time.Hour)
+}
+
+func (t Transaction) FirstName() string {
+	return strings.Split(t.Name, " ")[0]
 }
 
 func (t Transaction) DateBucket() string {

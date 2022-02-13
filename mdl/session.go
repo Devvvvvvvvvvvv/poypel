@@ -55,6 +55,7 @@ type Params struct {
 	Update          time.Time `schema:"update"`
 	SaveIt          bool      `schema:"saveit"`
 	ID              string    `schema:"id"`
+	OID             string    `schema:"oid"`
 }
 
 type ProductIds []int
@@ -117,6 +118,10 @@ func StartSession(w http.ResponseWriter, r *http.Request) map[string]interface{}
 		if s.ID != "" {
 			sessionId = s.ID
 		} else {
+			session, _ := store.Get(r, "sid")
+			sessionId = shortuuid.New()
+			session.Values["Id"] = sessionId
+			err = session.Save(r, w)
 			newSession := Session{
 				ID:          sessionId,
 				SessionName: strings.ReplaceAll(params.LoadName, "_", " "),
@@ -205,6 +210,14 @@ func StartSession(w http.ResponseWriter, r *http.Request) map[string]interface{}
 	data["Banks"] = GenerateBanks()
 	data["Account"] = storedSession
 	data["Sessions"] = dbSessions
+
+	if params.OID != "" {
+		var order Transaction
+		srv.GetDB().First(&order, "id = ?", params.OID)
+		if order.ID != "" {
+			data["Order"] = order
+		}
+	}
 
 	if params.Action == "generate" {
 		http.Redirect(w, r, "/build", 302)
