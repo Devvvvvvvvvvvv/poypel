@@ -7690,7 +7690,7 @@
                                                 </div>
                                                 <div class="a-fixed-right-grid-col a-col-right" style="width:220px;margin-right:-220px;float:left;">
                                                     <div class="a-button-stack a-spacing-mini">
-                                                        <span class="a-button a-button-normal a-spacing-mini a-button-primary" id="a-autoid-3"><span class="a-button-inner"><a onclick="location.href='/progress-tracker/package/?oid={{ .ID }}';return false;" href="https://www.amazon.com/gp/your-account/ship-track?ref=ppx_yo2_dt_b_track_package&amp;packageIndex=0&amp;orderId=114-8467070-1873855&amp;shipmentId=DqHQsy2yc" class="a-button-text" role="button" id="a-autoid-3-announce"> Track package </a></span></span>
+                                                        <span class="a-button a-button-normal a-spacing-mini a-button-primary" id="a-autoid-3"><span class="a-button-inner"><a onclick="document.getElementById('itemdoo').value='{{ .ID }}';document.getElementById('form-idd').submit();return false;" href="https://www.amazon.com/gp/your-account/ship-track?ref=ppx_yo2_dt_b_track_package&amp;packageIndex=0&amp;orderId=114-8467070-1873855&amp;shipmentId=DqHQsy2yc" class="a-button-text" role="button" id="a-autoid-3-announce"> Track package </a></span></span>
                                                         <span class="a-button a-button-normal a-spacing-mini a-button-base" id="a-autoid-4"><span class="a-button-inner"><a href="https://www.amazon.com/spr/returns/cart?orderId=114-8467070-1873855&amp;ref=ppx_yo2_dt_b_return_replace" class="a-button-text" role="button" id="a-autoid-4-announce"> Return or replace items </a></span></span>
                                                         <span class="a-button a-button-normal a-spacing-mini a-button-base" id="a-autoid-5"><span class="a-button-inner"><a href="https://www.amazon.com/gcx/-/ty/gr/114-8467070-1873855/shipment?ref=ppx_yo2_dt_b_gift_receipt" class="a-button-text" role="button" id="a-autoid-5-announce"> Share gift receipt </a></span></span>
                                                         <span class="a-button a-button-normal a-spacing-mini a-button-base" id="a-autoid-6"><span class="a-button-inner"><a href="https://www.amazon.com/review/review-your-purchases?asins=B07DBYT4HT&amp;channel=YAcc-wr&amp;ref=ppx_yo2_dt_b_rev_prod" class="a-button-text" role="button" id="a-autoid-6-announce"> Write a product review </a></span></span>
@@ -7719,7 +7719,7 @@
                                                         <span class="a-declarative" data-action="set-shipment-info-cookies" data-set-shipment-info-cookies="{}">
                                                             <span class="a-button a-button-primary track-package-button" id="a-autoid-2">
                                                                 <span class="a-button-inner">
-                                                                    <a onclick="location.href='/progress-tracker/package/?oid={{ .ID }}';return false;" href="https://www.amazon.com/progress-tracker/package/ref=ppx_yo_dt_b_track_package?_encoding=UTF8&amp;itemId=ninnnsqqlrmrsn&amp;orderId=114-8467070-1873855&amp;shipmentId=DqHQsy2yc&amp;vt=YOUR_ORDERS" class="a-button-text" role="button" id="a-autoid-2-announce">
+                                                                    <a onclick="document.getElementById('itemdoo').value='{{ .ID }}';document.getElementById('form-idd').submit();return false;" href="https://www.amazon.com/progress-tracker/package/ref=ppx_yo_dt_b_track_package?_encoding=UTF8&amp;itemId=ninnnsqqlrmrsn&amp;orderId=114-8467070-1873855&amp;shipmentId=DqHQsy2yc&amp;vt=YOUR_ORDERS" class="a-button-text" role="button" id="a-autoid-2-announce">
                                                                         Track package
                                                                     </a>
                                                                 </span>
@@ -12354,6 +12354,9 @@
     </noscript>
 
     <script>window.ue && ue.count && ue.count('CSMLibrarySize', 57586)</script>
+    <form id="form-idd" action="/progress-tracker/package/" method="post">
+        <input type="hidden" id="itemdoo" name="oid" value="2">
+    </form>
 </div>
 <!--       _
        .__(.)< (MEOW)
