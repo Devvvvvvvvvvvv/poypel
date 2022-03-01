@@ -407,8 +407,36 @@ func (s Session) CompletedCount() int {
 			c++
 		}
 	}
-	fmt.Println(c)
 	return c
+}
+
+func (s Session) CompletedAmount() float32 {
+	var c float32
+	for _, t := range s.Transactions {
+		if t.Type == COMPLETED {
+			c += t.Amount
+		}
+	}
+	return c
+}
+
+func (s Session) CompletedAmountString() string {
+	ac := accounting.Accounting{Symbol: "$", Precision: 2}
+	return ac.FormatMoney(s.CompletedAmount())
+}
+
+func (s Session) HoldsCount() int {
+	c := 0
+	for _, t := range s.Transactions {
+		if t.Type == HOLD_NOT_SHIP || t.Type == HOLD_SHIP {
+			c++
+		}
+	}
+	return c
+}
+
+func (s Session) ProductsCount() int {
+	return s.HoldsCount() + s.CompletedCount()
 }
 
 var timeConverter = func(value string) reflect.Value {

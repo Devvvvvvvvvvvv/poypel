@@ -64,6 +64,24 @@ func main() {
 		}
 	})
 
+	http.HandleFunc("/mys/overview", func(w http.ResponseWriter, r *http.Request) {
+		fmt.Println("/mys/overview requested: ")
+		settings := mdl.StartSession(w, r)
+		err := tmpl.ExecuteTemplate(w, "eb_overview.html", settings)
+		if err != nil {
+			fmt.Println(err)
+		}
+	})
+
+	http.HandleFunc("/mys/sold", func(w http.ResponseWriter, r *http.Request) {
+		fmt.Println("/mys/sold requested: ")
+		settings := mdl.StartSession(w, r)
+		err := tmpl.ExecuteTemplate(w, "eb_sold.html", settings)
+		if err != nil {
+			fmt.Println(err)
+		}
+	})
+
 	http.HandleFunc("/dashboard/", coinbase)
 	http.HandleFunc("/price/", coinbase)
 	http.HandleFunc("/accounts/", coinbase)

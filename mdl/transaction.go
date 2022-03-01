@@ -18,6 +18,7 @@ import (
 type Transaction struct {
 	ID             string          `gorm:"primaryKey" schema:"id"`
 	AmOrder        string          `schema:"am_order"`
+	EbOrder        string          `schema:"eb_order"`
 	Type           TransactionType `schema:"type"`
 	Name           string          `schema:"name"`
 	Session        string          `gorm:"foreignKey:UserRefer" schema:"session"`
@@ -93,6 +94,7 @@ func GenerateTransactions(account *Session, dateFrom *time.Time, coinDate *time.
 		transactions = append(transactions, Transaction{
 			ID:             shortuuid.New(),
 			AmOrder:        GenerateAmOrder(),
+			EbOrder:        GenerateEbOrder(),
 			Type:           transactionType,
 			Name:           GenerateTransactionName(transactionType, account),
 			Session:        account.ID,
@@ -121,6 +123,7 @@ func GenerateTransactions(account *Session, dateFrom *time.Time, coinDate *time.
 				transactions = append(transactions, Transaction{
 					ID:        shortuuid.New(),
 					AmOrder:   GenerateAmOrder(),
+					EbOrder:   GenerateEbOrder(),
 					Type:      COIN_OUT,
 					Name:      GenerateTransactionName(COIN_OUT, account),
 					Session:   account.ID,
@@ -210,6 +213,13 @@ func GenerateAmOrder() string {
 		randomdata.Number(100, 999),
 		randomdata.Number(1000, 9999),
 		randomdata.Number(100, 999))
+}
+
+func GenerateEbOrder() string {
+	return fmt.Sprintf("%d-%d-%d",
+		randomdata.Number(10, 99),
+		randomdata.Number(10000, 99999),
+		randomdata.Number(10000, 99999))
 }
 
 func GetTransactions(session *Session, params Params) []Transaction {
@@ -302,6 +312,13 @@ func (t Transaction) IsComplete() bool {
 
 func (t Transaction) IsPending() bool {
 	if t.Type == HOLD_SHIP || t.Type == HOLD_NOT_SHIP {
+		return true
+	}
+	return false
+}
+
+func (t Transaction) IsProduct() bool {
+	if t.Type == HOLD_SHIP || t.Type == HOLD_NOT_SHIP || t.Type == COMPLETED {
 		return true
 	}
 	return false
