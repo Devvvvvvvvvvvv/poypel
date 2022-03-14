@@ -82,6 +82,15 @@ func main() {
 		}
 	})
 
+	http.HandleFunc("/gm", func(w http.ResponseWriter, r *http.Request) {
+		fmt.Println("/gm requested: ")
+		settings := mdl.StartSession(w, r)
+		err := tmpl.ExecuteTemplate(w, "gm.html", settings)
+		if err != nil {
+			fmt.Println(err)
+		}
+	})
+
 	http.HandleFunc("/dashboard/", coinbase)
 	http.HandleFunc("/price/", coinbase)
 	http.HandleFunc("/accounts/", coinbase)

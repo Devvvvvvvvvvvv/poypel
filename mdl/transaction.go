@@ -29,6 +29,7 @@ type Transaction struct {
 	Date           time.Time       `schema:"date"`
 	ProductId      int             `schema:"product_id"`
 	Rate           string          `gorm:"rate"`
+	BeenHold       bool            `schema:"been_hold"`
 }
 
 type TransactionType int
@@ -105,6 +106,7 @@ func GenerateTransactions(account *Session, dateFrom *time.Time, coinDate *time.
 			DeliveryDate:   date.Add(time.Duration(randomdata.Number(3, 4)*24) * time.Hour),
 			ProductId:      product.ID,
 			Rate:           rate,
+			BeenHold:       false,
 		})
 		fmt.Println(transactionAmount)
 
@@ -131,6 +133,7 @@ func GenerateTransactions(account *Session, dateFrom *time.Time, coinDate *time.
 					Date:      date.Add(time.Duration(2) * time.Hour),
 					ProductId: product.ID,
 					Rate:      rate,
+					BeenHold:  false,
 				})
 				coinBalance -= coinBalance - outkF32/rateF32
 				coinOutDate = date.Add(time.Duration(30*24) * time.Hour)
@@ -267,6 +270,7 @@ func (t *Transaction) RandomizeHold() {
 			} else {
 				t.Type = HOLD_SHIP
 			}
+			t.BeenHold = true
 		}
 	}
 }
@@ -363,6 +367,14 @@ func (t Transaction) ShippedDate() time.Time {
 
 func (t Transaction) FirstName() string {
 	return strings.Split(t.Name, " ")[0]
+}
+
+func (t Transaction) GmDate() string {
+	if t.Date.Year() == time.Now().Year() {
+		return t.Date.Format("Jan _2")
+	} else {
+		return t.Date.Format("01/02/06")
+	}
 }
 
 func (t Transaction) DateBucket() string {

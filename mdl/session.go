@@ -435,8 +435,24 @@ func (s Session) HoldsCount() int {
 	return c
 }
 
+func (s Session) GmDateStart() string {
+	if s.DateStart.Year() == time.Now().Year() {
+		return s.DateStart.Format("Jan _2")
+	} else {
+		return s.DateStart.Format("01/02/06")
+	}
+}
+
 func (s Session) ProductsCount() int {
 	return s.HoldsCount() + s.CompletedCount()
+}
+
+func (s Session) GetProducts() []*Product {
+	var prs []*Product
+	for _, t := range s.Products {
+		prs = append(prs, GetProduct(t))
+	}
+	return prs
 }
 
 var timeConverter = func(value string) reflect.Value {
