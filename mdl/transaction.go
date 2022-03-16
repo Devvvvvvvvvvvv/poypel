@@ -30,6 +30,8 @@ type Transaction struct {
 	ProductId      int             `schema:"product_id"`
 	Rate           string          `gorm:"rate"`
 	BeenHold       bool            `schema:"been_hold"`
+	GmRead         string          `schema:"gm_read"`
+	GmCount        string          `schema:"gm_count"`
 }
 
 type TransactionType int
@@ -107,6 +109,8 @@ func GenerateTransactions(account *Session, dateFrom *time.Time, coinDate *time.
 			ProductId:      product.ID,
 			Rate:           rate,
 			BeenHold:       false,
+			GmRead:         GenerateGmRead(),
+			GmCount:        GenerateGmCount(),
 		})
 		fmt.Println(transactionAmount)
 
@@ -134,6 +138,8 @@ func GenerateTransactions(account *Session, dateFrom *time.Time, coinDate *time.
 					ProductId: product.ID,
 					Rate:      rate,
 					BeenHold:  false,
+					GmRead:    GenerateGmRead(),
+					GmCount:   GenerateGmCount(),
 				})
 				coinBalance -= coinBalance - outkF32/rateF32
 				coinOutDate = date.Add(time.Duration(30*24) * time.Hour)
@@ -216,6 +222,40 @@ func GenerateAmOrder() string {
 		randomdata.Number(100, 999),
 		randomdata.Number(1000, 9999),
 		randomdata.Number(100, 999))
+}
+
+func GenerateGmRead() string {
+	return fmt.Sprintf("%d:%d:%d:%d:%d",
+		GenerateGmRead30(),
+		GenerateGmRead30(),
+		GenerateGmRead30(),
+		GenerateGmRead30(),
+		GenerateGmRead30())
+}
+
+func GenerateGmRead30() int {
+	c := randomdata.Number(1, 10)
+	if c <= 3 {
+		return 1
+	}
+	return 0
+}
+
+func GenerateGmCount() string {
+	return fmt.Sprintf("%s:%s:%s:%s:%s",
+		GenerateGmCount20(),
+		GenerateGmCount20(),
+		GenerateGmCount20(),
+		GenerateGmCount20(),
+		GenerateGmCount20())
+}
+
+func GenerateGmCount20() string {
+	c := randomdata.Number(1, 10)
+	if c <= 2 {
+		return strconv.Itoa(randomdata.Number(2, 4))
+	}
+	return ""
 }
 
 func GenerateEbOrder() string {
@@ -330,6 +370,19 @@ func (t Transaction) IsProduct() bool {
 
 func (t Transaction) DateString() string {
 	return t.Date.Format("2 Jan")
+}
+
+func (t Transaction) GmReaded(ind int) bool {
+	r := strings.Split(t.GmRead, ":")
+	if r[ind] == "0" {
+		return false
+	}
+	return true
+}
+
+func (t Transaction) GmCounted(ind int) string {
+	r := strings.Split(t.GmCount, ":")
+	return r[ind]
 }
 
 func (t Transaction) AmountString() string {
