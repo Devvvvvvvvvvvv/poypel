@@ -1,0 +1,14 @@
+Inflow = (function() {
+	return {
+		cb : function(data) {
+			const serviceEndpoint = data.ifhNodeServiceUrl;
+			const url =
+		          serviceEndpoint +
+		          'ifh/inflowcomponent?input=' +
+		          encodeURIComponent(data.inputJSON);
+			jQuery.getScript(url);
+		}
+	};
+	
+})();
+/**/Inflow.cb({"inflowParameterUrl":null,"serviceResponse":null,"inputJSON":"{\"pageId\":\"2486981\",\"surveyTitle\":\"Give us feedback\",\"llmScreenId\":1,\"userSegmentation\":-1}","siteId":0,"timeout":null,"deviceType":null,"serviceUrl":null,"doloresDeviceType":null,"doloresContent":null,"historyAvailable":false,"doloresNativePage":false,"pageId":"2486981","webTagging247JSUrl":null,"webTaggingUrl":null,"userName":null,"puid":null,"phoneNo":null,"helpBotUrl":null,"botToolTip":true,"presenceId":null,"dfflow":false,"coBrowseURL":null,"coBrowseGroupId":null,"coBrowseLoaderJS":null,"environment":null,"startShareText":null,"stopShareText":null,"dolorescss":null,"content":null,"infcss":null,"infhtml":null,"enableGlanceMigration":false,"ifhNodeServiceUrl":"https://www.ebay.com/","limitlessData":null,"coBrowseJSSriHash":null,"enabledForDolores":false,"ocs":false,"enabledForIfhSearch":false,"enabledForCobrowsing":false,"enabledForStaticPresence":false,"rlogId":null,"convInflowEnabled":false,"enabledForInflowHelp":false,"enabledForWebTagging":false,"showCobrowseButton":false,"open":false})
