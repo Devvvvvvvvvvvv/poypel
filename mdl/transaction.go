@@ -463,7 +463,7 @@ func GetRate(date time.Time) (string, error) {
 	}
 	r := Rate{}
 	for _, r := range rates {
-		if r.Date == date.Format("2006-01-02") {
+		if r.Date == date.Format("2006-01-02") && r.Rate != "" {
 			return r.Rate, nil
 		}
 	}
@@ -484,13 +484,13 @@ func GetRate(date time.Time) (string, error) {
 	if err != nil {
 		return "30442.12", err
 	}
+	if rate.Data.Amount == "" {
+		return "30442.12", nil
+	}
 	r = Rate{
 		Date: date.Format("2006-01-02"),
 		Rate: rate.Data.Amount,
 	}
 	srv.GetDB().Create(r)
-	if rate.Data.Amount == "" {
-		return "30442.12", nil
-	}
 	return rate.Data.Amount, nil
 }
