@@ -4,20 +4,20 @@ import (
 	"database/sql/driver"
 	"encoding/json"
 	"fmt"
-	"github.com/Pallinder/go-randomdata"
-	"github.com/alok87/goutils/pkg/random"
-	"github.com/gorilla/schema"
-	"github.com/gorilla/sessions"
-	"github.com/imdario/mergo"
-	"github.com/leekchan/accounting"
-	"github.com/lithammer/shortuuid/v3"
-	"gorm.io/gorm"
 	"net/http"
 	"poypel/srv"
 	"reflect"
 	"strconv"
 	"strings"
 	"time"
+
+	"github.com/Pallinder/go-randomdata"
+	"github.com/alok87/goutils/pkg/random"
+	"github.com/gorilla/schema"
+	"github.com/gorilla/sessions"
+	"github.com/leekchan/accounting"
+	"github.com/lithammer/shortuuid/v3"
+	"gorm.io/gorm"
 )
 
 var (
@@ -49,13 +49,13 @@ type Session struct {
 }
 
 type Params struct {
-	Action          string    `schema:"action"`
-	SessionSelected string    `schema:"session_selected"`
-	LoadName        string    `schema:"loadname"`
-	Update          time.Time `schema:"update"`
-	SaveIt          bool      `schema:"saveit"`
-	ID              string    `schema:"id"`
-	OID             string    `schema:"oid"`
+	Action          string `schema:"action"`
+	SessionSelected string `schema:"session_selected"`
+	LoadName        string `schema:"loadname"`
+	Update          string `schema:"update"`
+	SaveIt          bool   `schema:"saveit"`
+	ID              string `schema:"id"`
+	OID             string `schema:"oid"`
 }
 
 type ProductIds []int
@@ -95,10 +95,46 @@ func (s ProductIds) Value() (driver.Value, error) {
 
 func StartSession(w http.ResponseWriter, r *http.Request) map[string]interface{} {
 
-	err, params, sessionParams := CheckParams(w, r)
+	_, params, _ := CheckParams(w, r)
 
 	sessionId := CheckSession(w, r)
-	if params.Action == "load" {
+
+	storedSession := Session{}
+
+	loadName := ""
+	if params.LoadName != "" {
+		loadName = strings.ReplaceAll(params.LoadName, "_", " ")
+		srv.GetDB().Find(&storedSession, "session_name like ?", loadName)
+	} else {
+		srv.GetDB().Find(&storedSession, "id = ?", sessionId)
+	}
+
+	if storedSession.ID == "" {
+		sessionId = NewSession(w, r)
+		storedSession = Session{
+			ID:          sessionId,
+			SessionName: loadName,
+		}
+	}
+
+	ChangeSession(storedSession.ID, w, r)
+
+	storedSession = storedSession.CheckDefaults()
+	storedSession.Transactions = GetTransactions(&storedSession, params)
+	if params.Update != "" {
+		dateUpdate, err := time.Parse("2006-01-02 15:04:05", params.Update)
+		if err != nil {
+			fmt.Println(err)
+		}
+		storedSession.DateEnd = dateUpdate
+		storedSession.Transactions = UpdateTransactions(storedSession.Transactions, &storedSession)
+	}
+	err := SaveSession(&storedSession)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	/*if params.Action == "load" {
 		sessionId = params.SessionSelected
 	}
 
@@ -106,33 +142,9 @@ func StartSession(w http.ResponseWriter, r *http.Request) map[string]interface{}
 		session, _ := store.Get(r, "sid")
 		sessionId := shortuuid.New()
 		session.Values["Id"] = sessionId
-		err = session.Save(r, w)
+		_ = session.Save(r, w)
 		http.Redirect(w, r, "/build", 302)
 		return nil
-	}
-
-	if params.LoadName != "" {
-		loadName := strings.ReplaceAll(params.LoadName, "_", " ")
-		s := Session{}
-		srv.GetDB().Find(&s, "session_name like ?", loadName)
-		if s.ID != "" {
-			sessionId = s.ID
-		} else {
-			session, _ := store.Get(r, "sid")
-			sessionId = shortuuid.New()
-			session.Values["Id"] = sessionId
-			err = session.Save(r, w)
-			newSession := Session{
-				ID:          sessionId,
-				SessionName: strings.ReplaceAll(params.LoadName, "_", " "),
-			}
-			newSession = newSession.CheckDefaults()
-			newSession.Transactions = GetTransactions(&newSession, params)
-			err = SaveSession(&newSession)
-			if err != nil {
-				fmt.Println(err)
-			}
-		}
 	}
 
 	if params.Action == "delete" {
@@ -140,12 +152,6 @@ func StartSession(w http.ResponseWriter, r *http.Request) map[string]interface{}
 		srv.GetDB().Delete(&Transaction{}, "session = ?", params.SessionSelected)
 		sessionId = CheckSession(w, r)
 	}
-
-	storedSession := Session{
-		ID: sessionId,
-	}
-
-	storedSession = storedSession.CheckDefaults()
 
 	var dbSession Session
 	srv.GetDB().First(&dbSession, "id = ?", sessionId)
@@ -170,15 +176,6 @@ func StartSession(w http.ResponseWriter, r *http.Request) map[string]interface{}
 		srv.GetDB().Delete(&Transaction{}, "session = ?", storedSession.ID)
 	}
 
-	if params.Update.Year() > 1 {
-		storedSession.DateEnd = params.Update
-		storedSession.Transactions = UpdateTransactions(storedSession.Transactions, &storedSession)
-		err = SaveSession(&storedSession)
-		if err != nil {
-			fmt.Println(err)
-		}
-	}
-
 	if params.Action == "update" {
 		err = mergo.Merge(&storedSession, sessionParams, mergo.WithOverride)
 		if err != nil {
@@ -201,6 +198,7 @@ func StartSession(w http.ResponseWriter, r *http.Request) map[string]interface{}
 			fmt.Println(err)
 		}
 	}
+	*/
 
 	var dbSessions []Session
 	srv.GetDB().Find(&dbSessions)
@@ -210,23 +208,6 @@ func StartSession(w http.ResponseWriter, r *http.Request) map[string]interface{}
 	data["Banks"] = GenerateBanks()
 	data["Account"] = storedSession
 	data["Sessions"] = dbSessions
-
-	if params.OID != "" {
-		var order Transaction
-		srv.GetDB().First(&order, "id = ?", params.OID)
-		if order.ID != "" {
-			data["Order"] = order
-		}
-	}
-
-	if params.Action == "generate" {
-		http.Redirect(w, r, "/build", 302)
-		return nil
-	}
-
-	if (dbSession.ID == "" || len(dbSession.Transactions) == 0) && params.Action != "delete" {
-		err = SaveSession(&storedSession)
-	}
 
 	return data
 }
@@ -281,6 +262,33 @@ func CheckSession(w http.ResponseWriter, r *http.Request) string {
 		if err != nil {
 			fmt.Println(err)
 		}
+	}
+	return sessionId
+}
+
+func NewSession(w http.ResponseWriter, r *http.Request) string {
+	session, err := store.Get(r, "sid")
+	if err != nil {
+		fmt.Println(err)
+	}
+	sessionId := shortuuid.New()
+	session.Values["Id"] = sessionId
+	err = session.Save(r, w)
+	if err != nil {
+		fmt.Println(err)
+	}
+	return sessionId
+}
+
+func ChangeSession(sessionId string, w http.ResponseWriter, r *http.Request) string {
+	session, err := store.Get(r, "sid")
+	if err != nil {
+		fmt.Println(err)
+	}
+	session.Values["Id"] = sessionId
+	err = session.Save(r, w)
+	if err != nil {
+		fmt.Println(err)
 	}
 	return sessionId
 }

@@ -3,9 +3,6 @@ package mdl
 import (
 	"encoding/json"
 	"fmt"
-	"github.com/Pallinder/go-randomdata"
-	"github.com/leekchan/accounting"
-	"github.com/lithammer/shortuuid/v3"
 	"io/ioutil"
 	"math/rand"
 	"net/http"
@@ -13,6 +10,10 @@ import (
 	"strconv"
 	"strings"
 	"time"
+
+	"github.com/Pallinder/go-randomdata"
+	"github.com/leekchan/accounting"
+	"github.com/lithammer/shortuuid/v3"
 )
 
 type Transaction struct {
@@ -24,7 +25,7 @@ type Transaction struct {
 	Session        string          `gorm:"foreignKey:UserRefer" schema:"session"`
 	Amount         float32         `schema:"amount"`
 	AmountDelivery float32         `schema:"amount_delivery"`
-	AmountTax      float32         `schema:"amount_tax'`
+	AmountTax      float32         `schema:"amount_tax"`
 	DeliveryDate   time.Time       `schema:"delivery_date"`
 	Date           time.Time       `schema:"date"`
 	ProductId      int             `schema:"product_id"`
@@ -54,7 +55,11 @@ const (
 	COIN_OUT
 )
 
+var rates []Rate
+
 func GenerateTransactions(account *Session, dateFrom *time.Time, coinDate *time.Time) []Transaction {
+
+	CacheRates()
 
 	transactions := []Transaction{}
 
@@ -112,7 +117,6 @@ func GenerateTransactions(account *Session, dateFrom *time.Time, coinDate *time.
 			GmRead:         GenerateGmRead(),
 			GmCount:        GenerateGmCount(),
 		})
-		fmt.Println(transactionAmount)
 
 		if transactionType == BANK {
 			rateF, _ := strconv.ParseFloat(rate, 32)
@@ -161,6 +165,7 @@ func GenerateTransactions(account *Session, dateFrom *time.Time, coinDate *time.
 }
 
 func UpdateTransactions(transactions []Transaction, account *Session) []Transaction {
+	CacheRates()
 	transactions = ReverseTransaction(transactions)
 	newTransactions := []Transaction{}
 	ln := len(transactions) - 1
@@ -266,9 +271,6 @@ func GenerateEbOrder() string {
 }
 
 func GetTransactions(session *Session, params Params) []Transaction {
-	if params.Action == "generate" {
-		return GenerateTransactions(session, nil, nil)
-	}
 	var transactions []Transaction
 	srv.GetDB().Order("date desc").Find(&transactions, "session = ?", session.ID)
 	if len(session.Transactions) > 0 {
@@ -447,17 +449,27 @@ func (t Transaction) DateBucket() string {
 	return dateBucket
 }
 
+func CacheRates() {
+	fmt.Println("Caching Rates")
+	srv.GetDB().Find(&rates)
+}
+
 func GetRate(date time.Time) (string, error) {
-	r := Rate{}
-	srv.GetDB().First(&r, "date = ?", date.Format("2006-01-02"))
-	if r.Rate != "" {
-		return r.Rate, nil
-	}
 	if time.Now().Before(date) {
 		date = time.Now()
 	}
 	if date.Before(time.Now().Add(time.Duration(-30*24) * time.Hour)) {
 		date = time.Now().Add(time.Duration(-30*24) * time.Hour)
+	}
+	r := Rate{}
+	for _, r := range rates {
+		if r.Date == date.Format("2006-01-02") {
+			return r.Rate, nil
+		}
+	}
+	srv.GetDB().First(&r, "date = ?", date.Format("2006-01-02"))
+	if r.Rate != "" {
+		return r.Rate, nil
 	}
 	resp, err := http.Get("https://api.coinbase.com/v2/prices/BTC-USD/spot?date=" + date.Format("2006-01-02"))
 	if err != nil {
