@@ -451,7 +451,7 @@ func (t Transaction) DateBucket() string {
 
 func CacheRates() {
 	fmt.Println("Caching Rates")
-	srv.GetDB().Find(&rates)
+	srv.GetDB().Debug().Find(&rates)
 }
 
 func GetRate(date time.Time) (string, error) {
@@ -473,16 +473,16 @@ func GetRate(date time.Time) (string, error) {
 	}
 	resp, err := http.Get("https://api.coinbase.com/v2/prices/BTC-USD/spot?date=" + date.Format("2006-01-02"))
 	if err != nil {
-		return "", err
+		return "30442.12", err
 	}
 	body, err := ioutil.ReadAll(resp.Body)
 	if err != nil {
-		return "", err
+		return "30442.12", err
 	}
 	var rate ApiResp
 	err = json.Unmarshal(body, &rate)
 	if err != nil {
-		return "", err
+		return "30442.12", err
 	}
 	r = Rate{
 		Date: date.Format("2006-01-02"),
@@ -490,7 +490,7 @@ func GetRate(date time.Time) (string, error) {
 	}
 	srv.GetDB().Create(r)
 	if rate.Data.Amount == "" {
-		return "42442.12", nil
+		return "30442.12", nil
 	}
 	return rate.Data.Amount, nil
 }
