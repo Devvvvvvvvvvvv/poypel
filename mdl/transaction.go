@@ -371,7 +371,7 @@ func (t Transaction) IsProduct() bool {
 }
 
 func (t Transaction) DateString() string {
-	return t.Date.Format("2 Jan")
+	return t.Date.Format("Jan 2")
 }
 
 func (t Transaction) GmReaded(ind int) bool {
